@@ -31,6 +31,23 @@ Open `http://localhost:3000`.
 - AURA #001 — ORIGIN: https://opensea.io/item/ethereum/0xb4a9d1ca2ae56e7491f83cb2b7a4c956fa994593/1
 - AURA #002 — FORCE: https://opensea.io/item/ethereum/0xb4a9d1ca2ae56e7491f83cb2b7a4c956fa994593/2
 
+## Build in public
+
+The repository is the working build hub for AURA. Architecture notes and active developer tasks are kept visible so contributors can evaluate the project and help shape what comes next.
+
+### Active builder tasks
+
+- [#1 — Build AURA backend foundation](https://github.com/AURASymbols/aura-web/issues/1)
+- [#2 — Define AURA data model](https://github.com/AURASymbols/aura-web/issues/2)
+- [#3 — Evaluate Web3 integration layer](https://github.com/AURASymbols/aura-web/issues/3)
+- [#4 — Build AURA identity architecture](https://github.com/AURASymbols/aura-web/issues/4)
+
+Supporting documents:
+
+- `docs/roadmap.md`
+- `docs/architecture.md`
+- `docs/contributing.md`
+
 ## Principles
 
 AURA does not use invented holders, volume, users, revenue, investors, token supply, transaction counts, or other traction metrics. If a number is not real and verifiable, it is left out.
