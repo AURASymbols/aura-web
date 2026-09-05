@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const { getDatabaseStatus, closeDatabase } = require("./server/db");
+const nftRoutes = require("./server/routes/nfts");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -24,13 +25,14 @@ app.get("/api/status", async (req, res) => {
   const database = await getDatabaseStatus();
   res.json({
     project: "AURA",
-    version: "1.8.0",
+    version: "1.9.0",
     stage: "Early Stage",
     message: "AURA is being built.",
     systems: {
       website: "building",
       backend: "building",
       database: database.configured ? database.status : "not configured",
+      nftApi: "building",
       web3: "research",
       smartContracts: "not deployed"
     },
@@ -38,6 +40,8 @@ app.get("/api/status", async (req, res) => {
     nft: { origin: "AURA #001 — ORIGIN", force: "AURA #002 — FORCE" }
   });
 });
+
+app.use("/api/nfts", nftRoutes);
 
 app.use("/api", (req, res) => {
   res.status(404).json({ error: "API route not found" });
