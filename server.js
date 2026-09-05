@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const { getDatabaseStatus, closeDatabase } = require("./server/db");
+const { getEthereumStatus } = require("./server/web3/ethereum");
 const nftRoutes = require("./server/routes/nfts");
 
 const app = express();
@@ -11,18 +12,27 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/api/health", async (req, res) => {
-  const database = await getDatabaseStatus();
+  const [database, ethereum] = await Promise.all([
+    getDatabaseStatus(),
+    getEthereumStatus()
+  ]);
+
   res.json({
     ok: true,
     service: "aura-web",
     timestamp: new Date().toISOString(),
     uptimeSeconds: Math.floor((Date.now() - startedAt) / 1000),
-    database
+    database,
+    ethereum
   });
 });
 
 app.get("/api/status", async (req, res) => {
-  const database = await getDatabaseStatus();
+  const [database, ethereum] = await Promise.all([
+    getDatabaseStatus(),
+    getEthereumStatus()
+  ]);
+
   res.json({
     project: "AURA",
     version: "1.9.0",
@@ -33,6 +43,7 @@ app.get("/api/status", async (req, res) => {
       backend: "building",
       database: database.configured ? database.status : "not configured",
       nftApi: "building",
+      ethereum: ethereum.configured ? ethereum.status : "not configured",
       web3: "research",
       smartContracts: "not deployed"
     },
