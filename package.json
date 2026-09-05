@@ -1,6 +1,6 @@
 {
   "name": "aura-web-v1",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "private": true,
   "description": "AURA early-stage Web3 investor and developer portal",
   "main": "server.js",
