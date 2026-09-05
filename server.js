@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const { getDatabaseStatus, closeDatabase } = require("./server/db");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -8,41 +9,36 @@ const startedAt = Date.now();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
-// Basic service health check.
-app.get("/api/health", (req, res) => {
+app.get("/api/health", async (req, res) => {
+  const database = await getDatabaseStatus();
   res.json({
     ok: true,
     service: "aura-web",
     timestamp: new Date().toISOString(),
-    uptimeSeconds: Math.floor((Date.now() - startedAt) / 1000)
+    uptimeSeconds: Math.floor((Date.now() - startedAt) / 1000),
+    database
   });
 });
 
-// Public project status. Keep this factual; do not expose secrets here.
-app.get("/api/status", (req, res) => {
+app.get("/api/status", async (req, res) => {
+  const database = await getDatabaseStatus();
   res.json({
     project: "AURA",
-    version: "1.7.0",
+    version: "1.8.0",
     stage: "Early Stage",
     message: "AURA is being built.",
     systems: {
       website: "building",
       backend: "building",
-      database: "not deployed",
+      database: database.configured ? database.status : "not configured",
       web3: "research",
       smartContracts: "not deployed"
     },
-    social: {
-      x: "https://x.com/AURASymbol"
-    },
-    nft: {
-      origin: "AURA #001 — ORIGIN",
-      force: "AURA #002 — FORCE"
-    }
+    social: { x: "https://x.com/AURASymbol" },
+    nft: { origin: "AURA #001 — ORIGIN", force: "AURA #002 — FORCE" }
   });
 });
 
-// API 404s return JSON; normal site routes continue to the SPA entry point.
 app.use("/api", (req, res) => {
   res.status(404).json({ error: "API route not found" });
 });
@@ -51,13 +47,23 @@ app.use((req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// Final error handler for unexpected server errors.
 app.use((err, req, res, next) => {
   console.error(err);
   if (res.headersSent) return next(err);
   res.status(500).json({ error: "Internal server error" });
 });
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`AURA server running at http://localhost:${PORT}`);
 });
+
+async function shutdown(signal) {
+  console.log(`Received ${signal}. Shutting down...`);
+  server.close(async () => {
+    await closeDatabase();
+    process.exit(0);
+  });
+}
+
+process.on("SIGINT", () => shutdown("SIGINT"));
+process.on("SIGTERM", () => shutdown("SIGTERM"));
