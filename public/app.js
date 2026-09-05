@@ -1,4 +1,5 @@
 const SITE = {
+  github: "https://github.com/AURASymbols/aura-web",
   x: "https://x.com/AURASymbol",
   opensea: {
     origin: "https://opensea.io/item/ethereum/0xb4a9d1ca2ae56e7491f83cb2b7a4c956fa994593/1",
