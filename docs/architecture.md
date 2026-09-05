@@ -4,9 +4,9 @@ This document describes the current technical direction. It is a working design,
 
 ## Current state
 
-AURA currently has a functioning static web portal served by a small Node.js / Express application. The NFT layer includes two published ERC-1155 assets on Ethereum.
+AURA currently has a functioning web portal served by a small Node.js / Express application. The NFT layer includes two published ERC-1155 assets on Ethereum.
 
-The production backend, database, API platform, full identity architecture, and additional smart contracts are not yet deployed.
+The production database, full identity architecture, and additional smart contracts are not yet deployed.
 
 ## Target architecture
 
@@ -46,19 +46,35 @@ Current foundation:
 
 - Node.js
 - Express 5
-- `/api/status` endpoint
+- `GET /api/health` service health endpoint
+- `GET /api/status` public project status endpoint
 - Static asset serving
+- JSON API 404 handling
+- Final server error handling
+
+Example health response:
+
+```json
+{
+  "ok": true,
+  "service": "aura-web",
+  "timestamp": "...",
+  "uptimeSeconds": 12
+}
+```
+
+The status endpoint intentionally exposes only public, non-sensitive project information. It reports the current stage of the website/backend, database, Web3 research, and smart-contract work without inventing traction or deployment claims.
 
 Planned exploration:
 
-- API structure
+- API structure expansion
 - Authentication / account model
 - Identity data model
 - Database integration
 - Contact / communication service
 - Observability and production deployment
 
-**Status: TO BE BUILT**
+**Status: BUILDING**
 
 ## Database
 
