@@ -1,20 +1,135 @@
 # AURA Web
 
-AURA is an early-stage Web3 project exploring the connection between digital identity, NFTs, community, and an evolving economic layer.
+**AURA — an early-stage Web3 project building toward a connected digital identity, asset, participation and community layer.**
 
-**We have started. We are building. We are looking for people who want to help shape what comes next.**
+> **We have started. We are building. The next stage is open to people who want to help shape it.**
 
-## Current status
+AURA is not presented as a finished platform. The project has an established identity, tangible on-chain assets, a public portal, documented architecture, and an emerging engineering foundation. The larger product is still being designed and built.
 
-- AURA brand / identity — Established
-- AURA #001 — ORIGIN — On-chain
-- AURA #002 — FORCE — On-chain
-- Investor / Developer portal — Building
-- Core AURA platform — Not deployed
-- Full identity architecture — In design
-- Production backend / database — To be built
-- Token contract, supply, sale — Not established
-- Formal investment / fundraising structure — Not presented
+## Project at a glance
+
+| Area | Current state |
+|---|---|
+| AURA identity / brand | **Established** |
+| Symbolic NFT foundation | **Established** |
+| AURA #001 — ORIGIN | **On-chain** |
+| AURA #002 — FORCE | **On-chain** |
+| Public investor / developer portal | **Building** |
+| Technical architecture | **Defined / evolving** |
+| Backend / API foundation | **Building** |
+| NFT catalog API | **Building** |
+| Ethereum integration | **Building** |
+| Identity architecture | **Design** |
+| Production database | **Planned** |
+| Core AURA platform | **Not deployed** |
+| Token / economic layer | **Conditional** |
+
+## Project history
+
+The GitHub repository is the public engineering hub, not a claim that the AURA idea began on the day the repository was created.
+
+AURA's development can be understood as five layers:
+
+**Concept → Identity → On-chain foundation → Public presence → Engineering build**
+
+The project history documents this progression without inventing dates, traction, funding, users, or other unverifiable claims.
+
+See [`docs/project-history.md`](docs/project-history.md) for the full project history.
+
+## Milestones
+
+The project is deliberately divided into verifiable stages:
+
+- **Foundation** — identity, symbolic assets and public presence
+- **Engineering** — backend, data model, API and Web3 foundation
+- **Product / Web3** — identity, wallet and on-chain integration
+- **Ecosystem** — community, participation and broader platform development
+- **Economic layer** — conditional on product utility, evidence and appropriate review
+
+See [`docs/milestones.md`](docs/milestones.md) for the current milestone framework.
+
+## What exists today
+
+- AURA brand and project identity
+- AURA #001 — ORIGIN on Ethereum
+- AURA #002 — FORCE on Ethereum
+- Public investor / developer portal
+- Node.js / Express application foundation
+- Public API health/status endpoints
+- NFT catalog API
+- Initial database schema direction
+- Ethereum RPC integration foundation
+- Technical architecture and roadmap documentation
+
+## What is intentionally not claimed
+
+AURA does **not** present invented or unverified:
+
+- User or holder counts
+- Trading volume or floor price
+- Revenue
+- Investors or funding
+- Token supply or token price
+- Community size
+- Transaction statistics
+- Future returns
+- Production deployments that do not yet exist
+
+If a number or claim cannot be verified, it is left out.
+
+## Verified on-chain assets
+
+- **AURA #001 — ORIGIN** — Ethereum / ERC-1155
+  - https://opensea.io/item/ethereum/0xb4a9d1ca2ae56e7491f83cb2b7a4c956fa994593/1
+- **AURA #002 — FORCE** — Ethereum / ERC-1155
+  - https://opensea.io/item/ethereum/0xb4a9d1ca2ae56e7491f83cb2b7a4c956fa994593/2
+
+Project account:
+
+- X: https://x.com/AURASymbol
+
+## Build in public
+
+This repository is intentionally transparent about what exists, what is being built, and what remains uncertain.
+
+Useful starting points:
+
+- [`docs/project-history.md`](docs/project-history.md) — how the project evolved
+- [`docs/milestones.md`](docs/milestones.md) — completed, current and future stages
+- [`docs/roadmap.md`](docs/roadmap.md) — staged product direction
+- [`docs/architecture.md`](docs/architecture.md) — technical direction
+- [`docs/api.md`](docs/api.md) — current API surface
+- [`docs/build-in-public.md`](docs/build-in-public.md) — public development principles
+- [`docs/contributing.md`](docs/contributing.md) — how builders can participate
+
+## Why participate early?
+
+### For investors
+
+The opportunity is to support the transition from an established concept and initial on-chain foundation into a working product.
+
+Early participation can help determine:
+
+- Which product direction gets tested first
+- Which technical capabilities are built first
+- How the AURA ecosystem takes shape
+- Which partnerships and resources become possible
+
+### For builders
+
+AURA is intentionally early enough that architecture and product decisions can still be influenced.
+
+The opportunity is not simply to implement a finished specification. It is to help create and improve the specification through real engineering, testing and evidence.
+
+## Roadmap
+
+1. **FOUNDATION / NOW** — identity, initial NFTs, public presence and direction.
+2. **BUILD / NEXT** — technical foundation, backend, API and core product flows.
+3. **CONNECT / FUTURE** — identity, assets, participation, community and platform.
+4. **ECONOMY / CONDITIONAL** — economic design only when product utility justifies it.
+5. **ECOSYSTEM / LONG TERM** — broader developer, creator, community and partnership ecosystem.
+
+**Build in stages. Prove. Learn. Expand.**
 
 ## Run locally
 
@@ -25,47 +140,10 @@ npm start
 
 Open `http://localhost:3000`.
 
-## Verified links
-
-- X: https://x.com/AURASymbol
-- AURA #001 — ORIGIN: https://opensea.io/item/ethereum/0xb4a9d1ca2ae56e7491f83cb2b7a4c956fa994593/1
-- AURA #002 — FORCE: https://opensea.io/item/ethereum/0xb4a9d1ca2ae56e7491f83cb2b7a4c956fa994593/2
-
-## Build in public
-
-The repository is the working build hub for AURA. Architecture notes and active developer tasks are kept visible so contributors can evaluate the project and help shape what comes next.
-
-### Active builder tasks
-
-- [#1 — Build AURA backend foundation](https://github.com/AURASymbols/aura-web/issues/1)
-- [#2 — Define AURA data model](https://github.com/AURASymbols/aura-web/issues/2)
-- [#3 — Evaluate Web3 integration layer](https://github.com/AURASymbols/aura-web/issues/3)
-- [#4 — Build AURA identity architecture](https://github.com/AURASymbols/aura-web/issues/4)
-
-Supporting documents:
-
-- `docs/roadmap.md`
-- `docs/architecture.md`
-- `docs/contributing.md`
-
-## Principles
-
-AURA does not use invented holders, volume, users, revenue, investors, token supply, transaction counts, or other traction metrics. If a number is not real and verifiable, it is left out.
-
-## Roadmap
-
-1. **FOUNDATION / NOW** — establish identity, initial NFTs, portal and direction.
-2. **BUILD / NEXT** — build the technical foundation, backend and core product flows.
-3. **CONNECT / FUTURE** — connect identity, NFTs, community and platform layers.
-4. **ECONOMY / CONDITIONAL** — evaluate an economic layer only when the product and architecture justify it.
-5. **ECOSYSTEM / LONG TERM** — expand toward a broader AURA ecosystem.
-
-Build in stages. Prove. Learn. Expand.
-
 ## Participation
 
 - **Investor:** provide resources for the next build stage.
-- **Builder:** help shape the architecture and implementation.
-- **Partner:** open a useful door, introduce expertise, or create a meaningful collaboration.
+- **Builder:** help shape architecture and implementation.
+- **Partner:** contribute expertise, access, introductions or meaningful collaboration.
 
-The ask is simple: if you believe the idea is worth testing, help us make the next stage real. No hype required.
+AURA is early. That is explicit. The foundation is real. The next stage is where meaningful participation can make a difference.
