@@ -9,6 +9,42 @@ function getProvider() {
   return new ethers.JsonRpcProvider(process.env.ETHEREUM_RPC_URL);
 }
 
+async function getEthBalance(address) {
+  if (!isConfigured()) {
+    return {
+      configured: false,
+      status: "not-configured"
+    };
+  }
+
+  try {
+    if (!ethers.isAddress(address)) {
+      throw new Error("Invalid Ethereum address.");
+    }
+
+    const provider = getProvider();
+    const balanceWei = await provider.getBalance(address);
+    const balanceEth = ethers.formatEther(balanceWei);
+    const network = await provider.getNetwork();
+
+    return {
+      configured: true,
+      status: "connected",
+      address,
+      chainId: network.chainId.toString(),
+      balanceWei: balanceWei.toString(),
+      balanceEth
+    };
+  } catch (error) {
+    return {
+      configured: true,
+      status: "unavailable",
+      address,
+      error: error.message
+    };
+  }
+}
+
 async function getEthereumStatus() {
   if (!isConfigured()) {
     return { configured: false, status: "not configured" };
@@ -34,4 +70,9 @@ async function getEthereumStatus() {
   }
 }
 
-module.exports = { getEthereumStatus, getProvider, isConfigured };
+module.exports = {
+  getEthereumStatus,
+  getProvider,
+  getEthBalance,
+  isConfigured
+};
