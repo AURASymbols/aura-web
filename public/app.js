@@ -56,15 +56,18 @@ function showRoute() {
 window.addEventListener("hashchange", showRoute);
 showRoute();
 
-/* MVP v0.1 — Wallet Connection + AURA Identity
+/* MVP v0.1 — Wallet → Identity → NFT Verification → AURA Profile
    Wallet signatures verify ownership of the connected address.
+   NFT verification is read-only and uses the AURA backend's Ethereum RPC.
    No private keys, wallet credentials or transaction approvals are handled by AURA. */
 const walletState = {
   address: null,
   chainId: null,
   provider: null,
   identity: null,
-  identityLoading: false
+  identityLoading: false,
+  nftLoading: false,
+  nftVerification: null
 };
 
 function shortAddress(address) {
@@ -86,6 +89,8 @@ function walletUi() {
       <strong id="auraWalletStatus">Wallet not connected</strong>
       <span id="auraWalletDetail">Connect an EVM wallet to begin the AURA product flow.</span>
       <div id="auraIdentityArea" class="aura-identity-area"></div>
+      <div id="auraNftArea" class="aura-nft-area"></div>
+      <div id="auraProfileArea" class="aura-profile-area"></div>
     </div>
     <button id="auraConnect" class="btn gold" type="button">CONNECT WALLET</button>
   `;
@@ -99,7 +104,9 @@ function updateWalletUi() {
   const detail = document.getElementById("auraWalletDetail");
   const button = document.getElementById("auraConnect");
   const identityArea = document.getElementById("auraIdentityArea");
-  if (!status || !detail || !button || !identityArea) return;
+  const nftArea = document.getElementById("auraNftArea");
+  const profileArea = document.getElementById("auraProfileArea");
+  if (!status || !detail || !button || !identityArea || !nftArea || !profileArea) return;
 
   if (!walletState.address) {
     status.textContent = "Wallet not connected";
@@ -107,6 +114,8 @@ function updateWalletUi() {
       ? "Connect an EVM wallet to begin the AURA product flow."
       : "No injected EVM wallet detected. Install a compatible wallet to continue.";
     identityArea.innerHTML = "";
+    nftArea.innerHTML = "";
+    profileArea.innerHTML = "";
     button.textContent = "CONNECT WALLET";
     return;
   }
@@ -124,12 +133,58 @@ function updateWalletUi() {
     identityArea.innerHTML = `<div class="aura-identity-create"><span>Wallet connected. Your AURA Identity has not been established.</span><button id="auraIdentityButton" class="btn" type="button">ESTABLISH AURA IDENTITY</button></div>`;
     document.getElementById("auraIdentityButton")?.addEventListener("click", establishIdentity);
   }
+
+  if (walletState.nftLoading) {
+    nftArea.innerHTML = `<div class="aura-nft-box"><span>VERIFY AURA NFT</span><strong>Checking Ethereum ownership…</strong></div>`;
+  } else if (walletState.nftVerification?.status === "verified") {
+    nftArea.innerHTML = renderNftVerification(walletState.nftVerification);
+  } else if (walletState.nftVerification) {
+    nftArea.innerHTML = renderNftVerificationError(walletState.nftVerification);
+  } else {
+    nftArea.innerHTML = `<div class="aura-nft-box"><div><span>VERIFY AURA NFT</span><small>Read-only ownership check for ORIGIN and FORCE.</small></div><button id="auraVerifyNft" class="btn" type="button">VERIFY NFT</button></div>`;
+    document.getElementById("auraVerifyNft")?.addEventListener("click", verifyNFTs);
+  }
+
+  profileArea.innerHTML = renderProfile();
 }
 
 function escapeHtml(value) {
   return String(value).replace(/[&<>'"]/g, char => ({
     "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;"
   }[char]));
+}
+
+function renderNftVerification(result) {
+  const rows = (result.nfts || []).map(nft => `
+    <div class="aura-nft-row">
+      <div><strong>${escapeHtml(nft.name)}</strong><small>${nft.standard} · Token ${nft.tokenId}</small></div>
+      <b class="${nft.owned ? "owned" : "not-owned"}">${nft.owned ? `OWNED · ${nft.balance}` : "NOT OWNED"}</b>
+    </div>
+  `).join("");
+
+  return `<div class="aura-nft-box verified"><div class="aura-nft-heading"><span>NFT VERIFICATION</span><small>Ethereum mainnet · Read-only</small></div>${rows}</div>`;
+}
+
+function renderNftVerificationError(result) {
+  const status = result.status || "unavailable";
+  const title = status === "not-configured" ? "Verification service not configured"
+    : status === "wrong-network" ? "Verification requires Ethereum mainnet"
+    : "Verification currently unavailable";
+  return `<div class="aura-nft-box unavailable"><span>NFT VERIFICATION</span><strong>${title}</strong><small>${escapeHtml(result.error || "No live ownership result is available.")}</small><button id="auraVerifyNft" class="btn" type="button">TRY AGAIN</button></div>`;
+}
+
+function renderProfile() {
+  const name = walletState.identity?.display_name || "Not established";
+  const identityStatus = walletState.identity ? "ESTABLISHED" : "NOT ESTABLISHED";
+  let nftStatus = "NOT CHECKED";
+  if (walletState.nftVerification?.status === "verified") {
+    const ownedCount = (walletState.nftVerification.nfts || []).filter(n => n.owned).length;
+    nftStatus = `${ownedCount} / ${(walletState.nftVerification.nfts || []).length} VERIFIED`;
+  } else if (walletState.nftVerification) {
+    nftStatus = "UNAVAILABLE";
+  }
+
+  return `<div class="aura-profile"><div class="aura-profile-heading"><span>AURA PROFILE / MVP</span><b>READ-ONLY VIEW</b></div><div class="aura-profile-grid"><div><small>WALLET</small><strong>${escapeHtml(shortAddress(walletState.address))}</strong></div><div><small>IDENTITY</small><strong>${escapeHtml(name)}</strong><span>${identityStatus} · OFF-CHAIN</span></div><div><small>NFT OWNERSHIP</small><strong>${escapeHtml(nftStatus)}</strong><span>Ethereum mainnet check</span></div></div></div>`;
 }
 
 async function connectWallet() {
@@ -144,6 +199,7 @@ async function connectWallet() {
     walletState.chainId = null;
     walletState.provider = null;
     walletState.identity = null;
+    walletState.nftVerification = null;
     updateWalletUi();
     return;
   }
@@ -156,6 +212,7 @@ async function connectWallet() {
     walletState.address = accounts[0];
     walletState.chainId = await window.ethereum.request({ method: "eth_chainId" });
     walletState.provider = window.ethereum;
+    walletState.nftVerification = null;
     updateWalletUi();
     await loadIdentity();
   } catch (error) {
@@ -229,9 +286,37 @@ async function establishIdentity() {
   }
 }
 
+async function verifyNFTs() {
+  if (!walletState.address) return;
+  walletState.nftLoading = true;
+  walletState.nftVerification = null;
+  updateWalletUi();
+
+  try {
+    const response = await fetch(`/api/nfts/verify?address=${encodeURIComponent(walletState.address)}`);
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      walletState.nftVerification = data.status
+        ? data
+        : { status: "unavailable", error: "The NFT verification service could not be reached." };
+      return;
+    }
+    walletState.nftVerification = data;
+  } catch (error) {
+    walletState.nftVerification = {
+      status: "unavailable",
+      error: error?.message || "The NFT verification service could not be reached."
+    };
+  } finally {
+    walletState.nftLoading = false;
+    updateWalletUi();
+  }
+}
+
 function handleAccountsChanged(accounts) {
   walletState.address = accounts?.[0] || null;
   walletState.identity = null;
+  walletState.nftVerification = null;
   if (!walletState.address) {
     walletState.chainId = null;
     walletState.provider = null;
@@ -243,6 +328,7 @@ function handleAccountsChanged(accounts) {
 async function handleChainChanged(chainId) {
   walletState.chainId = chainId || null;
   walletState.identity = null;
+  walletState.nftVerification = null;
   updateWalletUi();
   if (walletState.address) loadIdentity();
 }
@@ -281,9 +367,10 @@ fetch("/api/status")
 
 const walletStyle = document.createElement("style");
 walletStyle.textContent = `
-.aura-wallet-card{margin-top:24px;border:1px solid #292929;background:rgba(255,255,255,.025);padding:18px 20px;display:flex;justify-content:space-between;align-items:center;gap:20px;max-width:760px}
-.aura-wallet-card>div{display:grid;gap:4px}.aura-wallet-card strong{font-size:13px;letter-spacing:.08em}.aura-wallet-card span{color:#777;font-size:11px}.aura-wallet-card button:disabled{opacity:.5;cursor:wait}
+.aura-wallet-card{margin-top:24px;border:1px solid #292929;background:rgba(255,255,255,.025);padding:18px 20px;display:flex;justify-content:space-between;align-items:flex-start;gap:20px;max-width:760px}
+.aura-wallet-card>div{display:grid;gap:4px;min-width:0}.aura-wallet-card strong{font-size:13px;letter-spacing:.08em}.aura-wallet-card span{color:#777;font-size:11px}.aura-wallet-card button:disabled{opacity:.5;cursor:wait}
 .aura-identity-area{margin-top:12px}.aura-identity-status{display:grid;gap:3px;padding-top:10px;border-top:1px solid #222}.aura-identity-status span{font-size:9px;letter-spacing:.16em;color:#888}.aura-identity-status small{color:#666;font-size:10px}.aura-identity-create{display:grid;gap:9px;padding-top:10px;border-top:1px solid #222;color:#777;font-size:11px}.aura-identity-create .btn{width:max-content}.aura-identity-status.established strong{font-size:15px}
-@media(max-width:800px){.aura-wallet-card{align-items:flex-start;flex-direction:column}.aura-wallet-card .btn{width:100%}.aura-identity-create .btn{width:100%}}
+.aura-nft-area{margin-top:12px}.aura-nft-box{border-top:1px solid #222;padding-top:12px;display:grid;gap:9px}.aura-nft-box>span,.aura-nft-heading span,.aura-profile-heading span{font-size:9px;letter-spacing:.16em;color:#888}.aura-nft-box>small{color:#666;font-size:10px}.aura-nft-box>strong{font-size:12px}.aura-nft-box.verified{gap:8px}.aura-nft-heading{display:flex;justify-content:space-between;gap:12px}.aura-nft-heading small{color:#666;font-size:9px}.aura-nft-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:9px 0;border-top:1px solid #1d1d1d}.aura-nft-row div{display:grid;gap:2px}.aura-nft-row strong{font-size:11px}.aura-nft-row small{font-size:9px;color:#666}.aura-nft-row b{font-size:9px;letter-spacing:.1em;white-space:nowrap}.aura-nft-row b.owned{color:#aaa}.aura-nft-row b.not-owned{color:#555}.aura-nft-box .btn{width:max-content}.aura-profile-area{margin-top:12px}.aura-profile{border-top:1px solid #222;padding-top:12px}.aura-profile-heading{display:flex;justify-content:space-between;gap:12px;margin-bottom:10px}.aura-profile-heading b{font-size:8px;letter-spacing:.1em;color:#555}.aura-profile-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.aura-profile-grid>div{border:1px solid #202020;padding:10px;display:grid;gap:3px}.aura-profile-grid small{font-size:8px;letter-spacing:.12em;color:#666}.aura-profile-grid strong{font-size:11px;word-break:break-word}.aura-profile-grid span{font-size:9px;color:#555}.aura-nft-box.unavailable{padding-bottom:2px}
+@media(max-width:800px){.aura-wallet-card{align-items:stretch;flex-direction:column}.aura-wallet-card .btn{width:100%}.aura-identity-create .btn,.aura-nft-box .btn{width:100%}.aura-profile-grid{grid-template-columns:1fr}.aura-nft-heading{flex-direction:column;gap:3px}}
 `;
 document.head.appendChild(walletStyle);
