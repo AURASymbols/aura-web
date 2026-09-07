@@ -34,4 +34,4 @@ async function getEthereumStatus() {
   }
 }
 
-module.exports = { getEthereumStatus };
+module.exports = { getEthereumStatus, getProvider, isConfigured };
