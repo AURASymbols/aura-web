@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const { getDatabaseStatus, closeDatabase } = require("./server/db");
-const { getEthereumStatus } = require("./server/web3/ethereum");
+const { getEthereumStatus, getEthBalance } = require("./server/web3/ethereum");
 const nftRoutes = require("./server/routes/nfts");
 const nftVerificationRoutes = require("./server/routes/nft-verification");
 const identityRoutes = require("./server/routes/identity");
@@ -27,6 +27,21 @@ app.get("/api/health", async (req, res) => {
     database,
     ethereum
   });
+});
+
+app.get("/api/wallet/:address", async (req, res) => {
+  const { address } = req.params;
+  const balance = await getEthBalance(address);
+
+  if (balance.status === "not-configured") {
+    return res.status(503).json(balance);
+  }
+
+  if (balance.status === "unavailable") {
+    return res.status(503).json(balance);
+  }
+
+  res.json(balance);
 });
 
 app.get("/api/status", async (req, res) => {
