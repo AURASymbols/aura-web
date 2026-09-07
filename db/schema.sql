@@ -1,6 +1,8 @@
 -- AURA initial database schema
 -- PostgreSQL candidate. No private keys or wallet credentials are stored.
 
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
 CREATE TABLE IF NOT EXISTS users (
   id UUID PRIMARY KEY,
   status TEXT NOT NULL DEFAULT 'active',
