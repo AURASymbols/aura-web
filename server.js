@@ -19,10 +19,14 @@ app.get(["/", "/index.html"], (req, res, next) => {
   fs.readFile(path.join(publicDir, "index.html"), "utf8", (error, html) => {
     if (error) return next(error);
 
-    const script = '<script src="/wallet-balance.js"></script>';
-    const page = html.includes("/wallet-balance.js")
-      ? html
-      : html.replace("</body>", `${script}</body>`);
+    const scripts = [
+      '<script src="/wallet-balance.js"></script>',
+      '<script src="/nft-gallery.js"></script>'
+    ];
+    const page = scripts.reduce((current, script) => {
+      const src = script.match(/src="([^"]+)"/)?.[1];
+      return src && current.includes(src) ? current : current.replace("</body>", `${script}</body>`);
+    }, html);
 
     res.type("html").send(page);
   });
