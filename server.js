@@ -70,7 +70,7 @@ app.get("/api/status", async (req, res) => {
 
   res.json({
     project: "AURA",
-    version: "1.9.0",
+    version: "1.9.1",
     stage: "Early Stage",
     message: "AURA is being built.",
     systems: {
@@ -82,10 +82,16 @@ app.get("/api/status", async (req, res) => {
       identityApi: database.configured ? "building" : "not configured",
       ethereum: ethereum.configured ? ethereum.status : "not configured",
       web3: "research",
-      smartContracts: "not deployed"
+      smartContracts: "additional contracts not deployed"
     },
     social: { x: "https://x.com/AURASymbol" },
-    nft: { origin: "AURA #001 — ORIGIN", force: "AURA #002 — FORCE" }
+    nft: {
+      origin: "AURA #001 — ORIGIN",
+      force: "AURA #002 — FORCE",
+      network: "Ethereum",
+      standard: "ERC-1155",
+      contract: "0xb4a9d1ca2ae56e7491f83cb2b7a4c956fa994593"
+    }
   });
 });
 
