@@ -1,7 +1,7 @@
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
-const { getDatabaseStatus, closeDatabase } = require("./server/db");
+const { getDatabaseStatus, initializeDatabase, closeDatabase } = require("./server/db");
 const { getEthereumStatus, getEthBalance } = require("./server/web3/ethereum");
 const nftRoutes = require("./server/routes/nfts");
 const nftVerificationRoutes = require("./server/routes/nft-verification");
@@ -105,17 +105,32 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: "Internal server error" });
 });
 
-const server = app.listen(PORT, () => {
-  console.log(`AURA server running at http://localhost:${PORT}`);
-});
+async function startServer() {
+  try {
+    if (process.env.DATABASE_URL) {
+      await initializeDatabase();
+      console.log("AURA database schema ready.");
+    }
 
-async function shutdown(signal) {
-  console.log(`Received ${signal}. Shutting down...`);
-  server.close(async () => {
+    const server = app.listen(PORT, () => {
+      console.log(`AURA server running at http://localhost:${PORT}`);
+    });
+
+    async function shutdown(signal) {
+      console.log(`Received ${signal}. Shutting down...`);
+      server.close(async () => {
+        await closeDatabase();
+        process.exit(0);
+      });
+    }
+
+    process.on("SIGINT", () => shutdown("SIGINT"));
+    process.on("SIGTERM", () => shutdown("SIGTERM"));
+  } catch (error) {
+    console.error("AURA server startup failed:", error);
     await closeDatabase();
-    process.exit(0);
-  });
+    process.exit(1);
+  }
 }
 
-process.on("SIGINT", () => shutdown("SIGINT"));
-process.on("SIGTERM", () => shutdown("SIGTERM"));
+startServer();
