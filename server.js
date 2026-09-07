@@ -56,8 +56,9 @@ app.get("/api/status", async (req, res) => {
   });
 });
 
-app.use("/api/nfts", nftRoutes);
+// Register verification before the catalog's /:tokenId route so /verify is not captured as a token ID.
 app.use("/api/nfts", nftVerificationRoutes);
+app.use("/api/nfts", nftRoutes);
 app.use("/api/identity", identityRoutes);
 
 app.use("/api", (req, res) => {
