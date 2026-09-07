@@ -1,4 +1,5 @@
 const express = require("express");
+const fs = require("fs");
 const path = require("path");
 const { getDatabaseStatus, closeDatabase } = require("./server/db");
 const { getEthereumStatus, getEthBalance } = require("./server/web3/ethereum");
@@ -9,9 +10,23 @@ const identityRoutes = require("./server/routes/identity");
 const app = express();
 const PORT = process.env.PORT || 3000;
 const startedAt = Date.now();
+const publicDir = path.join(__dirname, "public");
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(publicDir, { index: false }));
+
+app.get(["/", "/index.html"], (req, res, next) => {
+  fs.readFile(path.join(publicDir, "index.html"), "utf8", (error, html) => {
+    if (error) return next(error);
+
+    const script = '<script src="/wallet-balance.js"></script>';
+    const page = html.includes("/wallet-balance.js")
+      ? html
+      : html.replace("</body>", `${script}</body>`);
+
+    res.type("html").send(page);
+  });
+});
 
 app.get("/api/health", async (req, res) => {
   const [database, ethereum] = await Promise.all([
@@ -81,7 +96,7 @@ app.use("/api", (req, res) => {
 });
 
 app.use((req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+  res.sendFile(path.join(publicDir, "index.html"));
 });
 
 app.use((err, req, res, next) => {
