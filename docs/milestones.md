@@ -13,6 +13,23 @@ AURA uses milestones to distinguish what has been established from what is curre
 | Public web portal | Building | Investor / developer portal |
 | Public project documentation | Established | Roadmap, architecture and build notes |
 
+## MVP v0.1 — First Product Validation
+
+| Milestone | Status | Business / Product Purpose |
+|---|---|---|
+| MVP v0.1 definition | Defined | Establish the smallest meaningful AURA product loop |
+| Wallet connection | Next | Give users a real entry point into AURA |
+| AURA Identity | Next | Begin validating the identity concept |
+| NFT verification | Next | Connect the product to existing on-chain AURA assets |
+| AURA Profile | Next | Combine identity + verified assets into one user-facing experience |
+| End-to-end MVP test | Next | Produce the first real product proof point |
+
+**MVP v0.1 product loop:**
+
+`Connect → Establish Identity → Verify NFT → Show AURA Profile`
+
+The goal is not to build the entire AURA ecosystem at once. The goal is to create one small, testable product loop that can generate evidence for the next business and engineering decision.
+
 ## Engineering Foundation
 
 | Milestone | Status | Evidence / Notes |
