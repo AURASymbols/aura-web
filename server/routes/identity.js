@@ -47,7 +47,7 @@ router.get("/challenge", (req, res) => {
 
   const nonce = crypto.randomBytes(16).toString("hex");
   const message = challengeMessage(address, nonce);
-  challenges.set(address.toLowerCase(), { nonce, message, expiresAt: Date.now() + CHALLENGE_TTL_MS });
+  challenges.set(address.toLowerCase(), { message, expiresAt: Date.now() + CHALLENGE_TTL_MS });
 
   res.json({ address, message, expiresInSeconds: CHALLENGE_TTL_MS / 1000 });
 });
@@ -74,7 +74,7 @@ router.get("/", async (req, res) => {
     );
 
     if (!result.rows[0]) return res.status(404).json({ identity: null });
-    res.json({ identity: result.rows[0], status: "established" });
+    res.json({ identity: { ...result.rows[0], onChain: false }, status: "established" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Identity lookup failed." });
@@ -110,26 +110,15 @@ router.post("/", async (req, res) => {
     const db = await getDatabase();
     await db.query("BEGIN");
 
-    const userResult = await db.query(
-      `INSERT INTO users (id) VALUES (gen_random_uuid())
-       ON CONFLICT DO NOTHING
-       RETURNING id`,
-      []
+    const existingWallet = await db.query(
+      `SELECT user_id FROM wallets WHERE LOWER(address) = LOWER($1) ORDER BY created_at ASC LIMIT 1`,
+      [address]
     );
 
-    let userId = userResult.rows[0]?.id;
+    let userId = existingWallet.rows[0]?.user_id;
     if (!userId) {
-      const existingUser = await db.query(
-        `SELECT u.id FROM users u JOIN wallets w ON w.user_id = u.id WHERE LOWER(w.address) = LOWER($1) LIMIT 1`,
-        [address]
-      );
-      userId = existingUser.rows[0]?.id;
-    }
-
-    if (!userId) {
-      const createdUser = await db.query(`SELECT gen_random_uuid() AS id`);
+      const createdUser = await db.query(`INSERT INTO users (id) VALUES (gen_random_uuid()) RETURNING id`);
       userId = createdUser.rows[0].id;
-      await db.query(`INSERT INTO users (id) VALUES ($1)`, [userId]);
     }
 
     await db.query(
