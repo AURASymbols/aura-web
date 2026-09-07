@@ -1,3 +1,6 @@
+const fs = require("fs");
+const path = require("path");
+
 let pool = null;
 let pg = null;
 
@@ -12,6 +15,17 @@ async function getDatabase() {
     pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
   }
   return pool;
+}
+
+async function initializeDatabase() {
+  if (!isConfigured()) return { configured: false, status: "not configured" };
+
+  const db = await getDatabase();
+  const schemaPath = path.join(__dirname, "..", "db", "schema.sql");
+  const schema = fs.readFileSync(schemaPath, "utf8");
+  await db.query(schema);
+
+  return { configured: true, status: "initialized" };
 }
 
 async function getDatabaseStatus() {
@@ -35,4 +49,10 @@ async function closeDatabase() {
   }
 }
 
-module.exports = { getDatabase, getDatabaseStatus, isConfigured, closeDatabase };
+module.exports = {
+  getDatabase,
+  getDatabaseStatus,
+  initializeDatabase,
+  isDatabaseConfigured: isConfigured,
+  closeDatabase
+};
