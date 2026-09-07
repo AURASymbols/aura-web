@@ -3,6 +3,7 @@ const path = require("path");
 const { getDatabaseStatus, closeDatabase } = require("./server/db");
 const { getEthereumStatus } = require("./server/web3/ethereum");
 const nftRoutes = require("./server/routes/nfts");
+const nftVerificationRoutes = require("./server/routes/nft-verification");
 const identityRoutes = require("./server/routes/identity");
 
 const app = express();
@@ -44,6 +45,7 @@ app.get("/api/status", async (req, res) => {
       backend: "building",
       database: database.configured ? database.status : "not configured",
       nftApi: "building",
+      nftVerification: ethereum.configured ? "building" : "not configured",
       identityApi: database.configured ? "building" : "not configured",
       ethereum: ethereum.configured ? ethereum.status : "not configured",
       web3: "research",
@@ -55,6 +57,7 @@ app.get("/api/status", async (req, res) => {
 });
 
 app.use("/api/nfts", nftRoutes);
+app.use("/api/nfts", nftVerificationRoutes);
 app.use("/api/identity", identityRoutes);
 
 app.use("/api", (req, res) => {
