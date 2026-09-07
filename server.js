@@ -20,7 +20,8 @@ app.get(["/", "/index.html"], (req, res, next) => {
     if (error) return next(error);
 
     const scripts = [
-      '<script src="/wallet-balance.js"></script>'
+      '<script src="/wallet-balance.js"></script>',
+      '<script src="/site-polish.js"></script>'
     ];
     const page = scripts.reduce((current, script) => {
       const src = script.match(/src="([^"]+)"/)?.[1];
