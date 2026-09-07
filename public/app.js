@@ -15,6 +15,11 @@ const modalText = document.getElementById("modalText");
 
 function closeMenu() { nav?.classList.remove("open"); }
 function closeModal() { modal?.classList.remove("open"); }
+function showModal(title, text) {
+  if (modalTitle) modalTitle.textContent = title;
+  if (modalText) modalText.textContent = text;
+  modal?.classList.add("open");
+}
 
 menu?.addEventListener("click", () => nav?.classList.toggle("open"));
 nav?.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
@@ -31,9 +36,7 @@ document.querySelectorAll(".opensea").forEach(button => {
       window.open(url, "_blank", "noopener,noreferrer");
       return;
     }
-    if (modalTitle) modalTitle.textContent = title;
-    if (modalText) modalText.textContent = "The OpenSea link is not configured for this item yet.";
-    modal?.classList.add("open");
+    showModal(title, "The OpenSea link is not configured for this item yet.");
   });
 });
 
@@ -53,12 +56,15 @@ function showRoute() {
 window.addEventListener("hashchange", showRoute);
 showRoute();
 
-/* MVP v0.1 — Wallet Connection
-   Read-only browser wallet access only. No private keys or custody. */
+/* MVP v0.1 — Wallet Connection + AURA Identity
+   Wallet signatures verify ownership of the connected address.
+   No private keys, wallet credentials or transaction approvals are handled by AURA. */
 const walletState = {
   address: null,
   chainId: null,
-  provider: null
+  provider: null,
+  identity: null,
+  identityLoading: false
 };
 
 function shortAddress(address) {
@@ -79,6 +85,7 @@ function walletUi() {
       <small>AURA / MVP v0.1</small>
       <strong id="auraWalletStatus">Wallet not connected</strong>
       <span id="auraWalletDetail">Connect an EVM wallet to begin the AURA product flow.</span>
+      <div id="auraIdentityArea" class="aura-identity-area"></div>
     </div>
     <button id="auraConnect" class="btn gold" type="button">CONNECT WALLET</button>
   `;
@@ -91,13 +98,15 @@ function updateWalletUi() {
   const status = document.getElementById("auraWalletStatus");
   const detail = document.getElementById("auraWalletDetail");
   const button = document.getElementById("auraConnect");
-  if (!status || !detail || !button) return;
+  const identityArea = document.getElementById("auraIdentityArea");
+  if (!status || !detail || !button || !identityArea) return;
 
   if (!walletState.address) {
     status.textContent = "Wallet not connected";
     detail.textContent = window.ethereum
       ? "Connect an EVM wallet to begin the AURA product flow."
       : "No injected EVM wallet detected. Install a compatible wallet to continue.";
+    identityArea.innerHTML = "";
     button.textContent = "CONNECT WALLET";
     return;
   }
@@ -105,13 +114,27 @@ function updateWalletUi() {
   status.textContent = shortAddress(walletState.address);
   detail.textContent = `Connected · Chain ID ${walletState.chainId || "unknown"}`;
   button.textContent = "DISCONNECT";
+
+  if (walletState.identityLoading) {
+    identityArea.innerHTML = `<div class="aura-identity-status">Checking AURA Identity…</div>`;
+  } else if (walletState.identity) {
+    const name = walletState.identity.display_name || "AURA Identity";
+    identityArea.innerHTML = `<div class="aura-identity-status established"><span>IDENTITY</span><strong>${escapeHtml(name)}</strong><small>Wallet-linked · Application record · Not on-chain</small></div>`;
+  } else {
+    identityArea.innerHTML = `<div class="aura-identity-create"><span>Wallet connected. Your AURA Identity has not been established.</span><button id="auraIdentityButton" class="btn" type="button">ESTABLISH AURA IDENTITY</button></div>`;
+    document.getElementById("auraIdentityButton")?.addEventListener("click", establishIdentity);
+  }
+}
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>'"]/g, char => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;"
+  }[char]));
 }
 
 async function connectWallet() {
   if (!window.ethereum) {
-    if (modalTitle) modalTitle.textContent = "Wallet not available";
-    if (modalText) modalText.textContent = "AURA currently requires an injected EVM wallet such as MetaMask. No wallet was found in this browser.";
-    modal?.classList.add("open");
+    showModal("Wallet not available", "AURA currently requires an injected EVM wallet such as MetaMask. No wallet was found in this browser.");
     return;
   }
 
@@ -120,6 +143,7 @@ async function connectWallet() {
     walletState.address = null;
     walletState.chainId = null;
     walletState.provider = null;
+    walletState.identity = null;
     updateWalletUi();
     return;
   }
@@ -133,27 +157,94 @@ async function connectWallet() {
     walletState.chainId = await window.ethereum.request({ method: "eth_chainId" });
     walletState.provider = window.ethereum;
     updateWalletUi();
+    await loadIdentity();
   } catch (error) {
-    if (modalTitle) modalTitle.textContent = "Wallet connection cancelled";
-    if (modalText) modalText.textContent = error?.message || "The wallet connection could not be completed.";
-    modal?.classList.add("open");
+    showModal("Wallet connection cancelled", error?.message || "The wallet connection could not be completed.");
   } finally {
     button && (button.disabled = false);
   }
 }
 
+async function loadIdentity() {
+  if (!walletState.address) return;
+  walletState.identityLoading = true;
+  updateWalletUi();
+
+  try {
+    const response = await fetch(`/api/identity?address=${encodeURIComponent(walletState.address)}`);
+    if (response.status === 404) {
+      walletState.identity = null;
+      return;
+    }
+    if (!response.ok) {
+      const data = await response.json().catch(() => ({}));
+      throw new Error(data.error || "Identity lookup failed.");
+    }
+    const data = await response.json();
+    walletState.identity = data.identity || null;
+  } catch (error) {
+    walletState.identity = null;
+    showModal("Identity service unavailable", error?.message || "AURA could not check the identity service.");
+  } finally {
+    walletState.identityLoading = false;
+    updateWalletUi();
+  }
+}
+
+async function establishIdentity() {
+  if (!walletState.address || !walletState.provider) return;
+
+  walletState.identityLoading = true;
+  updateWalletUi();
+
+  try {
+    const challengeResponse = await fetch(`/api/identity/challenge?address=${encodeURIComponent(walletState.address)}`);
+    const challengeData = await challengeResponse.json().catch(() => ({}));
+    if (!challengeResponse.ok) throw new Error(challengeData.error || "Could not start identity verification.");
+
+    const signature = await walletState.provider.request({
+      method: "personal_sign",
+      params: [challengeData.message, walletState.address]
+    });
+
+    const createResponse = await fetch("/api/identity", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        address: walletState.address,
+        chainId: walletState.chainId,
+        signature
+      })
+    });
+
+    const createData = await createResponse.json().catch(() => ({}));
+    if (!createResponse.ok) throw new Error(createData.error || "AURA Identity could not be established.");
+
+    walletState.identity = createData.identity;
+  } catch (error) {
+    showModal("Identity verification stopped", error?.message || "The AURA Identity flow could not be completed.");
+  } finally {
+    walletState.identityLoading = false;
+    updateWalletUi();
+  }
+}
+
 function handleAccountsChanged(accounts) {
   walletState.address = accounts?.[0] || null;
+  walletState.identity = null;
   if (!walletState.address) {
     walletState.chainId = null;
     walletState.provider = null;
   }
   updateWalletUi();
+  if (walletState.address) loadIdentity();
 }
 
 async function handleChainChanged(chainId) {
   walletState.chainId = chainId || null;
+  walletState.identity = null;
   updateWalletUi();
+  if (walletState.address) loadIdentity();
 }
 
 function initWallet() {
@@ -192,6 +283,7 @@ const walletStyle = document.createElement("style");
 walletStyle.textContent = `
 .aura-wallet-card{margin-top:24px;border:1px solid #292929;background:rgba(255,255,255,.025);padding:18px 20px;display:flex;justify-content:space-between;align-items:center;gap:20px;max-width:760px}
 .aura-wallet-card>div{display:grid;gap:4px}.aura-wallet-card strong{font-size:13px;letter-spacing:.08em}.aura-wallet-card span{color:#777;font-size:11px}.aura-wallet-card button:disabled{opacity:.5;cursor:wait}
-@media(max-width:800px){.aura-wallet-card{align-items:flex-start;flex-direction:column}.aura-wallet-card .btn{width:100%}}
+.aura-identity-area{margin-top:12px}.aura-identity-status{display:grid;gap:3px;padding-top:10px;border-top:1px solid #222}.aura-identity-status span{font-size:9px;letter-spacing:.16em;color:#888}.aura-identity-status small{color:#666;font-size:10px}.aura-identity-create{display:grid;gap:9px;padding-top:10px;border-top:1px solid #222;color:#777;font-size:11px}.aura-identity-create .btn{width:max-content}.aura-identity-status.established strong{font-size:15px}
+@media(max-width:800px){.aura-wallet-card{align-items:flex-start;flex-direction:column}.aura-wallet-card .btn{width:100%}.aura-identity-create .btn{width:100%}}
 `;
 document.head.appendChild(walletStyle);
