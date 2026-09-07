@@ -100,6 +100,31 @@
     }
   }
 
+  function suppressBlockingIdentityModal() {
+    const modal = document.getElementById("modal");
+    const title = document.getElementById("modalTitle");
+    if (!modal || !title) return;
+
+    const observer = new MutationObserver(() => {
+      if (modal.classList.contains("open") && title.textContent.includes("Identity service unavailable")) {
+        modal.classList.remove("open");
+
+        const identityArea = document.getElementById("auraIdentityArea");
+        if (identityArea && !identityArea.textContent.includes("Identity service")) {
+          identityArea.insertAdjacentHTML("afterbegin", `
+            <div class="aura-identity-status" style="margin-bottom:8px;">
+              <span>IDENTITY</span>
+              <strong>Service temporarily unavailable</strong>
+              <small>Your wallet is connected. Identity lookup can be retried later.</small>
+            </div>`);
+        }
+      }
+    });
+
+    observer.observe(modal, { attributes: true, attributeFilter: ["class"] });
+    observer.observe(title, { childList: true, characterData: true, subtree: true });
+  }
+
   function observeWalletCard() {
     if (document.getElementById("auraWalletDetail")) {
       syncWallet();
@@ -116,7 +141,10 @@
     observer.observe(document.body, { childList: true, subtree: true });
   }
 
-  document.addEventListener("DOMContentLoaded", observeWalletCard);
+  document.addEventListener("DOMContentLoaded", () => {
+    suppressBlockingIdentityModal();
+    observeWalletCard();
+  });
 
   if (window.ethereum) {
     window.ethereum.on("accountsChanged", (accounts) => {
