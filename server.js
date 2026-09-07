@@ -3,6 +3,7 @@ const path = require("path");
 const { getDatabaseStatus, closeDatabase } = require("./server/db");
 const { getEthereumStatus } = require("./server/web3/ethereum");
 const nftRoutes = require("./server/routes/nfts");
+const identityRoutes = require("./server/routes/identity");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -43,6 +44,7 @@ app.get("/api/status", async (req, res) => {
       backend: "building",
       database: database.configured ? database.status : "not configured",
       nftApi: "building",
+      identityApi: database.configured ? "building" : "not configured",
       ethereum: ethereum.configured ? ethereum.status : "not configured",
       web3: "research",
       smartContracts: "not deployed"
@@ -53,6 +55,7 @@ app.get("/api/status", async (req, res) => {
 });
 
 app.use("/api/nfts", nftRoutes);
+app.use("/api/identity", identityRoutes);
 
 app.use("/api", (req, res) => {
   res.status(404).json({ error: "API route not found" });
