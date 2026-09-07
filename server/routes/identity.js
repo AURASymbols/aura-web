@@ -34,7 +34,7 @@ function challengeMessage(address, nonce) {
     "",
     `Wallet: ${address}`,
     `Nonce: ${nonce}`
-  ].join("\\n");
+  ].join("\n");
 }
 
 router.get("/challenge", (req, res) => {
@@ -76,7 +76,7 @@ router.get("/", async (req, res) => {
     if (!result.rows[0]) return res.status(404).json({ identity: null });
     res.json({ identity: { ...result.rows[0], onChain: false }, status: "established" });
   } catch (error) {
-    console.error(error);
+    console.error("Identity lookup failed:", error);
     res.status(500).json({ error: "Identity lookup failed." });
   }
 });
@@ -107,53 +107,58 @@ router.post("/", async (req, res) => {
       return res.status(401).json({ error: "Wallet signature does not match the connected address." });
     }
 
-    const db = await getDatabase();
-    await db.query("BEGIN");
+    const pool = await getDatabase();
+    const client = await pool.connect();
 
-    const existingWallet = await db.query(
-      `SELECT user_id FROM wallets WHERE LOWER(address) = LOWER($1) ORDER BY created_at ASC LIMIT 1`,
-      [address]
-    );
-
-    let userId = existingWallet.rows[0]?.user_id;
-    if (!userId) {
-      const createdUser = await db.query(`INSERT INTO users (id) VALUES (gen_random_uuid()) RETURNING id`);
-      userId = createdUser.rows[0].id;
-    }
-
-    await db.query(
-      `INSERT INTO wallets (id, user_id, address, chain)
-       VALUES (gen_random_uuid(), $1, $2, $3)
-       ON CONFLICT (address, chain) DO NOTHING`,
-      [userId, address, chainName(chainId)]
-    );
-
-    const identityResult = await db.query(
-      `INSERT INTO identities (id, user_id, display_name)
-       VALUES (gen_random_uuid(), $1, $2)
-       ON CONFLICT (user_id) DO UPDATE SET display_name = COALESCE(EXCLUDED.display_name, identities.display_name)
-       RETURNING id, display_name, created_at`,
-      [userId, displayName]
-    );
-
-    await db.query("COMMIT");
-    challenges.delete(address.toLowerCase());
-
-    res.status(201).json({
-      status: "established",
-      identity: {
-        ...identityResult.rows[0],
-        address,
-        chain: chainName(chainId),
-        onChain: false
-      }
-    });
-  } catch (error) {
     try {
-      const db = await getDatabase();
-      await db.query("ROLLBACK");
-    } catch {}
-    console.error(error);
+      await client.query("BEGIN");
+
+      const existingWallet = await client.query(
+        `SELECT user_id FROM wallets WHERE LOWER(address) = LOWER($1) ORDER BY created_at ASC LIMIT 1`,
+        [address]
+      );
+
+      let userId = existingWallet.rows[0]?.user_id;
+      if (!userId) {
+        const createdUser = await client.query(`INSERT INTO users (id) VALUES (gen_random_uuid()) RETURNING id`);
+        userId = createdUser.rows[0].id;
+      }
+
+      await client.query(
+        `INSERT INTO wallets (id, user_id, address, chain)
+         VALUES (gen_random_uuid(), $1, $2, $3)
+         ON CONFLICT (address, chain) DO NOTHING`,
+        [userId, address, chainName(chainId)]
+      );
+
+      const identityResult = await client.query(
+        `INSERT INTO identities (id, user_id, display_name)
+         VALUES (gen_random_uuid(), $1, $2)
+         ON CONFLICT (user_id) DO UPDATE SET display_name = COALESCE(EXCLUDED.display_name, identities.display_name)
+         RETURNING id, display_name, created_at`,
+        [userId, displayName]
+      );
+
+      await client.query("COMMIT");
+      challenges.delete(address.toLowerCase());
+
+      res.status(201).json({
+        status: "established",
+        identity: {
+          ...identityResult.rows[0],
+          address,
+          chain: chainName(chainId),
+          onChain: false
+        }
+      });
+    } catch (error) {
+      await client.query("ROLLBACK").catch(() => {});
+      throw error;
+    } finally {
+      client.release();
+    }
+  } catch (error) {
+    console.error("Identity creation failed:", error);
     res.status(500).json({ error: "Identity creation failed." });
   }
 });
