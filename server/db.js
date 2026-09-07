@@ -5,7 +5,7 @@ function isConfigured() {
   return Boolean(process.env.DATABASE_URL);
 }
 
-async function getPool() {
+async function getDatabase() {
   if (!isConfigured()) return null;
   if (!pg) pg = require("pg");
   if (!pool) {
@@ -20,7 +20,7 @@ async function getDatabaseStatus() {
   }
 
   try {
-    const db = await getPool();
+    const db = await getDatabase();
     await db.query("SELECT 1");
     return { configured: true, status: "connected" };
   } catch (error) {
@@ -35,4 +35,4 @@ async function closeDatabase() {
   }
 }
 
-module.exports = { getDatabaseStatus, closeDatabase };
+module.exports = { getDatabase, getDatabaseStatus, isConfigured, closeDatabase };
