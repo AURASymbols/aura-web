@@ -1,0 +1,129 @@
+(() => {
+  const AREA_ID = "auraWalletBalanceArea";
+
+  function shortAddress(address) {
+    return address ? `${address.slice(0, 6)}…${address.slice(-4)}` : "";
+  }
+
+  function getArea() {
+    let area = document.getElementById(AREA_ID);
+    const detail = document.getElementById("auraWalletDetail");
+
+    if (!area && detail) {
+      area = document.createElement("div");
+      area.id = AREA_ID;
+      area.style.marginTop = "14px";
+      detail.insertAdjacentElement("afterend", area);
+    }
+
+    return area;
+  }
+
+  function renderLoading(address) {
+    const area = getArea();
+    if (!area) return;
+
+    area.innerHTML = `
+      <div class="aura-wallet-balance" style="padding:14px 16px;border:1px solid rgba(212,175,55,.35);margin-top:10px;">
+        <small style="display:block;opacity:.7;letter-spacing:.12em;">ETHEREUM MAINNET</small>
+        <strong style="display:block;margin-top:5px;">Loading balance…</strong>
+        <span style="display:block;margin-top:4px;opacity:.65;font-size:.85em;">${shortAddress(address)}</span>
+      </div>`;
+  }
+
+  function renderBalance(data) {
+    const area = getArea();
+    if (!area) return;
+
+    const eth = Number(data.balanceEth);
+    const formatted = Number.isFinite(eth)
+      ? eth.toLocaleString(undefined, { maximumFractionDigits: 6 })
+      : data.balanceEth;
+
+    area.innerHTML = `
+      <div class="aura-wallet-balance" style="padding:14px 16px;border:1px solid rgba(212,175,55,.35);margin-top:10px;">
+        <small style="display:block;opacity:.7;letter-spacing:.12em;">ETHEREUM MAINNET</small>
+        <strong style="display:block;margin-top:5px;font-size:1.15em;">${formatted} ETH</strong>
+        <span style="display:block;margin-top:4px;opacity:.65;font-size:.85em;">${shortAddress(data.address)} · Chain ${data.chainId}</span>
+      </div>`;
+  }
+
+  function renderError(message) {
+    const area = getArea();
+    if (!area) return;
+
+    area.innerHTML = `
+      <div class="aura-wallet-balance" style="padding:14px 16px;border:1px solid rgba(255,120,120,.35);margin-top:10px;">
+        <small style="display:block;opacity:.7;letter-spacing:.12em;">ETHEREUM MAINNET</small>
+        <strong style="display:block;margin-top:5px;">Balance unavailable</strong>
+        <span style="display:block;margin-top:4px;opacity:.65;font-size:.85em;">${message || "Unable to read wallet balance."}</span>
+      </div>`;
+  }
+
+  async function loadBalance(address) {
+    if (!address) {
+      const area = document.getElementById(AREA_ID);
+      if (area) area.innerHTML = "";
+      return;
+    }
+
+    renderLoading(address);
+
+    try {
+      const response = await fetch(`/api/wallet/${encodeURIComponent(address)}`, {
+        headers: { Accept: "application/json" }
+      });
+      const data = await response.json();
+
+      if (!response.ok || data.status !== "connected") {
+        throw new Error(data.error || "Unable to read wallet balance.");
+      }
+
+      renderBalance(data);
+    } catch (error) {
+      renderError(error.message);
+    }
+  }
+
+  async function syncWallet() {
+    if (!window.ethereum) {
+      const area = document.getElementById(AREA_ID);
+      if (area) area.innerHTML = "";
+      return;
+    }
+
+    try {
+      const accounts = await window.ethereum.request({ method: "eth_accounts" });
+      await loadBalance(accounts?.[0] || null);
+    } catch (error) {
+      renderError(error.message);
+    }
+  }
+
+  function observeWalletCard() {
+    if (document.getElementById("auraWalletDetail")) {
+      syncWallet();
+      return;
+    }
+
+    const observer = new MutationObserver(() => {
+      if (document.getElementById("auraWalletDetail")) {
+        observer.disconnect();
+        syncWallet();
+      }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
+
+  document.addEventListener("DOMContentLoaded", observeWalletCard);
+
+  if (window.ethereum) {
+    window.ethereum.on("accountsChanged", (accounts) => {
+      loadBalance(accounts?.[0] || null);
+    });
+    window.ethereum.on("chainChanged", () => {
+      syncWallet();
+    });
+  }
+})();
