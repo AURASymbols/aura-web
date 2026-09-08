@@ -1,0 +1,16 @@
+/* v2.0 — first-screen spacing */
+@media (min-width:801px){
+  .hero,.pagehero{
+    min-height:calc(100vh - 78px);
+    align-content:start!important;
+    justify-content:start!important;
+    padding-top:11vh!important;
+  }
+}
+@media (max-width:800px){
+  .hero,.pagehero{
+    min-height:calc(100vh - 78px);
+    justify-content:flex-start!important;
+    padding-top:9vh!important;
+  }
+}
