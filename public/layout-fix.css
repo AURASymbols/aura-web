@@ -1,4 +1,4 @@
-/* v2.5 — home as the primary investor/developer landing experience */
+/* v2.4 — investor/developer composition: centered, balanced, tighter */
 .wrap{width:min(1320px,100%);margin-inline:auto;padding:26px 4vw!important}.panel .wrap{padding-top:24px!important;padding-bottom:24px!important}.compact{padding-top:30px!important;padding-bottom:30px!important}.call{width:100%;padding:38px 4vw!important}.hero,.pagehero{min-height:auto!important}
 @media(min-width:801px){
   .hero,.pagehero{position:relative!important;display:grid!important;grid-template-columns:minmax(0,1fr) minmax(360px,1fr)!important;column-gap:6vw!important;align-content:center!important;align-items:center!important;padding-top:3vh!important;padding-bottom:24px!important}
@@ -8,35 +8,6 @@
   .split{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:6vw!important;align-items:start!important}
   .split>div:first-child{padding-right:0!important}.split>div:last-child{padding-top:0!important}
   .heading{gap:30px}.heading>div{min-width:0}.heading>a{flex:0 0 auto}
-
-  /* Home hero: establish a clear visual order — proposition, explanation, action. */
-  #home .hero{grid-template-columns:minmax(0,1.08fr) minmax(330px,.82fr)!important;column-gap:7vw!important;min-height:70vh!important;padding-top:2vh!important;padding-bottom:22px!important}
-  #home .hero h1{font-size:clamp(48px,6.1vw,82px)!important;max-width:720px!important;margin:14px 0 18px!important;letter-spacing:-.065em!important}
-  #home .hero p{font-size:15px!important;line-height:1.72!important;max-width:600px!important;color:#b7b4ac!important}
-  #home .hero .buttons{gap:8px!important;margin-top:18px!important;max-width:690px!important}
-  #home .hero .buttons .btn{min-height:42px!important;padding:0 15px!important}
-  #home .hero .buttons .btn:nth-child(3),#home .hero .buttons .btn:nth-child(4){background:transparent!important;border-color:#343434!important;color:#aaa!important}
-  #home .hero .buttons .btn:nth-child(3):hover,#home .hero .buttons .btn:nth-child(4):hover{border-color:#777!important;color:#fff!important}
-  #home .hero .line{margin-top:34px!important;max-width:600px!important}
-  #home .hero label{margin-top:10px!important;color:#8b887f!important}
-
-  /* Home narrative sections: stronger grouping and less visual drift. */
-  #home #idea{padding-top:34px!important;padding-bottom:34px!important}
-  #home #idea h2{max-width:520px!important}
-  #home #idea .big{font-size:16px!important;line-height:1.75!important;color:#d0cdc5!important}
-  #home .panel .wrap{padding-top:30px!important;padding-bottom:30px!important}
-  #home .panel .grid4{gap:10px!important}
-  #home .panel .grid4 article{min-height:150px!important;padding:16px!important;background:#0b0b0b!important;border-color:#292929!important;transition:transform .2s ease,border-color .2s ease,background .2s ease!important}
-  #home .panel .grid4 article:hover{transform:translateY(-2px)!important;border-color:#48443a!important;background:#10100f!important}
-  #home .panel .grid4 article h3{margin-top:22px!important}
-  #home .roadmap-teaser,#home .proof-teaser{padding-top:30px!important;padding-bottom:30px!important}
-  #home .roadmap-teaser{border-top:1px solid #242424!important}
-  #home .proof-teaser{border-top:1px solid #1d1d1d!important}
-  #home .status{max-width:980px!important}
-  #home .nfts{gap:12px!important}
-  #home .nfts article{background:#0b0b0b!important;border-color:#292929!important;padding:10px!important}
-  #home .nfts article>div{padding:12px 2px 2px!important}
-  #home .call{padding-top:48px!important;padding-bottom:48px!important}
 }
 .grid4,.grid3,.grid2,.nfts{margin-top:14px!important}.grid4 article,.grid3 article,.grid2 article{padding:15px!important}.grid4 article{min-height:142px!important}.grid4 article h3{margin-top:20px!important}.status{margin-top:12px!important}.status>div{padding:7px 0!important}.roadmap-lead{margin:8px 0 14px!important}.roadmap-mini div{padding:11px!important}.roadmap-stage{padding:20px 0!important}.stage-grid{margin-top:12px!important}.proof-grid article{min-height:155px!important}.proof-teaser{padding-top:16px!important;padding-bottom:20px!important}.evidence{margin-top:12px!important}.gallery article{padding:24px 0!important}.contact-cards{padding-bottom:2.5rem!important}.call h2{margin-top:8px!important;margin-bottom:14px!important}
 @media(max-width:800px){
@@ -44,18 +15,71 @@
   .hero,.pagehero{min-height:auto!important;display:flex!important;flex-direction:column!important;justify-content:flex-start!important;padding-top:3vh!important;padding-bottom:22px!important}.hero{min-height:72vh!important}.pagehero{min-height:36vh!important}
   .hero>.editorial-status,.pagehero>.editorial-status{position:relative!important;top:auto!important;right:auto!important;width:100%!important;max-width:none!important;height:auto!important;margin-top:20px!important}
   .grid4 article,.grid3 article,.grid2 article{min-height:auto!important}.roadmap-stage{padding:20px 0!important}.proof-grid article{min-height:auto!important}
-  /* Mobile home: keep the same hierarchy without creating a wall of controls. */
-  #home .hero{min-height:72vh!important;padding-top:4vh!important;padding-bottom:24px!important}
-  #home .hero h1{font-size:clamp(42px,12vw,64px)!important;letter-spacing:-.06em!important;margin:13px 0 16px!important}
-  #home .hero p{font-size:14px!important;line-height:1.7!important}
-  #home .hero .buttons{gap:8px!important;margin-top:16px!important}
-  #home .hero .buttons .btn{min-height:42px!important;padding:0 13px!important}
-  #home .hero .buttons .btn:nth-child(3),#home .hero .buttons .btn:nth-child(4){flex:1 1 auto!important}
-  #home .hero .line{margin-top:28px!important}
-  #home #idea{padding-top:30px!important;padding-bottom:30px!important}
-  #home #idea .big{font-size:15px!important}
-  #home .panel .grid4 article{min-height:auto!important;padding:17px!important}
-  #home .roadmap-teaser,#home .proof-teaser{padding-top:28px!important;padding-bottom:28px!important}
-  #home .nfts article{padding:9px!important}
-  #home .call{padding-top:42px!important;padding-bottom:42px!important}
+}
+
+/* v2.5 — product-grade Home hierarchy and conversion polish */
+@media(min-width:801px){
+  header{padding-inline:4vw!important}
+  header nav{gap:22px!important}
+  header nav a{transition:color .2s ease,border-color .2s ease!important}
+  .hero{min-height:74vh!important;padding-top:2vh!important;padding-bottom:30px!important}
+  .hero h1{max-width:720px!important;font-size:clamp(52px,6vw,82px)!important;line-height:.93!important;margin-top:14px!important;margin-bottom:18px!important}
+  .hero p{max-width:600px!important;font-size:15px!important;color:#b8b8b8!important}
+  .hero .buttons{max-width:650px!important;gap:8px!important;margin-top:20px!important}
+  .hero .buttons .gold{min-width:154px!important}
+  .hero .buttons .btn:nth-child(3),.hero .buttons .btn:nth-child(4){opacity:.78!important}
+  .hero .line{max-width:600px!important;margin-top:42px!important}
+  .hero label{max-width:600px!important;color:#8b8b8b!important}
+}
+.hero .buttons .btn{transition:transform .2s ease,border-color .2s ease,background .2s ease!important}
+.hero .buttons .btn:hover{transform:translateY(-1px)!important}
+.hero .buttons .gold:hover{background:#f0e7cc!important;border-color:#f0e7cc!important}
+
+/* Make the Home story read as distinct editorial chapters. */
+#idea{border-top:1px solid #181818!important}
+#home>.panel{margin-top:0!important}
+#home>.roadmap-teaser{border-top:1px solid #1f1f1f!important}
+#home>.proof-teaser{border-top:1px solid #171717!important}
+#home>.proof-teaser + .wrap{border-top:1px solid #111!important}
+
+#home .grid4 article{position:relative!important;overflow:hidden!important;background:linear-gradient(145deg,rgba(255,255,255,.018),transparent 55%)!important;transition:transform .22s ease,border-color .22s ease,background .22s ease!important}
+#home .grid4 article:hover{transform:translateY(-3px)!important;border-color:#4a473d!important;background:linear-gradient(145deg,rgba(213,199,157,.055),transparent 60%)!important}
+#home .grid4 article h3{letter-spacing:.04em!important}
+#home .grid4 article a{margin-top:auto!important;padding-top:14px!important}
+
+#home .roadmap-mini{border-color:#292929!important}
+#home .roadmap-mini div{transition:background .2s ease!important}
+#home .roadmap-mini div:hover{background:#101010!important}
+#home .roadmap-mini div:first-child{background:rgba(213,199,157,.045)!important}
+#home .roadmap-mini div:first-child b{color:#e2d6b4!important}
+
+#home .status{max-width:920px!important}
+#home .status>div{min-height:34px!important;align-items:center!important}
+#home .status>div b{white-space:nowrap!important}
+#home .nfts article{padding:0!important;overflow:hidden!important;background:#0b0b0b!important;border-color:#292929!important;transition:transform .22s ease,border-color .22s ease!important}
+#home .nfts article:hover{transform:translateY(-3px)!important;border-color:#555!important}
+#home .nfts article img{transition:transform .35s ease!important}
+#home .nfts article:hover img{transform:scale(1.015)!important}
+#home .nfts article>div{padding:12px 14px 14px!important;align-items:center!important}
+#home .nfts article span{margin-left:auto!important;text-align:right!important}
+
+#home>.call{margin-top:4px!important;border-top:1px solid #29261f!important;background:radial-gradient(circle at 50% 0%,rgba(213,199,157,.09),transparent 42%),linear-gradient(#090909,#12110d)!important}
+#home>.call .btn{margin-top:4px!important}
+
+/* Keep the primary navigation focused; detailed layers remain discoverable in Home. */
+@media(min-width:1100px){
+  header nav a:nth-child(5),header nav a:nth-child(6){display:none!important}
+}
+
+@media(max-width:800px){
+  header{padding-inline:6vw!important}
+  .hero{min-height:74vh!important;padding-top:3vh!important;padding-bottom:24px!important}
+  .hero h1{font-size:clamp(42px,10.8vw,64px)!important;line-height:.94!important;margin-top:14px!important;margin-bottom:17px!important}
+  .hero .buttons{gap:8px!important;margin-top:18px!important}
+  .hero .buttons .btn{flex:1 1 calc(50% - 8px)!important;min-width:0!important;padding-inline:12px!important}
+  .hero .line{margin-top:34px!important}
+  #home .grid4 article{background:#0b0b0b!important}
+  #home .nfts article>div{display:grid!important;grid-template-columns:auto auto!important;gap:5px 10px!important}
+  #home .nfts article span{grid-column:1 / -1!important;margin-left:0!important;text-align:left!important}
+  #home>.call{padding-top:38px!important;padding-bottom:40px!important}
 }
