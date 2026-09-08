@@ -32,7 +32,8 @@ app.get(["/", "/index.html"], (req, res, next) => {
 
     const styles = [
       '<link rel="stylesheet" href="/layout-fix.css">',
-      '<link rel="stylesheet" href="/hero-refinement.css">'
+      '<link rel="stylesheet" href="/hero-refinement.css">',
+      '<link rel="stylesheet" href="/proof-refinement.css">'
     ];
     const styledPage = styles.reduce((current, style) => {
       const href = style.match(/href="([^"]+)"/)?.[1];
@@ -137,7 +138,7 @@ async function startServer() {
     });
 
     async function shutdown(signal) {
-      console.log(`Received ${signal}. Shutting down...`);
+      console.log(`Received ${signal}. Shutting down...\`);
       server.close(async () => {
         await closeDatabase();
         process.exit(0);
