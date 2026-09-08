@@ -28,7 +28,10 @@ app.get(["/", "/index.html"], (req, res, next) => {
       return src && current.includes(src) ? current : current.replace("</body>", `${script}</body>`);
     }, html);
 
-    res.type("html").send(page);
+    const style = '<link rel="stylesheet" href="/layout-fix.css">';
+    const styledPage = page.includes("/layout-fix.css") ? page : page.replace("</head>", `${style}</head>`);
+
+    res.type("html").send(styledPage);
   });
 });
 
