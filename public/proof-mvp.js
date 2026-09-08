@@ -38,7 +38,15 @@
       .aura-proof-links{margin-top:12px;display:flex;gap:14px;flex-wrap:wrap}
       .aura-proof-links a{color:#a79d82;font-size:9px;letter-spacing:.1em;text-decoration:none}.aura-proof-links a:hover{color:#d5c79d;text-decoration:underline}
       .aura-proof-footnote{margin-top:14px!important;color:#5f5f5f!important;font-size:9px!important;line-height:1.65!important}
-      @media(max-width:800px){.aura-proof-mvp-grid{grid-template-columns:1fr}.aura-proof-status{grid-template-columns:repeat(2,1fr)}.aura-proof-nfts{grid-template-columns:1fr}.aura-proof-action button{width:100%}}
+      .aura-proof-next{margin-top:20px;padding-top:18px;border-top:1px solid #202020}
+      .aura-proof-next>small{display:block;color:#8f876f;font-size:9px;letter-spacing:.18em;margin-bottom:11px}
+      .aura-proof-next-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:#202020;border:1px solid #202020}
+      .aura-proof-next-grid a{background:#0a0a0a;padding:15px 16px;min-height:78px;display:flex;flex-direction:column;justify-content:space-between;text-decoration:none;color:inherit}
+      .aura-proof-next-grid b{font-size:10px;letter-spacing:.13em;color:#d5c79d}
+      .aura-proof-next-grid span{font-size:9px;line-height:1.6;color:#777}
+      .aura-proof-next-grid a::after{content:"↗";align-self:flex-end;color:#625f54}
+      .aura-proof-next-grid a:hover span{color:#aaa}.aura-proof-next-grid a:hover::after{color:#d5c79d;transform:translate(2px,-2px)}
+      @media(max-width:800px){.aura-proof-mvp-grid{grid-template-columns:1fr}.aura-proof-status{grid-template-columns:repeat(2,1fr)}.aura-proof-nfts{grid-template-columns:1fr}.aura-proof-action button{width:100%}.aura-proof-next-grid{grid-template-columns:1fr}}
     `;
     document.head.append(style);
   }
@@ -76,6 +84,14 @@
         <a target="_blank" rel="noopener noreferrer" href="${ETHERSCAN}">CONTRACT / ETHERSCAN ↗</a>
       </div>
       <p class="aura-proof-footnote">Ethereum mainnet · ERC-1155 · ${CONTRACT} · NFT layer deployed. Additional smart contracts are not deployed yet.</p>
+      <div class="aura-proof-next">
+        <small>IF THE PROOF IS ENOUGH TO KEEP GOING</small>
+        <div class="aura-proof-next-grid">
+          <a href="#investors"><b>INVEST</b><span>Help fund product, infrastructure and the next build stage.</span></a>
+          <a href="#developers"><b>BUILD</b><span>Help shape the technical architecture and product foundation.</span></a>
+          <a href="#contact?role=Partner"><b>PARTNER</b><span>Bring introductions, expertise, distribution or strategic support.</span></a>
+        </div>
+      </div>
     `;
     const existing = proof.querySelector(".live-proof-panel");
     if (existing) existing.after(wrap); else proof.append(wrap);
