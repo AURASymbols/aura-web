@@ -30,8 +30,14 @@ app.get(["/", "/index.html"], (req, res, next) => {
       return src && current.includes(src) ? current : current.replace("</body>", `${script}</body>`);
     }, html);
 
-    const style = '<link rel="stylesheet" href="/layout-fix.css">';
-    const styledPage = page.includes("/layout-fix.css") ? page : page.replace("</head>", `${style}</head>`);
+    const styles = [
+      '<link rel="stylesheet" href="/layout-fix.css">',
+      '<link rel="stylesheet" href="/hero-refinement.css">'
+    ];
+    const styledPage = styles.reduce((current, style) => {
+      const href = style.match(/href="([^"]+)"/)?.[1];
+      return href && current.includes(href) ? current : current.replace("</head>", `${style}</head>`);
+    }, page);
 
     res.type("html").send(styledPage);
   });
