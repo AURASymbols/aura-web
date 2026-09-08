@@ -5,60 +5,173 @@
     origin: "https://opensea.io/item/ethereum/0xb4a9d1ca2ae56e7491f83cb2b7a4c956fa994593/1",
     force: "https://opensea.io/item/ethereum/0xb4a9d1ca2ae56e7491f83cb2b7a4c956fa994593/2"
   };
-  const externalLink = (href, label) => { const a=document.createElement("a"); a.href=href; a.target="_blank"; a.rel="noopener noreferrer"; a.textContent=label; return a; };
-  function installEditorialStatusStyle(){if(document.getElementById("aura-editorial-status-style"))return;const style=document.createElement("style");style.id="aura-editorial-status-style";style.textContent=`
-.hero::after,.pagehero::after{content:none!important;display:none!important}
-.editorial-status{grid-column:2;grid-row:1 / -1;align-self:stretch;min-height:360px;border-left:1px solid #292929;padding:36px 0 36px 42px;display:flex;flex-direction:column;justify-content:center;gap:22px}.editorial-status-label{font-size:9px;letter-spacing:.22em;color:#8e856e}.editorial-status-list{display:grid;gap:12px}.editorial-status-item{display:flex;justify-content:space-between;gap:24px;border-bottom:1px solid #1f1f1f;padding-bottom:10px;font-size:10px;letter-spacing:.12em}.editorial-status-item span:first-child{color:#aaa}.editorial-status-item span:last-child{color:#d5c79d;text-align:right}.editorial-status-note{font-size:11px;line-height:1.65;color:#666;max-width:290px}@media(max-width:800px){.editorial-status{display:none}}
-.aura-conversion-style{border-top:1px solid #29261f!important}.aura-conversion-style h2{margin:0!important}.aura-conversion-style .btn{min-width:210px!important}
-#contact .contact-cards{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px!important;background:#222!important;border:1px solid #222!important}#contact .contact-cards>*{background:#0b0b0b!important;padding:24px!important}#contact form{max-width:760px!important}
-#home>.hero>small{display:flex!important;align-items:center!important;width:100%!important;max-width:680px!important;padding:0 0 11px!important;border:0!important;border-bottom:1px solid #292929!important;color:#a79d82!important;background:transparent!important;letter-spacing:.22em!important}
-#home>.hero>small::before{content:"01";margin-right:12px;color:#5f5b50!important;font-size:9px!important;letter-spacing:.14em!important}
-#home>.hero>.editorial-status{border-left:1px solid #39362e!important;padding-left:36px!important}
-#home>.hero>.editorial-status .editorial-status-label{position:relative!important;padding-bottom:11px!important;border-bottom:1px solid #292929!important;color:#d5c79d!important}
-#home .mvp-note{margin-top:20px!important;padding:14px 0 0 14px!important;border-top:0!important;border-left:1px solid #39362e!important;display:grid!important;grid-template-columns:auto 1fr!important;gap:6px 14px!important;align-items:baseline!important}
-#home .mvp-note b{font-size:9px!important;letter-spacing:.18em!important;color:#d5c79d!important;white-space:nowrap!important}
-#home .mvp-note span{font-size:10px!important;line-height:1.6!important;color:#777!important;letter-spacing:.04em!important}
-#home>.call{position:relative!important;display:grid!important;grid-template-columns:minmax(0,1fr) auto auto!important;gap:10px!important;align-items:center!important}
-#home>.call small{grid-column:1 / -1!important;margin-bottom:2px!important;color:#8f876f!important;letter-spacing:.18em!important}
-#home>.call h2{margin:0!important;grid-column:1!important}
-#home>.call .btn{margin:0!important;min-width:185px!important}
-#home .participation-bridge{border-top:1px solid #202020!important;border-bottom:1px solid #202020!important;padding:18px 0!important;margin-top:22px!important}
-#home .participation-bridge>small{display:block!important;margin-bottom:12px!important;color:#8f876f!important;letter-spacing:.18em!important}
-#home .participation-bridge-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:1px!important;background:#202020!important;border:1px solid #202020!important}
-#home .participation-bridge-grid>div{background:#0a0a0a!important;padding:15px 16px!important;min-height:82px!important;display:flex!important;flex-direction:column!important;justify-content:space-between!important}
-#home .participation-bridge-grid a{display:flex!important;flex-direction:column!important;justify-content:space-between!important;min-height:82px!important;text-decoration:none!important;color:inherit!important}
-#home .participation-bridge-grid a::after{content:"↗";align-self:flex-end;font-size:12px!important;color:#625f54!important;transition:transform .2s ease,color .2s ease!important}
-#home .participation-bridge-grid a:hover::after{transform:translate(2px,-2px)!important;color:#d5c79d!important}
-#home .participation-bridge-grid b{font-size:11px!important;letter-spacing:.12em!important;color:#d5c79d!important}
-#home .participation-bridge-grid span{font-size:10px!important;line-height:1.55!important;color:#777!important}
-#home .participation-bridge-grid a:hover span{color:#9b9b9b!important}
-/* v3.6 — conversion pages */
-.aura-engage{margin-top:34px!important;border-top:1px solid #292929!important;border-bottom:1px solid #292929!important;padding:18px 0 20px!important}.aura-engage>small{display:block!important;color:#8f876f!important;letter-spacing:.18em!important;margin-bottom:13px!important}.aura-engage-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:1px!important;background:#202020!important;border:1px solid #202020!important}.aura-engage-grid a{background:#0a0a0a!important;padding:17px 16px!important;min-height:100px!important;display:flex!important;flex-direction:column!important;justify-content:space-between!important;text-decoration:none!important;color:inherit!important}.aura-engage-grid a b{font-size:11px!important;letter-spacing:.13em!important;color:#d5c79d!important}.aura-engage-grid a span{font-size:10px!important;line-height:1.6!important;color:#777!important}.aura-engage-grid a::after{content:"↗";align-self:flex-end;color:#625f54!important}.aura-engage-grid a:hover span{color:#aaa!important}.aura-engage-grid a:hover::after{color:#d5c79d!important;transform:translate(2px,-2px)!important}.aura-contact-strip{margin-top:26px!important;padding:14px 0 0!important;border-top:1px solid #202020!important;font-size:10px!important;line-height:1.6!important;color:#666!important}.aura-contact-strip b{color:#a79d82!important;font-weight:500!important;letter-spacing:.12em!important}.contact-result{margin-top:14px!important;padding:12px 0!important;border-top:1px solid #292929!important;color:#8f876f!important;font-size:10px!important;line-height:1.6!important}.contact-result a{color:#d5c79d!important;text-decoration:none!important}.contact-result a:hover{text-decoration:underline!important}
-@media(max-width:800px){#home>.hero>small{padding-bottom:9px!important}.mvp-note{grid-template-columns:1fr!important;gap:5px!important;padding-left:12px!important}.mvp-note b{white-space:normal!important}#home>.call{display:grid!important;grid-template-columns:1fr!important;gap:8px!important}#home>.call small,#home>.call h2{grid-column:1!important}#home>.call .btn{width:100%!important;margin-top:4px!important}#home .participation-bridge{margin-top:18px!important;padding:16px 0!important}#home .participation-bridge-grid{grid-template-columns:1fr!important}#home .participation-bridge-grid>div{min-height:70px!important}#home .participation-bridge-grid a{min-height:70px!important}.aura-engage{margin-top:24px!important}.aura-engage-grid{grid-template-columns:1fr!important}.aura-engage-grid a{min-height:78px!important}#contact .contact-cards{grid-template-columns:1fr!important}#contact .contact-cards>*{padding:20px!important}.aura-conversion-style .btn{width:100%!important;margin-top:14px!important}}
-`;document.head.append(style)}
-  function polishHeroStatus(){document.querySelectorAll(".hero").forEach(hero=>{if(hero.querySelector(".editorial-status"))return;const panel=document.createElement("aside");panel.className="editorial-status";panel.innerHTML=`<div class="editorial-status-label">AURA / CURRENT STATE</div><div class="editorial-status-list"><div class="editorial-status-item"><span>NFT LAYER</span><span>02 / LIVE</span></div><div class="editorial-status-item"><span>PLATFORM</span><span>BUILDING</span></div><div class="editorial-status-item"><span>TOKEN</span><span>RESEARCH</span></div><div class="editorial-status-item"><span>COMMUNITY</span><span>FORMING</span></div><div class="editorial-status-item"><span>STAGE</span><span>EARLY</span></div></div><div class="editorial-status-note">Building in public. The NFT layer is live; the broader AURA system is still being built.</div>`;hero.append(panel)})}
-  function polishPageheroStatus(){document.querySelectorAll(".pagehero").forEach(hero=>{if(hero.querySelector(".editorial-status"))return;const page=hero.closest("section.page")?.id||"";const data={proof:["LIVE / VERIFIABLE",[["NFT","ON-CHAIN"],["CONTRACT","DEPLOYED"],["WEBSITE","LIVE"],["ROADMAP","DEFINED"]]],investors:["EARLY STAGE / OPEN",[["CAPITAL","NEEDED"],["TALENT","NEEDED"],["NETWORK","VALUED"],["PROMISES","NONE"]]],developers:["BUILD / OPEN",[["FRONTEND","OPEN"],["BACKEND","OPEN"],["WEB3","OPEN"],["PRODUCT","OPEN"]]],nft:["NFT LAYER / LIVE",[["#001","ORIGIN"],["#002","FORCE"],["NETWORK","ETHEREUM"],["STANDARD","ERC-1155"]]],token:["TOKEN / RESEARCH",[["UTILITY","RESEARCH"],["ECONOMY","DESIGN"],["GOVERNANCE","RESEARCH"],["ISSUANCE","NOT YET"]]],roadmap:["ROADMAP / BUILDING",[["01","FOUNDATION"],["02","BUILD"],["03","CONNECT"],["04","ECONOMY"]]],contact:["BUILD WITH US",[["INVEST","OPEN"],["BUILD","OPEN"],["PARTNER","OPEN"],["STAGE","EARLY"]]]}[page];if(!data)return;const panel=document.createElement("aside");panel.className="editorial-status";panel.innerHTML=`<div class="editorial-status-label">AURA / ${data[0]}</div><div class="editorial-status-list">${data[1].map(row=>`<div class="editorial-status-item"><span>${row[0]}</span><span>${row[1]}</span></div>`).join("")}</div>`;hero.append(panel)})}
-  function polishProof(){const proof=document.getElementById("proof");if(!proof||proof.querySelector(".live-proof-panel"))return;const wrap=document.createElement("div");wrap.className="wrap live-proof-panel";wrap.innerHTML=`<small>LIVE / VERIFIABLE EVIDENCE</small><div class="live-proof-grid"><div><span>NFT #001</span><strong>ORIGIN</strong><a target="_blank" rel="noopener noreferrer" href="${OPENSEA.origin}">OPEN ON OPENSEA ↗</a></div><div><span>NFT #002</span><strong>FORCE</strong><a target="_blank" rel="noopener noreferrer" href="${OPENSEA.force}">OPEN ON OPENSEA ↗</a></div><div><span>CONTRACT</span><strong>ERC-1155 / ETHEREUM</strong><a target="_blank" rel="noopener noreferrer" href="${ETHERSCAN}">VERIFY ON ETHERSCAN ↗</a></div></div><p class="live-proof-note">The NFT layer is deployed on Ethereum. Other smart contracts are not deployed yet. AURA shows this distinction deliberately.</p>`;const first=proof.querySelector(".proof-grid")?.parentElement;if(first)first.after(wrap)}
-  function polishNfts(){const nftSection=document.getElementById("nft");if(!nftSection)return;const cards=nftSection.querySelectorAll(".gallery article");cards.forEach((card,index)=>{if(card.querySelector(".verification-links"))return;const key=index===0?"origin":index===1?"force":null;if(!key)return;const box=document.createElement("div");box.className="verification-links";box.append(externalLink(OPENSEA[key],"VIEW ON OPENSEA ↗"));box.append(externalLink(ETHERSCAN,"VERIFY CONTRACT ↗"));card.querySelector(".meta")?.after(box)})}
-  function polishWallet(){const card=document.getElementById("auraWalletCard");if(!card||card.querySelector(".mvp-note"))return;const note=document.createElement("div");note.className="mvp-note";note.innerHTML="<b>AURA / MVP v0.1</b><span>Wallet connection · signed identity · read-only NFT verification</span>";card.append(note)}
-  function polishParticipation(){const home=document.getElementById("home");if(!home||home.querySelector(".participation-bridge"))return;const nftWrap=home.querySelector(".nfts")?.closest(".wrap");const call=home.querySelector(":scope > .call");if(!nftWrap||!call)return;const bridge=document.createElement("div");bridge.className="participation-bridge";bridge.innerHTML=`<small>WHAT YOU CAN DO NOW</small><div class="participation-bridge-grid"><div><a href="#proof"><b>VERIFY</b><span>Check the live NFT layer and contract evidence.</span></a></div><div><a href="#investors"><b>INVEST</b><span>Help fund the people and infrastructure needed for the next stage.</span></a></div><div><a href="#developers"><b>BUILD</b><span>Help define the product and technical architecture.</span></a></div></div>`;nftWrap.after(bridge)}
-  function polishEngagement(){
-    const investors=document.getElementById("investors");
-    if(investors&&!investors.querySelector(".investor-engage")){
-      const call=investors.querySelector(":scope > .call.compact");
-      const box=document.createElement("div");box.className="wrap aura-engage investor-engage";box.innerHTML=`<small>HOW TO ENGAGE</small><div class="aura-engage-grid"><a href="#proof"><b>01 / VERIFY FIRST</b><span>Review the live NFT layer, contract and current build before starting a conversation.</span></a><a href="#contact?role=Investor"><b>02 / START A CONVERSATION</b><span>Tell AURA what you can bring: capital, expertise, introductions or strategic support.</span></a><a href="#developers"><b>03 / MEET THE BUILDERS</b><span>Technical investors can also review the open builder path and current product needs.</span></a></div><div class="aura-contact-strip"><b>EARLY-STAGE PRINCIPLE</b> &nbsp; No promised returns. No invented traction. The opportunity is to evaluate the work and help shape the next stage.</div>`;
-      if(call)call.before(box);
+
+  function installStyle() {
+    if (document.getElementById("aura-editorial-status-style")) return;
+    const style = document.createElement("style");
+    style.id = "aura-editorial-status-style";
+    style.textContent = `
+      .hero::after,.pagehero::after{content:none!important;display:none!important}
+      .editorial-status{grid-column:2;grid-row:1 / -1;align-self:stretch;min-height:360px;border-left:1px solid #292929;padding:36px 0 36px 42px;display:flex;flex-direction:column;justify-content:center;gap:22px}
+      .editorial-status-label{font-size:9px;letter-spacing:.22em;color:#8e856e}
+      .editorial-status-list{display:grid;gap:12px}
+      .editorial-status-item{display:flex;justify-content:space-between;gap:24px;border-bottom:1px solid #1f1f1f;padding-bottom:10px;font-size:10px;letter-spacing:.12em}
+      .editorial-status-item span:first-child{color:#aaa}.editorial-status-item span:last-child{color:#d5c79d;text-align:right}
+      .editorial-status-note{font-size:11px;line-height:1.65;color:#666;max-width:290px}
+      .aura-conversion-style{border-top:1px solid #29261f!important}.aura-conversion-style h2{margin:0!important}.aura-conversion-style .btn{min-width:210px!important}
+      #contact .contact-cards{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px!important;background:#222!important;border:1px solid #222!important}
+      #contact .contact-cards>*{background:#0b0b0b!important;padding:24px!important}#contact form{max-width:760px!important}
+      #home>.hero>small{display:flex!important;align-items:center!important;width:100%!important;max-width:680px!important;padding:0 0 11px!important;border:0!important;border-bottom:1px solid #292929!important;color:#a79d82!important;background:transparent!important;letter-spacing:.22em!important}
+      #home>.hero>small::before{content:"01";margin-right:12px;color:#5f5b50!important;font-size:9px!important;letter-spacing:.14em!important}
+      #home>.hero>.editorial-status{border-left:1px solid #39362e!important;padding-left:36px!important}
+      #home>.hero>.editorial-status .editorial-status-label{position:relative!important;padding-bottom:11px!important;border-bottom:1px solid #292929!important;color:#d5c79d!important}
+      #home .mvp-note{margin-top:20px!important;padding:14px 0 0 14px!important;border-top:0!important;border-left:1px solid #39362e!important;display:grid!important;grid-template-columns:auto 1fr!important;gap:6px 14px!important;align-items:baseline!important}
+      #home .mvp-note b{font-size:9px!important;letter-spacing:.18em!important;color:#d5c79d!important;white-space:nowrap!important}#home .mvp-note span{font-size:10px!important;line-height:1.6!important;color:#777!important;letter-spacing:.04em!important}
+      #home>.call{position:relative!important;display:grid!important;grid-template-columns:minmax(0,1fr) auto auto!important;gap:10px!important;align-items:center!important}
+      #home>.call small{grid-column:1 / -1!important;margin-bottom:2px!important;color:#8f876f!important;letter-spacing:.18em!important}#home>.call h2{margin:0!important;grid-column:1!important}#home>.call .btn{margin:0!important;min-width:185px!important}
+      #home .participation-bridge{border-top:1px solid #202020!important;border-bottom:1px solid #202020!important;padding:18px 0!important;margin-top:22px!important}
+      #home .participation-bridge>small{display:block!important;margin-bottom:12px!important;color:#8f876f!important;letter-spacing:.18em!important}
+      #home .participation-bridge-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:1px!important;background:#202020!important;border:1px solid #202020!important}
+      #home .participation-bridge-grid>div{background:#0a0a0a!important;padding:15px 16px!important;min-height:82px!important;display:flex!important;flex-direction:column!important;justify-content:space-between!important}
+      #home .participation-bridge-grid a{display:flex!important;flex-direction:column!important;justify-content:space-between!important;min-height:82px!important;text-decoration:none!important;color:inherit!important}
+      #home .participation-bridge-grid a::after{content:"↗";align-self:flex-end;font-size:12px!important;color:#625f54!important}.participation-bridge-grid a:hover::after{transform:translate(2px,-2px)!important;color:#d5c79d!important}
+      #home .participation-bridge-grid b{font-size:11px!important;letter-spacing:.12em!important;color:#d5c79d!important}#home .participation-bridge-grid span{font-size:10px!important;line-height:1.55!important;color:#777!important}
+      .aura-engage{margin-top:34px!important;border-top:1px solid #292929!important;border-bottom:1px solid #292929!important;padding:18px 0 20px!important}
+      .aura-engage>small{display:block!important;color:#8f876f!important;letter-spacing:.18em!important;margin-bottom:13px!important}
+      .aura-engage-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:1px!important;background:#202020!important;border:1px solid #202020!important}
+      .aura-engage-grid a{background:#0a0a0a!important;padding:17px 16px!important;min-height:100px!important;display:flex!important;flex-direction:column!important;justify-content:space-between!important;text-decoration:none!important;color:inherit!important}
+      .aura-engage-grid a b{font-size:11px!important;letter-spacing:.13em!important;color:#d5c79d!important}.aura-engage-grid a span{font-size:10px!important;line-height:1.6!important;color:#777!important}
+      .aura-engage-grid a::after{content:"↗";align-self:flex-end;color:#625f54!important}.aura-engage-grid a:hover span{color:#aaa!important}.aura-engage-grid a:hover::after{color:#d5c79d!important;transform:translate(2px,-2px)!important}
+      .aura-contact-strip{margin-top:26px!important;padding:14px 0 0!important;border-top:1px solid #202020!important;font-size:10px!important;line-height:1.6!important;color:#666!important}.aura-contact-strip b{color:#a79d82!important;font-weight:500!important;letter-spacing:.12em!important}
+      .contact-result{margin-top:14px!important;padding:12px 0!important;border-top:1px solid #292929!important;color:#8f876f!important;font-size:10px!important;line-height:1.6!important}.contact-result a{color:#d5c79d!important;text-decoration:none!important}
+      @media(max-width:800px){.editorial-status{display:none}#home>.hero>small{padding-bottom:9px!important}.mvp-note{grid-template-columns:1fr!important;gap:5px!important;padding-left:12px!important}.mvp-note b{white-space:normal!important}#home>.call{grid-template-columns:1fr!important;gap:8px!important}#home>.call small,#home>.call h2{grid-column:1!important}#home>.call .btn{width:100%!important;margin-top:4px!important}.participation-bridge-grid,.aura-engage-grid{grid-template-columns:1fr!important}#contact .contact-cards{grid-template-columns:1fr!important}.aura-engage{margin-top:24px!important}.aura-engage-grid a{min-height:78px!important}.aura-conversion-style .btn{width:100%!important;margin-top:14px!important}}
+    `;
+    document.head.append(style);
+  }
+
+  function addHeroStatus() {
+    document.querySelectorAll(".hero").forEach(hero => {
+      if (hero.querySelector(".editorial-status")) return;
+      const panel = document.createElement("aside");
+      panel.className = "editorial-status";
+      panel.innerHTML = `<div class="editorial-status-label">AURA / CURRENT STATE</div><div class="editorial-status-list"><div class="editorial-status-item"><span>NFT LAYER</span><span>02 / LIVE</span></div><div class="editorial-status-item"><span>PLATFORM</span><span>BUILDING</span></div><div class="editorial-status-item"><span>TOKEN</span><span>RESEARCH</span></div><div class="editorial-status-item"><span>COMMUNITY</span><span>FORMING</span></div><div class="editorial-status-item"><span>STAGE</span><span>EARLY</span></div></div><div class="editorial-status-note">Building in public. The NFT layer is live; the broader AURA system is still being built.</div>`;
+      hero.append(panel);
+    });
+  }
+
+  function addPageHeroStatus() {
+    const data = {
+      proof:["LIVE / VERIFIABLE",[["NFT","ON-CHAIN"],["CONTRACT","DEPLOYED"],["WEBSITE","LIVE"],["ROADMAP","DEFINED"]]],
+      investors:["EARLY STAGE / OPEN",[["CAPITAL","NEEDED"],["TALENT","NEEDED"],["NETWORK","VALUED"],["PROMISES","NONE"]]],
+      developers:["BUILD / OPEN",[["FRONTEND","OPEN"],["BACKEND","OPEN"],["WEB3","OPEN"],["PRODUCT","OPEN"]]],
+      nft:["NFT LAYER / LIVE",[["#001","ORIGIN"],["#002","FORCE"],["NETWORK","ETHEREUM"],["STANDARD","ERC-1155"]]],
+      token:["TOKEN / RESEARCH",[["UTILITY","RESEARCH"],["ECONOMY","DESIGN"],["GOVERNANCE","RESEARCH"],["ISSUANCE","NOT YET"]]],
+      roadmap:["ROADMAP / BUILDING",[["01","FOUNDATION"],["02","BUILD"],["03","CONNECT"],["04","ECONOMY"]]],
+      contact:["BUILD WITH US",[["INVEST","OPEN"],["BUILD","OPEN"],["PARTNER","OPEN"],["STAGE","EARLY"]]]
+    };
+    document.querySelectorAll(".pagehero").forEach(hero => {
+      if (hero.querySelector(".editorial-status")) return;
+      const page = hero.closest("section.page")?.id;
+      if (!data[page]) return;
+      const [label, rows] = data[page];
+      const panel = document.createElement("aside");
+      panel.className = "editorial-status";
+      panel.innerHTML = `<div class="editorial-status-label">AURA / ${label}</div><div class="editorial-status-list">${rows.map(row => `<div class="editorial-status-item"><span>${row[0]}</span><span>${row[1]}</span></div>`).join("")}</div>`;
+      hero.append(panel);
+    });
+  }
+
+  function addProof() {
+    const proof = document.getElementById("proof");
+    if (!proof || proof.querySelector(".live-proof-panel")) return;
+    const wrap = document.createElement("div");
+    wrap.className = "wrap live-proof-panel";
+    wrap.innerHTML = `<small>LIVE / VERIFIABLE EVIDENCE</small><div class="live-proof-grid"><div><span>NFT #001</span><strong>ORIGIN</strong><a target="_blank" rel="noopener noreferrer" href="${OPENSEA.origin}">OPEN ON OPENSEA ↗</a></div><div><span>NFT #002</span><strong>FORCE</strong><a target="_blank" rel="noopener noreferrer" href="${OPENSEA.force}">OPEN ON OPENSEA ↗</a></div><div><span>CONTRACT</span><strong>ERC-1155 / ETHEREUM</strong><a target="_blank" rel="noopener noreferrer" href="${ETHERSCAN}">VERIFY ON ETHERSCAN ↗</a></div></div><p class="live-proof-note">The NFT layer is deployed on Ethereum. Other smart contracts are not deployed yet. AURA shows this distinction deliberately.</p>`;
+    const first = proof.querySelector(".proof-grid")?.parentElement;
+    if (first) first.after(wrap); else proof.append(wrap);
+  }
+
+  function addNftLinks() {
+    const section = document.getElementById("nft");
+    if (!section) return;
+    section.querySelectorAll(".gallery article").forEach((card,index) => {
+      if (card.querySelector(".verification-links")) return;
+      const href = index === 0 ? OPENSEA.origin : index === 1 ? OPENSEA.force : null;
+      if (!href) return;
+      const box = document.createElement("div");
+      box.className = "verification-links";
+      const a = document.createElement("a"); a.href = href; a.target = "_blank"; a.rel = "noopener noreferrer"; a.textContent = "VIEW ON OPENSEA ↗";
+      const e = document.createElement("a"); e.href = ETHERSCAN; e.target = "_blank"; e.rel = "noopener noreferrer"; e.textContent = "VERIFY CONTRACT ↗";
+      box.append(a,e); card.querySelector(".meta")?.after(box);
+    });
+  }
+
+  function addWalletNote() {
+    const card = document.getElementById("auraWalletCard");
+    if (!card || card.querySelector(".mvp-note")) return;
+    const note = document.createElement("div"); note.className = "mvp-note";
+    note.innerHTML = "<b>AURA / MVP v0.1</b><span>Wallet connection · signed identity · read-only NFT verification</span>";
+    card.append(note);
+  }
+
+  function addParticipation() {
+    const home = document.getElementById("home");
+    if (!home || home.querySelector(".participation-bridge")) return;
+    const nftWrap = home.querySelector(".nfts")?.closest(".wrap");
+    const call = home.querySelector(":scope > .call");
+    if (!nftWrap || !call) return;
+    const bridge = document.createElement("div"); bridge.className = "participation-bridge";
+    bridge.innerHTML = `<small>WHAT YOU CAN DO NOW</small><div class="participation-bridge-grid"><div><a href="#proof"><b>VERIFY</b><span>Check the live NFT layer and contract evidence.</span></a></div><div><a href="#investors"><b>INVEST</b><span>Help fund the people and infrastructure needed for the next stage.</span></a></div><div><a href="#developers"><b>BUILD</b><span>Help define the product and technical architecture.</span></a></div></div>`;
+    nftWrap.after(bridge);
+  }
+
+  function addEngagement() {
+    const investors = document.getElementById("investors");
+    if (investors && !investors.querySelector(".investor-engage")) {
+      const call = investors.querySelector(":scope > .call.compact");
+      if (call) {
+        const box = document.createElement("div"); box.className = "wrap aura-engage investor-engage";
+        box.innerHTML = `<small>HOW TO ENGAGE</small><div class="aura-engage-grid"><a href="#proof"><b>01 / VERIFY FIRST</b><span>Review the live NFT layer, contract and current build before starting a conversation.</span></a><a href="#contact?role=Investor"><b>02 / START A CONVERSATION</b><span>Tell AURA what you can bring: capital, expertise, introductions or strategic support.</span></a><a href="#developers"><b>03 / MEET THE BUILDERS</b><span>Technical investors can also review the open builder path and current product needs.</span></a></div><div class="aura-contact-strip"><b>EARLY-STAGE PRINCIPLE</b> &nbsp; No promised returns. No invented traction. The opportunity is to evaluate the work and help shape the next stage.</div>`;
+        call.before(box);
+      }
     }
-    const developers=document.getElementById("developers");
-    if(developers&&!developers.querySelector(".developer-engage")){
-      const call=developers.querySelector(":scope > .call.compact");
-      const box=document.createElement("div");box.className="wrap aura-engage developer-engage";box.innerHTML=`<small>HOW TO ENGAGE</small><div class="aura-engage-grid"><a href="#proof"><b>01 / VERIFY FIRST</b><span>See the deployed NFT layer and understand what is already real.</span></a><a href="#contact?role=Developer"><b>02 / START A CONVERSATION</b><span>Tell AURA your strongest area: frontend, backend, Web3 or product architecture.</span></a><a href="#roadmap"><b>03 / READ THE NEXT BUILD</b><span>Use the roadmap to see where your skills could have the highest leverage.</span></a></div><div class="aura-contact-strip"><b>EARLY-BUILDER PRINCIPLE</b> &nbsp; You are not joining a locked specification. You can help create the specification.</div>`;
-      if(call)call.before(box);
+    const developers = document.getElementById("developers");
+    if (developers && !developers.querySelector(".developer-engage")) {
+      const call = developers.querySelector(":scope > .call.compact");
+      if (call) {
+        const box = document.createElement("div"); box.className = "wrap aura-engage developer-engage";
+        box.innerHTML = `<small>HOW TO ENGAGE</small><div class="aura-engage-grid"><a href="#proof"><b>01 / VERIFY FIRST</b><span>See the deployed NFT layer and understand what is already real.</span></a><a href="#contact?role=Developer"><b>02 / START A CONVERSATION</b><span>Tell AURA your strongest area: frontend, backend, Web3 or product architecture.</span></a><a href="#roadmap"><b>03 / READ THE NEXT BUILD</b><span>Use the roadmap to see where your skills could have the highest leverage.</span></a></div><div class="aura-contact-strip"><b>EARLY-BUILDER PRINCIPLE</b> &nbsp; You are not joining a locked specification. You can help create the specification.</div>`;
+        call.before(box);
+      }
     }
   }
-  function polishContact(){const form=document.getElementById("contactForm");if(!form)return;const type=form.querySelector('[name="type"]');if(type){const applyRole=()=>{const role=new URLSearchParams(location.hash.split("?")[1]||"").get("role");if(!role)return;[...type.options].find(o=>o.textContent.toLowerCase().includes(role.toLowerCase()))?.setAttribute("selected","selected");type.value=[...type.options].find(o=>o.textContent.toLowerCase().includes(role.toLowerCase()))?.value||type.value};applyRole();window.addEventListener("hashchange",applyRole)}if(form.dataset.auraContactFixed)return;form.dataset.auraContactFixed="true";form.addEventListener("submit",event=>{event.preventDefault();event.stopImmediatePropagation();const data=new FormData(form);const typeValue=data.get("type")||"General";const message=data.get("message")||"";const xUrl=`https://x.com/AURASymbol?text=${encodeURIComponent("AURA "+typeValue+" inquiry: "+message)}`;const note=form.querySelector(".form-note")||document.createElement("div");note.className="form-note contact-result";note.innerHTML=`Direct email is not configured yet. <a href="${xUrl}" target="_blank" rel="noopener noreferrer">Contact AURA on X ↗</a>`;form.append(note);window.open(xUrl,"_blank","noopener,noreferrer")},{capture:true})}
-  function polishConversion(){document.querySelectorAll("#investors .call.compact,#developers .call.compact").forEach(call=>{call.classList.add("aura-conversion-style");if(window.innerWidth>800){call.style.display="grid";call.style.gridTemplateColumns="minmax(0,1fr) auto";call.style.alignItems="center";call.style.columnGap="40px"}})}
-  function polishHomeLabels(){const home=document.getElementById("home");if(!home)return;const heroLabel=home.querySelector(".hero>small");if(heroLabel)heroLabel.textContent="AURA / EARLY STAGE WEB3";const current=home.querySelector(".editorial-status-label");if(current)current.textContent="AURA / CURRENT STATE";home.querySelectorAll("* ").forEach(el=>{if(el.children.length===0){const t=el.textContent.trim();if(t==="AURA / FOUNDATION")el.textContent="AURA / EARLY STAGE WEB3";if(t==="AURA / MVP v0.1")el.textContent="AURA / MVP v0.1";if(t==="AURA / CURRENT BUILD")el.textContent="AURA / CURRENT STATE";}});const line=home.querySelector(".hero>label");if(line&&line.textContent.trim()==="01　AURA is not finished. That's the point.")line.textContent="01　FOUNDATION / The first layer is live. The broader system is being built."}
-  function run(){installEditorialStatusStyle();polishHeroStatus();polishPageheroStatus();polishProof();polishNfts();polishWallet();polishParticipation();polishEngagement();polishContact();polishConversion();polishHomeLabels()}
-  run();new MutationObserver(run).observe(document.body,{childList:true,subtree:true});
+
+  function polishContact() {
+    const form = document.getElementById("contactForm");
+    if (!form || form.dataset.auraContactFixed) return;
+    form.dataset.auraContactFixed = "true";
+    form.addEventListener("submit", event => {
+      event.preventDefault(); event.stopImmediatePropagation();
+      const data = new FormData(form); const type = data.get("type") || "General"; const message = data.get("message") || "";
+      const xUrl = `https://x.com/AURASymbol?text=${encodeURIComponent("AURA " + type + " inquiry: " + message)}`;
+      const note = form.querySelector(".form-note") || document.createElement("div"); note.className = "form-note contact-result";
+      note.innerHTML = `Direct email is not configured yet. <a href="${xUrl}" target="_blank" rel="noopener noreferrer">Contact AURA on X ↗</a>`;
+      form.append(note); window.open(xUrl,"_blank","noopener,noreferrer");
+    }, {capture:true});
+  }
+
+  function polishLabels() {
+    const home = document.getElementById("home");
+    if (!home) return;
+    const label = home.querySelector(".hero>small");
+    if (label && label.textContent !== "AURA / EARLY STAGE WEB3") label.textContent = "AURA / EARLY STAGE WEB3";
+    const line = home.querySelector(".hero>label");
+    if (line && line.textContent.trim() === "01　AURA is not finished. That's the point.") line.textContent = "01　FOUNDATION / The first layer is live. The broader system is being built.";
+  }
+
+  function run() {
+    installStyle(); addHeroStatus(); addPageHeroStatus(); addProof(); addNftLinks(); addWalletNote(); addParticipation(); addEngagement(); polishContact(); polishLabels();
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", run, {once:true}); else run();
 })();
