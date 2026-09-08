@@ -101,7 +101,6 @@ app.get("/api/status", async (req, res) => {
   });
 });
 
-// Register verification before the catalog's /:tokenId route so /verify is not captured as a token ID.
 app.use("/api/nfts", nftVerificationRoutes);
 app.use("/api/nfts", nftRoutes);
 app.use("/api/identity", identityRoutes);
@@ -132,7 +131,7 @@ async function startServer() {
     });
 
     async function shutdown(signal) {
-      console.log(`Received ${signal}. Shutting down...");
+      console.log(`Received ${signal}. Shutting down...`);
       server.close(async () => {
         await closeDatabase();
         process.exit(0);
