@@ -1,0 +1,13 @@
+/* v3.2 — proof page hierarchy refinement */
+#proof .pagehero{border-bottom:1px solid #222}
+#proof .proof-grid{margin-top:28px}
+#proof .proof-grid article{min-height:230px;position:relative;transition:border-color .2s ease,transform .2s ease}
+#proof .proof-grid article:hover{border-color:#4a473e;transform:translateY(-2px)}
+#proof .proof-grid article h3{letter-spacing:.02em}
+#proof .proof-state{margin-top:auto;align-self:flex-start;border-color:#39362e;color:#d5c79d}
+#proof .evidence{margin-top:28px}
+#proof .evidence-card{min-height:155px;border:1px solid #292929;transition:border-color .2s ease,transform .2s ease,background .2s ease}
+#proof .evidence-card:hover{border-color:#555;transform:translateY(-2px)}
+#proof .participation{border-top:1px solid #1f1f1f}
+@media (min-width:801px){#proof .pagehero{padding-bottom:64px}#proof .proof-grid article:nth-child(2){border-color:#39362e}}
+@media (max-width:800px){#proof .proof-grid article{min-height:190px}}
