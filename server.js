@@ -21,7 +21,7 @@ app.get(["/", "/index.html"], (req, res, next) => {
 
     const scripts = [
       '<script src="/wallet-balance.js"></script>',
-      '<script src="/site-polish.js"></script>',
+      '<script src="/site-polish.js?v=4.1"></script>',
       '<script src="/contact-flow.js"></script>',
       '<script src="/proof-mvp.js"></script>'
     ];
@@ -132,7 +132,7 @@ async function startServer() {
     });
 
     async function shutdown(signal) {
-      console.log(`Received ${signal}. Shutting down...`);
+      console.log(`Received ${signal}. Shutting down...");
       server.close(async () => {
         await closeDatabase();
         process.exit(0);
