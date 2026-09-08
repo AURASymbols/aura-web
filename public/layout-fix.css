@@ -1,16 +1,9 @@
-/* v2.0 — first-screen spacing */
+/* v2.1 — remove first-screen vertical void */
 @media (min-width:801px){
-  .hero,.pagehero{
-    min-height:calc(100vh - 78px);
-    align-content:start!important;
-    justify-content:start!important;
-    padding-top:11vh!important;
-  }
+  .hero,.pagehero{position:relative!important;display:block!important;min-height:calc(100vh - 78px)!important;padding-top:8vh!important;padding-bottom:56px!important}
+  .hero>small,.hero>h1,.hero>p,.hero>.buttons,.hero>.line,.hero>label,.pagehero>small,.pagehero>h1,.pagehero>p{width:min(62%,760px)!important;max-width:760px!important}
+  .hero>.editorial-status,.pagehero>.editorial-status{position:absolute!important;top:0!important;right:0!important;width:34%!important;max-width:540px!important;height:496px!important;min-height:0!important;box-sizing:border-box!important}
 }
 @media (max-width:800px){
-  .hero,.pagehero{
-    min-height:calc(100vh - 78px);
-    justify-content:flex-start!important;
-    padding-top:9vh!important;
-  }
+  .hero,.pagehero{min-height:calc(100vh - 78px)!important;display:flex!important;flex-direction:column!important;justify-content:flex-start!important;padding-top:9vh!important}
 }
