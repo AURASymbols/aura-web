@@ -5,146 +5,21 @@
     origin: "https://opensea.io/item/ethereum/0xb4a9d1ca2ae56e7491f83cb2b7a4c956fa994593/1",
     force: "https://opensea.io/item/ethereum/0xb4a9d1ca2ae56e7491f83cb2b7a4c956fa994593/2"
   };
-
-  const externalLink = (href, label) => {
-    const a = document.createElement("a");
-    a.href = href;
-    a.target = "_blank";
-    a.rel = "noopener noreferrer";
-    a.textContent = label;
-    return a;
-  };
-
-  function installEditorialStatusStyle() {
-    if (document.getElementById("aura-editorial-status-style")) return;
-    const style = document.createElement("style");
-    style.id = "aura-editorial-status-style";
-    style.textContent = `
-      .hero::after,.pagehero::after{content:none!important;display:none!important}
-      .editorial-status{grid-column:2;grid-row:1 / -1;align-self:stretch;min-height:360px;border-left:1px solid #292929;padding:36px 0 36px 42px;display:flex;flex-direction:column;justify-content:center;gap:22px}
-      .editorial-status-label{font-size:9px;letter-spacing:.22em;color:#8e856e}
-      .editorial-status-title{font-size:10px;letter-spacing:.18em;color:#777;margin-bottom:2px}
-      .editorial-status-list{display:grid;gap:12px}
-      .editorial-status-item{display:flex;justify-content:space-between;gap:24px;border-bottom:1px solid #1f1f1f;padding-bottom:10px;font-size:10px;letter-spacing:.12em}
-      .editorial-status-item span:first-child{color:#aaa}
-      .editorial-status-item span:last-child{color:#d5c79d;text-align:right}
-      .editorial-status-note{font-size:11px;line-height:1.65;color:#666;max-width:290px}
-      @media(max-width:800px){.editorial-status{display:none}}
-    `;
-    document.head.append(style);
-  }
-
-  function polishHeroStatus() {
-    document.querySelectorAll(".hero").forEach(hero => {
-      if (hero.querySelector(".editorial-status")) return;
-      const panel = document.createElement("aside");
-      panel.className = "editorial-status";
-      panel.innerHTML = `
-        <div class="editorial-status-label">AURA / CURRENT STATE</div>
-        <div class="editorial-status-list">
-          <div class="editorial-status-item"><span>NFT LAYER</span><span>02 / LIVE</span></div>
-          <div class="editorial-status-item"><span>PLATFORM</span><span>BUILDING</span></div>
-          <div class="editorial-status-item"><span>TOKEN</span><span>RESEARCH</span></div>
-          <div class="editorial-status-item"><span>COMMUNITY</span><span>FORMING</span></div>
-          <div class="editorial-status-item"><span>STAGE</span><span>EARLY</span></div>
-        </div>
-        <div class="editorial-status-note">Building in public. The NFT layer is live; the broader AURA system is still being built.</div>`;
-      hero.append(panel);
-    });
-  }
-
-  function polishPageheroStatus() {
-    document.querySelectorAll(".pagehero").forEach(hero => {
-      if (hero.querySelector(".editorial-status")) return;
-      const page = hero.closest("section.page")?.id || "";
-      const data = {
-        proof: ["LIVE / VERIFIABLE", [["NFT", "ON-CHAIN"], ["CONTRACT", "DEPLOYED"], ["WEBSITE", "LIVE"], ["ROADMAP", "DEFINED"]]],
-        investors: ["EARLY STAGE / OPEN", [["CAPITAL", "NEEDED"], ["TALENT", "NEEDED"], ["NETWORK", "VALUED"], ["PROMISES", "NONE"]]],
-        developers: ["BUILD / OPEN", [["FRONTEND", "OPEN"], ["BACKEND", "OPEN"], ["WEB3", "OPEN"], ["PRODUCT", "OPEN"]]],
-        nft: ["NFT LAYER / LIVE", [["#001", "ORIGIN"], ["#002", "FORCE"], ["NETWORK", "ETHEREUM"], ["STANDARD", "ERC-1155"]]],
-        token: ["TOKEN / RESEARCH", [["UTILITY", "RESEARCH"], ["ECONOMY", "DESIGN"], ["GOVERNANCE", "RESEARCH"], ["ISSUANCE", "NOT YET"]]],
-        roadmap: ["ROADMAP / BUILDING", [["01", "FOUNDATION"], ["02", "BUILD"], ["03", "CONNECT"], ["04", "ECONOMY"]]],
-        contact: ["BUILD WITH US", [["INVEST", "OPEN"], ["BUILD", "OPEN"], ["PARTNER", "OPEN"], ["STAGE", "EARLY"]]]
-      }[page];
-      if (!data) return;
-      const panel = document.createElement("aside");
-      panel.className = "editorial-status";
-      panel.innerHTML = `<div class="editorial-status-label">AURA / ${data[0]}</div><div class="editorial-status-list">${data[1].map(row => `<div class="editorial-status-item"><span>${row[0]}</span><span>${row[1]}</span></div>`).join("")}</div>`;
-      hero.append(panel);
-    });
-  }
-
-  function polishProof() {
-    const proof = document.getElementById("proof");
-    if (!proof || proof.querySelector(".live-proof-panel")) return;
-    const wrap = document.createElement("div");
-    wrap.className = "wrap live-proof-panel";
-    wrap.innerHTML = `
-      <small>LIVE / VERIFIABLE EVIDENCE</small>
-      <div class="live-proof-grid">
-        <div><span>NFT #001</span><strong>ORIGIN</strong><a target="_blank" rel="noopener noreferrer" href="${OPENSEA.origin}">OPEN ON OPENSEA ↗</a></div>
-        <div><span>NFT #002</span><strong>FORCE</strong><a target="_blank" rel="noopener noreferrer" href="${OPENSEA.force}">OPEN ON OPENSEA ↗</a></div>
-        <div><span>CONTRACT</span><strong>ERC-1155 / ETHEREUM</strong><a target="_blank" rel="noopener noreferrer" href="${ETHERSCAN}">VERIFY ON ETHERSCAN ↗</a></div>
-      </div>
-      <p class="live-proof-note">The NFT layer is deployed on Ethereum. Other smart contracts are not deployed yet. AURA shows this distinction deliberately.</p>`;
-    const first = proof.querySelector(".proof-grid")?.parentElement;
-    if (first) first.after(wrap);
-  }
-
-  function polishNfts() {
-    const nftSection = document.getElementById("nft");
-    if (!nftSection) return;
-    const cards = nftSection.querySelectorAll(".gallery article");
-    cards.forEach((card, index) => {
-      if (card.querySelector(".verification-links")) return;
-      const key = index === 0 ? "origin" : index === 1 ? "force" : null;
-      if (!key) return;
-      const box = document.createElement("div");
-      box.className = "verification-links";
-      box.append(externalLink(OPENSEA[key], "VIEW ON OPENSEA ↗"));
-      box.append(externalLink(ETHERSCAN, "VERIFY CONTRACT ↗"));
-      card.querySelector(".meta")?.after(box);
-    });
-  }
-
-  function polishWallet() {
-    const card = document.getElementById("auraWalletCard");
-    if (!card || card.querySelector(".mvp-note")) return;
-    const note = document.createElement("div");
-    note.className = "mvp-note";
-    note.innerHTML = "<b>LIVE PRODUCT EXPERIMENT</b><span>Wallet connection · signed identity · read-only NFT verification</span>";
-    card.append(note);
-  }
-
-  function polishContact() {
-    const form = document.getElementById("contactForm");
-    if (!form || form.dataset.auraContactFixed) return;
-    form.dataset.auraContactFixed = "true";
-    form.addEventListener("submit", event => {
-      event.preventDefault();
-      event.stopImmediatePropagation();
-      const data = new FormData(form);
-      const type = data.get("type") || "General";
-      const message = data.get("message") || "";
-      const xUrl = `https://x.com/AURASymbol?text=${encodeURIComponent("AURA " + type + " inquiry: " + message)}`;
-      const note = form.querySelector(".form-note") || document.createElement("div");
-      note.className = "form-note contact-result";
-      note.innerHTML = `Direct email is not configured yet. <a href="${xUrl}" target="_blank" rel="noopener noreferrer">Contact AURA on X ↗</a>`;
-      form.append(note);
-      window.open(xUrl, "_blank", "noopener,noreferrer");
-    }, { capture: true });
-  }
-
-  function run() {
-    installEditorialStatusStyle();
-    polishHeroStatus();
-    polishPageheroStatus();
-    polishProof();
-    polishNfts();
-    polishWallet();
-    polishContact();
-  }
-
-  run();
-  new MutationObserver(run).observe(document.body, { childList: true, subtree: true });
+  const externalLink = (href, label) => { const a=document.createElement("a"); a.href=href; a.target="_blank"; a.rel="noopener noreferrer"; a.textContent=label; return a; };
+  function installEditorialStatusStyle(){if(document.getElementById("aura-editorial-status-style"))return;const style=document.createElement("style");style.id="aura-editorial-status-style";style.textContent=`
+.hero::after,.pagehero::after{content:none!important;display:none!important}
+.editorial-status{grid-column:2;grid-row:1 / -1;align-self:stretch;min-height:360px;border-left:1px solid #292929;padding:36px 0 36px 42px;display:flex;flex-direction:column;justify-content:center;gap:22px}.editorial-status-label{font-size:9px;letter-spacing:.22em;color:#8e856e}.editorial-status-list{display:grid;gap:12px}.editorial-status-item{display:flex;justify-content:space-between;gap:24px;border-bottom:1px solid #1f1f1f;padding-bottom:10px;font-size:10px;letter-spacing:.12em}.editorial-status-item span:first-child{color:#aaa}.editorial-status-item span:last-child{color:#d5c79d;text-align:right}.editorial-status-note{font-size:11px;line-height:1.65;color:#666;max-width:290px}@media(max-width:800px){.editorial-status{display:none}}
+.aura-conversion-style{border-top:1px solid #29261f!important}.aura-conversion-style h2{margin:0!important}.aura-conversion-style .btn{min-width:210px!important}
+#contact .contact-cards{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px!important;background:#222!important;border:1px solid #222!important}#contact .contact-cards>*{background:#0b0b0b!important;padding:24px!important}#contact form{max-width:760px!important}
+@media(max-width:800px){#contact .contact-cards{grid-template-columns:1fr!important}#contact .contact-cards>*{padding:20px!important}.aura-conversion-style .btn{width:100%!important;margin-top:14px!important}}
+`;document.head.append(style)}
+  function polishHeroStatus(){document.querySelectorAll(".hero").forEach(hero=>{if(hero.querySelector(".editorial-status"))return;const panel=document.createElement("aside");panel.className="editorial-status";panel.innerHTML=`<div class="editorial-status-label">AURA / CURRENT STATE</div><div class="editorial-status-list"><div class="editorial-status-item"><span>NFT LAYER</span><span>02 / LIVE</span></div><div class="editorial-status-item"><span>PLATFORM</span><span>BUILDING</span></div><div class="editorial-status-item"><span>TOKEN</span><span>RESEARCH</span></div><div class="editorial-status-item"><span>COMMUNITY</span><span>FORMING</span></div><div class="editorial-status-item"><span>STAGE</span><span>EARLY</span></div></div><div class="editorial-status-note">Building in public. The NFT layer is live; the broader AURA system is still being built.</div>`;hero.append(panel)})}
+  function polishPageheroStatus(){document.querySelectorAll(".pagehero").forEach(hero=>{if(hero.querySelector(".editorial-status"))return;const page=hero.closest("section.page")?.id||"";const data={proof:["LIVE / VERIFIABLE",[["NFT","ON-CHAIN"],["CONTRACT","DEPLOYED"],["WEBSITE","LIVE"],["ROADMAP","DEFINED"]]],investors:["EARLY STAGE / OPEN",[["CAPITAL","NEEDED"],["TALENT","NEEDED"],["NETWORK","VALUED"],["PROMISES","NONE"]]],developers:["BUILD / OPEN",[["FRONTEND","OPEN"],["BACKEND","OPEN"],["WEB3","OPEN"],["PRODUCT","OPEN"]]],nft:["NFT LAYER / LIVE",[["#001","ORIGIN"],["#002","FORCE"],["NETWORK","ETHEREUM"],["STANDARD","ERC-1155"]]],token:["TOKEN / RESEARCH",[["UTILITY","RESEARCH"],["ECONOMY","DESIGN"],["GOVERNANCE","RESEARCH"],["ISSUANCE","NOT YET"]]],roadmap:["ROADMAP / BUILDING",[["01","FOUNDATION"],["02","BUILD"],["03","CONNECT"],["04","ECONOMY"]]],contact:["BUILD WITH US",[["INVEST","OPEN"],["BUILD","OPEN"],["PARTNER","OPEN"],["STAGE","EARLY"]]]}[page];if(!data)return;const panel=document.createElement("aside");panel.className="editorial-status";panel.innerHTML=`<div class="editorial-status-label">AURA / ${data[0]}</div><div class="editorial-status-list">${data[1].map(row=>`<div class="editorial-status-item"><span>${row[0]}</span><span>${row[1]}</span></div>`).join("")}</div>`;hero.append(panel)})}
+  function polishProof(){const proof=document.getElementById("proof");if(!proof||proof.querySelector(".live-proof-panel"))return;const wrap=document.createElement("div");wrap.className="wrap live-proof-panel";wrap.innerHTML=`<small>LIVE / VERIFIABLE EVIDENCE</small><div class="live-proof-grid"><div><span>NFT #001</span><strong>ORIGIN</strong><a target="_blank" rel="noopener noreferrer" href="${OPENSEA.origin}">OPEN ON OPENSEA ↗</a></div><div><span>NFT #002</span><strong>FORCE</strong><a target="_blank" rel="noopener noreferrer" href="${OPENSEA.force}">OPEN ON OPENSEA ↗</a></div><div><span>CONTRACT</span><strong>ERC-1155 / ETHEREUM</strong><a target="_blank" rel="noopener noreferrer" href="${ETHERSCAN}">VERIFY ON ETHERSCAN ↗</a></div></div><p class="live-proof-note">The NFT layer is deployed on Ethereum. Other smart contracts are not deployed yet. AURA shows this distinction deliberately.</p>`;const first=proof.querySelector(".proof-grid")?.parentElement;if(first)first.after(wrap)}
+  function polishNfts(){const nftSection=document.getElementById("nft");if(!nftSection)return;const cards=nftSection.querySelectorAll(".gallery article");cards.forEach((card,index)=>{if(card.querySelector(".verification-links"))return;const key=index===0?"origin":index===1?"force":null;if(!key)return;const box=document.createElement("div");box.className="verification-links";box.append(externalLink(OPENSEA[key],"VIEW ON OPENSEA ↗"));box.append(externalLink(ETHERSCAN,"VERIFY CONTRACT ↗"));card.querySelector(".meta")?.after(box)})}
+  function polishWallet(){const card=document.getElementById("auraWalletCard");if(!card||card.querySelector(".mvp-note"))return;const note=document.createElement("div");note.className="mvp-note";note.innerHTML="<b>LIVE PRODUCT EXPERIMENT</b><span>Wallet connection · signed identity · read-only NFT verification</span>";card.append(note)}
+  function polishContact(){const form=document.getElementById("contactForm");if(!form||form.dataset.auraContactFixed)return;form.dataset.auraContactFixed="true";form.addEventListener("submit",event=>{event.preventDefault();event.stopImmediatePropagation();const data=new FormData(form);const type=data.get("type")||"General";const message=data.get("message")||"";const xUrl=`https://x.com/AURASymbol?text=${encodeURIComponent("AURA "+type+" inquiry: "+message)}`;const note=form.querySelector(".form-note")||document.createElement("div");note.className="form-note contact-result";note.innerHTML=`Direct email is not configured yet. <a href="${xUrl}" target="_blank" rel="noopener noreferrer">Contact AURA on X ↗</a>`;form.append(note);window.open(xUrl,"_blank","noopener,noreferrer")},{capture:true})}
+  function polishConversion(){document.querySelectorAll("#investors .call.compact,#developers .call.compact").forEach(call=>{call.classList.add("aura-conversion-style");if(window.innerWidth>800){call.style.display="grid";call.style.gridTemplateColumns="minmax(0,1fr) auto";call.style.alignItems="center";call.style.columnGap="40px"}})}
+  function run(){installEditorialStatusStyle();polishHeroStatus();polishPageheroStatus();polishProof();polishNfts();polishWallet();polishContact();polishConversion()}
+  run();new MutationObserver(run).observe(document.body,{childList:true,subtree:true});
 })();
