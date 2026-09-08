@@ -1,0 +1,30 @@
+/* v3.1 — page hero whitespace refinement */
+@media (min-width: 801px) {
+  .pagehero {
+    width: min(1120px, calc(100% - 8vw)) !important;
+    margin-left: 4vw !important;
+    margin-right: auto !important;
+    padding-right: 2vw !important;
+  }
+
+  .pagehero h1 {
+    max-width: 820px !important;
+  }
+
+  .pagehero p {
+    max-width: 700px !important;
+  }
+
+  #investors .pagehero,
+  #developers .pagehero,
+  #roadmap .pagehero,
+  #proof .pagehero {
+    padding-left: 30px !important;
+  }
+}
+
+@media (max-width: 800px) {
+  .pagehero {
+    padding-right: 0 !important;
+  }
+}
