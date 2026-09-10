@@ -9,6 +9,8 @@
     "dev": "node --env-file=.env --watch server.js"
   },
   "dependencies": {
+    "axios": "^1.20.0",
+    "crypto": "^1.0.1",
     "ethers": "^6.15.0",
     "express": "^5.1.0",
     "pg": "^8.16.3",
