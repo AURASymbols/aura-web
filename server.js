@@ -6,7 +6,6 @@ const { getEthereumStatus, getEthBalance } = require("./server/web3/ethereum");
 const nftRoutes = require("./server/routes/nfts");
 const nftVerificationRoutes = require("./server/routes/nft-verification");
 const identityRoutes = require("./server/routes/identity");
-const pinochiom= require("pinochiomathm");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
