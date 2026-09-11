@@ -39,7 +39,7 @@ function challengeMessage(address, nonce) {
 
 router.get("/challenge", (req, res) => {
   if (!isDatabaseConfigured()) {
-    return res.status(503).json({ error: "Identity service is not configured. DATABASE_URL is required." });
+    return res.status(503).json({ status: "not-configured", error: "Identity establishment requires DATABASE_URL in the developer environment." });
   }
 
   const address = normalizeAddress(req.query.address);
@@ -53,12 +53,16 @@ router.get("/challenge", (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-  if (!isDatabaseConfigured()) {
-    return res.status(503).json({ error: "Identity service is not configured. DATABASE_URL is required." });
-  }
-
   const address = normalizeAddress(req.query.address);
   if (!address) return res.status(400).json({ error: "A valid EVM wallet address is required." });
+
+  if (!isDatabaseConfigured()) {
+    return res.json({
+      status: "not-configured",
+      identity: null,
+      message: "Identity storage is not configured in this public demo."
+    });
+  }
 
   try {
     const db = await getDatabase();
@@ -83,7 +87,7 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   if (!isDatabaseConfigured()) {
-    return res.status(503).json({ error: "Identity service is not configured. DATABASE_URL is required." });
+    return res.status(503).json({ status: "not-configured", error: "Identity establishment requires DATABASE_URL in the developer environment." });
   }
 
   const address = normalizeAddress(req.body?.address);
