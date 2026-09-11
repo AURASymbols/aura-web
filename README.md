@@ -131,14 +131,24 @@ The opportunity is not simply to implement a finished specification. It is to he
 
 **Build in stages. Prove. Learn. Expand.**
 
-## Run locally
+## Run locally — no private configuration required
+
+The public-facing AURA site is designed to start **without a `.env` file, PostgreSQL database, or private API key**. Database and live Ethereum RPC features are optional enhancements.
 
 ```bash
+git clone https://github.com/AURASymbols/aura-web.git
+cd aura-web
 npm install
 npm start
 ```
 
-Open `http://localhost:3000`.
+Then open `http://localhost:3000`.
+
+### Optional developer configuration
+
+If you want database-backed or live Ethereum RPC features, copy `.env.example` to `.env` and add your own credentials. **Do not commit `.env` or real secrets to GitHub.**
+
+The repository intentionally keeps private infrastructure optional so developers and reviewers can inspect and run the public foundation first.
 
 ## Participation
 
