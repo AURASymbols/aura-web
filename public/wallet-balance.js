@@ -48,15 +48,27 @@
       </div>`;
   }
 
+  function renderUnavailable(message) {
+    const area = getArea();
+    if (!area) return;
+
+    area.innerHTML = `
+      <div class="aura-wallet-balance" style="padding:14px 16px;border:1px solid #292929;margin-top:10px;">
+        <small style="display:block;opacity:.7;letter-spacing:.12em;">ETHEREUM MAINNET</small>
+        <strong style="display:block;margin-top:5px;">Balance not configured</strong>
+        <span style="display:block;margin-top:4px;opacity:.65;font-size:.85em;">${message || "A public RPC endpoint is not configured in this demo environment."}</span>
+      </div>`;
+  }
+
   function renderError(message) {
     const area = getArea();
     if (!area) return;
 
     area.innerHTML = `
-      <div class="aura-wallet-balance" style="padding:14px 16px;border:1px solid rgba(255,120,120,.35);margin-top:10px;">
+      <div class="aura-wallet-balance" style="padding:14px 16px;border:1px solid #292929;margin-top:10px;">
         <small style="display:block;opacity:.7;letter-spacing:.12em;">ETHEREUM MAINNET</small>
-        <strong style="display:block;margin-top:5px;">Balance unavailable</strong>
-        <span style="display:block;margin-top:4px;opacity:.65;font-size:.85em;">${message || "Unable to read wallet balance."}</span>
+        <strong style="display:block;margin-top:5px;">Balance temporarily unavailable</strong>
+        <span style="display:block;margin-top:4px;opacity:.65;font-size:.85em;">${message || "Unable to read wallet balance right now."}</span>
       </div>`;
   }
 
@@ -74,6 +86,11 @@
         headers: { Accept: "application/json" }
       });
       const data = await response.json();
+
+      if (data.status === "not-configured") {
+        renderUnavailable(data.error);
+        return;
+      }
 
       if (!response.ok || data.status !== "connected") {
         throw new Error(data.error || "Unable to read wallet balance.");
@@ -114,8 +131,8 @@
           identityArea.insertAdjacentHTML("afterbegin", `
             <div class="aura-identity-status" style="margin-bottom:8px;">
               <span>IDENTITY</span>
-              <strong>Service temporarily unavailable</strong>
-              <small>Your wallet is connected. Identity lookup can be retried later.</small>
+              <strong>Public demo mode</strong>
+              <small>Identity storage is not configured here. Developers can enable it with DATABASE_URL.</small>
             </div>`);
         }
       }
