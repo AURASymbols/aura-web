@@ -5,8 +5,8 @@
   "description": "AURA early-stage Web3 investor and developer portal",
   "main": "server.js",
   "scripts": {
-    "start": "node --env-file=.env server.js",
-    "dev": "node --env-file=.env --watch server.js"
+    "start": "node server.js",
+    "dev": "node --watch server.js"
   },
   "dependencies": {
     "axios": "^1.20.0",
