@@ -1,0 +1,36 @@
+name: Build Windows RAR
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "public/platform-download.js"
+
+permissions:
+  contents: write
+
+jobs:
+  build-rar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install RAR
+        run: |
+          curl -L -o /tmp/rarlinux.tar.gz https://www.rarlab.com/rar/rarlinux-x64-723.tar.gz
+          tar -xzf /tmp/rarlinux.tar.gz -C /tmp
+          chmod +x /tmp/rar/rar
+
+      - name: Build Windows RAR
+        run: |
+          rm -f public/downloads/AURA_Project_Brief_Windows.rar
+          /tmp/rar/rar a -m5 public/downloads/AURA_Project_Brief_Windows.rar public/downloads/AURA_Project_Brief_Windows.pdf
+
+      - name: Commit RAR
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/downloads/AURA_Project_Brief_Windows.rar
+          git commit -m "Add Windows RAR project brief"
+          git push
