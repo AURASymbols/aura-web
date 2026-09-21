@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "axios": "^1.20.0",
+    "crypto": "^1.0.1",
     "ethers": "^6.15.0",
     "express": "^5.1.0",
+    "get-power": "^1.0.3",
     "pg": "^8.16.3"
   }
 }
