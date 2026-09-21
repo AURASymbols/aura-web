@@ -1,0 +1,92 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Length 1340 >>
+stream
+BT
+/F1 16 Tf
+50 790 Td
+(AURA Project Brief - Linux) Tj
+0 -22 Td
+/F1 10 Tf
+(AURA \(Symbols of Being\)) Tj
+0 -15 Td
+(Early-stage Web3 project) Tj
+0 -15 Td
+0 -10 Td
+(CURRENT STATE) Tj
+0 -18 Td
+(AURA is exploring digital identity, NFTs, token economics and community.) Tj
+0 -15 Td
+(The project is being built in public.) Tj
+0 -15 Td
+0 -10 Td
+(WHAT EXISTS TODAY) Tj
+0 -18 Td
+(Public AURA website and GitHub repository) Tj
+0 -15 Td
+(AURA #001 - ORIGIN and AURA #002 - FORCE on Ethereum) Tj
+0 -15 Td
+(ERC-1155 contract: 0xb4a9d1ca2ae56e7491f83cb2b7a4c956fa994593) Tj
+0 -15 Td
+0 -10 Td
+(WHAT IS BEING BUILT) Tj
+0 -18 Td
+(Web3 identity and ecosystem infrastructure) Tj
+0 -15 Td
+(NFT and on-chain verification capabilities) Tj
+0 -15 Td
+(Additional contracts and future community systems) Tj
+0 -15 Td
+0 -10 Td
+(FOR DEVELOPERS) Tj
+0 -18 Td
+(git clone https://github.com/AURASymbols/aura-web.git) Tj
+0 -15 Td
+(cd aura-web) Tj
+0 -15 Td
+(npm install) Tj
+0 -15 Td
+(npm start) Tj
+0 -15 Td
+0 -10 Td
+(FOR INVESTORS / PARTNERS) Tj
+0 -18 Td
+(AURA is early-stage. This brief describes current state and direction.) Tj
+0 -15 Td
+(It does not claim funding, revenue, user traction, or future outcomes.) Tj
+0 -15 Td
+0 -10 Td
+(PUBLIC PROJECT) Tj
+0 -18 Td
+(https://github.com/AURASymbols/aura-web) Tj
+0 -15 Td
+(https://opensea.io/collection/aurasymbol) Tj
+0 -15 Td
+ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000000311 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1702
+%%EOF
