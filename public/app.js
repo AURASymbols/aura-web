@@ -85,7 +85,10 @@ function walletUi() {
   card.className = "aura-wallet-card";
   card.innerHTML = `
     <div class="aura-wallet-copy">
-      <small>AURA / MVP v0.1</small>
+      <div class="aura-wallet-head">
+        <small>AURA / MVP v0.1</small>
+        <span>LIVE PRODUCT FLOW</span>
+      </div>
       <strong id="auraWalletStatus">Wallet not connected</strong>
       <span id="auraWalletDetail">Connect an EVM wallet to begin the AURA product flow.</span>
       <div id="auraIdentityArea" class="aura-identity-area"></div>
@@ -363,8 +366,9 @@ fetch("/api/status")
 
 const walletStyle = document.createElement("style");
 walletStyle.textContent = `
-.aura-wallet-card{grid-column:1 / -1!important;grid-row:auto!important;width:100%!important;max-width:none!important;margin-top:26px;border-top:1px solid #292929;border-bottom:1px solid #292929;border-left:0;border-right:0;background:transparent;padding:18px 0;display:grid;grid-template-columns:minmax(0,1fr) auto;justify-content:initial;align-items:center;gap:32px}
-.aura-wallet-card>div{display:grid;gap:4px;min-width:0}.aura-wallet-copy>small{margin-bottom:3px}.aura-wallet-copy>strong{font-size:13px;letter-spacing:.08em}.aura-wallet-copy>span{color:#777;font-size:11px}.aura-wallet-card strong{font-size:13px;letter-spacing:.08em}.aura-wallet-card span{color:#777;font-size:11px}.aura-wallet-card button:disabled{opacity:.5;cursor:wait}
+.aura-wallet-card{grid-column:1 / -1!important;grid-row:auto!important;width:100%!important;max-width:none!important;margin-top:24px;border-top:1px solid #292929;border-bottom:1px solid #292929;background:rgba(255,255,255,.02);padding:20px 0;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:32px}
+.aura-wallet-copy{display:grid;gap:5px;min-width:0}.aura-wallet-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:2px}.aura-wallet-head small{font-size:9px;letter-spacing:.18em;color:#d5c79d}.aura-wallet-head span{font-size:8px;letter-spacing:.14em;color:#555}
+.aura-wallet-copy>strong{font-size:13px;letter-spacing:.08em}.aura-wallet-copy>span{color:#777;font-size:11px}.aura-wallet-card button:disabled{opacity:.5;cursor:wait}
 .aura-identity-area{margin-top:12px}.aura-identity-status{display:grid;gap:3px;padding-top:10px;border-top:1px solid #222}.aura-identity-status span{font-size:9px;letter-spacing:.16em;color:#888}.aura-identity-status small{color:#666;font-size:10px}.aura-identity-create{display:grid;gap:9px;padding-top:10px;border-top:1px solid #222;color:#777;font-size:11px}.aura-identity-create .btn{width:max-content}.aura-identity-status.established strong{font-size:15px}
 .aura-nft-area{margin-top:12px}.aura-nft-box{border-top:1px solid #222;padding-top:12px;display:grid;gap:9px}.aura-nft-box>span,.aura-nft-heading span,.aura-profile-heading span{font-size:9px;letter-spacing:.16em;color:#888}.aura-nft-box>small{color:#666;font-size:10px}.aura-nft-box>strong{font-size:12px}.aura-nft-box.verified{gap:8px}.aura-nft-heading{display:flex;justify-content:space-between;gap:12px}.aura-nft-heading small{color:#666;font-size:9px}.aura-nft-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:9px 0;border-top:1px solid #1d1d1d}.aura-nft-row div{display:grid;gap:2px}.aura-nft-row strong{font-size:11px}.aura-nft-row small{font-size:9px;color:#666}.aura-nft-row b{font-size:9px;letter-spacing:.1em;white-space:nowrap}.aura-nft-row b.owned{color:#aaa}.aura-nft-row b.not-owned{color:#555}.aura-nft-box .btn{width:max-content}.aura-profile-area{margin-top:12px}.aura-profile{border-top:1px solid #222;padding-top:12px}.aura-profile-heading{display:flex;justify-content:space-between;gap:12px;margin-bottom:10px}.aura-profile-heading b{font-size:8px;letter-spacing:.1em;color:#555}.aura-profile-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.aura-profile-grid>div{border:1px solid #202020;padding:10px;display:grid;gap:3px}.aura-profile-grid small{font-size:8px;letter-spacing:.12em;color:#666}.aura-profile-grid strong{font-size:11px;word-break:break-word}.aura-profile-grid span{font-size:9px;color:#555}.aura-nft-box.unavailable{padding-bottom:2px}
 .hero .buttons a:nth-child(n+3){opacity:.72;font-size:10px}.hero .buttons a:nth-child(n+3):hover{opacity:1}
