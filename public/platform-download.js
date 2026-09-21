@@ -41,7 +41,7 @@
     };
   }
 
-  const p=detectPlatform();
+  const p=detectPlatform(); // Windows uses the packaged RAR brief
 
   document.querySelectorAll("[data-platform-download]").forEach(function(link){
     link.href=p.href;
