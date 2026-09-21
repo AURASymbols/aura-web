@@ -1,0 +1,43 @@
+/* v3.3 — home project brief prominence */
+.platform-brief-top{
+  border-top:1px solid #292929;
+  border-bottom:1px solid #292929;
+  padding-top:28px;
+  padding-bottom:28px;
+}
+.platform-brief-label{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+  font-size:9px;
+  letter-spacing:.16em;
+  color:#777;
+}
+.platform-brief-label small{color:#d5c79d}
+.platform-brief-action{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:40px;
+}
+.platform-brief-action h2{
+  margin:0;
+  font-size:clamp(30px,3.8vw,52px);
+  line-height:.98;
+}
+.platform-brief-action p{margin:12px 0 0;max-width:560px}
+.platform-download-btn{
+  flex:0 0 auto;
+  min-width:290px;
+  text-align:center;
+  font-size:11px;
+  letter-spacing:.12em;
+  padding:17px 22px;
+  white-space:nowrap;
+}
+@media(max-width:800px){
+  .platform-brief-label{align-items:flex-start;gap:12px;flex-direction:column}
+  .platform-brief-action{align-items:flex-start;flex-direction:column;gap:22px}
+  .platform-download-btn{width:100%;min-width:0;white-space:normal}
+}
