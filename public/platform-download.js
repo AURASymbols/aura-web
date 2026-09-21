@@ -10,7 +10,7 @@
       return {
         key:"windows",
         label:"Windows",
-        href:"/downloads/AURA_Project_Brief_Windows.pdf",
+        href:"/downloads/AURA_Project_Brief_Windows.rar",
         action:"download"
       };
     }
@@ -49,7 +49,7 @@
     link.setAttribute(
       "aria-label",
       p.action==="download"
-        ? "Download the AURA project brief for "+p.label
+        ? "Download the AURA project package for "+p.label
         : "Open the AURA project repository on GitHub"
     );
 
@@ -66,7 +66,7 @@
       if(p.action==="download"){
         if(label){
           const original=label.textContent;
-          label.textContent="PDF DOWNLOAD STARTED ✓";
+          label.textContent="RAR DOWNLOAD STARTED ✓";
           window.setTimeout(function(){
             label.textContent=original;
           },2200);
