@@ -22,7 +22,7 @@
       }
     });
     const label=link.querySelector("[data-download-label]");
-    if(label) label.textContent="DOWNLOAD AURA PROJECT BRIEF PDF →";
+    if(label) label.textContent="DOWNLOAD THE BRIEF →";
   });
   document.documentElement.dataset.platform=p.key;
 })();
