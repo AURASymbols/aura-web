@@ -1,0 +1,123 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Length 1210 >>
+stream
+BT
+/F1 24 Tf
+60 730 Td
+(AURA) Tj
+/F1 15 Tf
+0 -28 Td
+(Symbols of Being) Tj
+/F1 9 Tf
+0 -24 Td
+(EARLY-STAGE WEB3 PROJECT BRIEF) Tj
+/F1 13 Tf
+0 -42 Td
+(We have an idea. We're building it.) Tj
+/F1 10 Tf
+0 -26 Td
+(AURA is an early-stage Web3 project exploring digital identity,) Tj
+0 -15 Td
+(NFTs, token economics and community.) Tj
+/F1 12 Tf
+0 -34 Td
+(01 - WHAT EXISTS TODAY) Tj
+/F1 9 Tf
+0 -20 Td
+(- Public AURA website and GitHub repository.) Tj
+0 -15 Td
+(- AURA #001 - ORIGIN and AURA #002 - FORCE on Ethereum.) Tj
+0 -15 Td
+(- ERC-1155 contract: 0xb4a9d1ca2ae56e7491f83cb2b7a4c956fa994593) Tj
+0 -15 Td
+(- Public proof through OpenSea and Etherscan.) Tj
+0 -15 Td
+(- Early wallet connection and read-only verification foundation.) Tj
+/F1 12 Tf
+0 -34 Td
+(02 - WHAT IS BEING BUILT) Tj
+/F1 9 Tf
+0 -20 Td
+(- Digital identity and wallet-linked experiences.) Tj
+0 -15 Td
+(- Web3 product infrastructure and user flows.) Tj
+0 -15 Td
+(- NFT utility and ecosystem design.) Tj
+0 -15 Td
+(- Token utility, economics and governance research.) Tj
+0 -15 Td
+(- Developer collaboration and product expansion.) Tj
+0 -15 Td
+(- Community and partner relationships.) Tj
+/F1 12 Tf
+0 -34 Td
+(03 - CURRENT STATUS) Tj
+/F1 9 Tf
+0 -20 Td
+(Website: Building / public) Tj
+0 -15 Td
+(NFT layer: Live) Tj
+0 -15 Td
+(Ethereum proof: Live / verifiable) Tj
+0 -15 Td
+(Identity: Foundation / optional database) Tj
+0 -15 Td
+(Token: Research - not issued) Tj
+0 -15 Td
+(Additional smart contracts: Not deployed) Tj
+0 -15 Td
+(Community: Forming) Tj
+/F1 12 Tf
+0 -34 Td
+(04 - FOR DEVELOPERS) Tj
+/F1 9 Tf
+0 -20 Td
+(The public GitHub repository is the starting point for technical review.) Tj
+0 -15 Td
+(Local start: npm install, then npm start.) Tj
+0 -15 Td
+(Optional PostgreSQL and Ethereum RPC add private infrastructure capabilities.) Tj
+/F1 12 Tf
+0 -34 Td
+(05 - FOR INVESTORS AND PARTNERS) Tj
+/F1 9 Tf
+0 -20 Td
+(AURA is seeking people who can evaluate the concept, contribute expertise,) Tj
+0 -15 Td
+(help build the product, provide network access, or consider future capital.) Tj
+0 -15 Td
+(The project does not claim unverified traction, revenue, funding, users, or returns.) Tj
+/F1 8 Tf
+0 -35 Td
+(This brief describes the current project state and direction.) Tj
+0 -13 Td
+(It is not an investment offer, financial advice, or promise of future outcomes.) Tj
+ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000269 00000 n 
+0000000339 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1600
+%%EOF
