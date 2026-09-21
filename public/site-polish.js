@@ -25,8 +25,6 @@
       #home>.hero>small::before{content:"01";margin-right:12px;color:#5f5b50!important;font-size:9px!important;letter-spacing:.14em!important}
       #home>.hero>.editorial-status{border-left:1px solid #39362e!important;padding-left:36px!important}
       #home>.hero>.editorial-status .editorial-status-label{position:relative!important;padding-bottom:11px!important;border-bottom:1px solid #292929!important;color:#d5c79d!important}
-      #home .mvp-note{margin-top:18px!important;padding:13px 0 0!important;border-top:1px solid #292929!important;border-left:0!important;display:flex!important;justify-content:space-between!important;align-items:baseline!important;gap:24px!important}
-      #home .mvp-note b{font-size:9px!important;letter-spacing:.18em!important;color:#d5c79d!important;white-space:nowrap!important}#home .mvp-note span{font-size:10px!important;line-height:1.6!important;color:#777!important;letter-spacing:.04em!important;text-align:right!important}
       #home>.call{position:relative!important;display:grid!important;grid-template-columns:minmax(0,1fr) auto auto!important;gap:10px!important;align-items:center!important}
       #home>.call small{grid-column:1 / -1!important;margin-bottom:2px!important;color:#8f876f!important;letter-spacing:.18em!important}#home>.call h2{margin:0!important;grid-column:1!important}#home>.call .btn{margin:0!important;min-width:185px!important}
       #home .participation-bridge{border-top:1px solid #202020!important;border-bottom:1px solid #202020!important;padding:18px 0!important;margin-top:22px!important}
@@ -44,7 +42,7 @@
       .aura-engage-grid a::after{content:"↗";align-self:flex-end;color:#625f54!important}.aura-engage-grid a:hover span{color:#aaa!important}.aura-engage-grid a:hover::after{color:#d5c79d!important;transform:translate(2px,-2px)!important}
       .aura-contact-strip{margin-top:26px!important;padding:14px 0 0!important;border-top:1px solid #202020!important;font-size:10px!important;line-height:1.6!important;color:#666!important}.aura-contact-strip b{color:#a79d82!important;font-weight:500!important;letter-spacing:.12em!important}
       .contact-result{margin-top:14px!important;padding:12px 0!important;border-top:1px solid #292929!important;color:#8f876f!important;font-size:10px!important;line-height:1.6!important}.contact-result a{color:#d5c79d!important;text-decoration:none!important}
-      @media(max-width:800px){#home .mvp-note{display:grid!important;grid-template-columns:1fr!important;gap:5px!important;text-align:left!important}#home .mvp-note span{text-align:left!important}.editorial-status{display:none}#home>.hero>small{padding-bottom:9px!important}.mvp-note{grid-template-columns:1fr!important;gap:5px!important;padding-left:12px!important}.mvp-note b{white-space:normal!important}#home>.call{grid-template-columns:1fr!important;gap:8px!important}#home>.call small,#home>.call h2{grid-column:1!important}#home>.call .btn{width:100%!important;margin-top:4px!important}.participation-bridge-grid,.aura-engage-grid{grid-template-columns:1fr!important}#contact .contact-cards{grid-template-columns:1fr!important}.aura-engage{margin-top:24px!important}.aura-engage-grid a{min-height:78px!important}.aura-conversion-style .btn{width:100%!important;margin-top:14px!important}}
+      @media(max-width:800px){.editorial-status{display:none}#home>.hero>small{padding-bottom:9px!important}.mvp-note{grid-template-columns:1fr!important;gap:5px!important;padding-left:12px!important}.mvp-note b{white-space:normal!important}#home>.call{grid-template-columns:1fr!important;gap:8px!important}#home>.call small,#home>.call h2{grid-column:1!important}#home>.call .btn{width:100%!important;margin-top:4px!important}.participation-bridge-grid,.aura-engage-grid{grid-template-columns:1fr!important}#contact .contact-cards{grid-template-columns:1fr!important}.aura-engage{margin-top:24px!important}.aura-engage-grid a{min-height:78px!important}.aura-conversion-style .btn{width:100%!important;margin-top:14px!important}}
     `;
     document.head.append(style);
   }
@@ -106,14 +104,6 @@
     });
   }
 
-  function addWalletNote() {
-    const card = document.getElementById("auraWalletCard");
-    if (!card || card.querySelector(".mvp-note")) return;
-    const note = document.createElement("div"); note.className = "mvp-note";
-    note.innerHTML = "<b>AURA / MVP v0.1</b><span>Wallet connection · signed identity · read-only NFT verification</span>";
-    card.append(note);
-  }
-
   function addParticipation() {
     const home = document.getElementById("home");
     if (!home || home.querySelector(".participation-bridge")) return;
@@ -170,7 +160,7 @@
   }
 
   function run() {
-    installStyle(); addHeroStatus(); addPageHeroStatus(); addProof(); addNftLinks(); addWalletNote(); addParticipation(); addEngagement(); polishContact(); polishLabels();
+    installStyle(); addHeroStatus(); addPageHeroStatus(); addProof(); addNftLinks(); addParticipation(); addEngagement(); polishContact(); polishLabels();
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", run, {once:true}); else run();
