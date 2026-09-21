@@ -1,92 +1,99 @@
 %PDF-1.4
+%“Œ‹ž ReportLab Generated PDF document (opensource)
 1 0 obj
-<< /Type /Catalog /Pages 2 0 R >>
+<<
+/F1 2 0 R /F2 3 0 R /F3 4 0 R
+>>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+<<
+/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+>>
 endobj
 3 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
+<<
+/BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+>>
 endobj
 4 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+<<
+/BaseFont /Courier /Encoding /WinAnsiEncoding /Name /F3 /Subtype /Type1 /Type /Font
+>>
 endobj
 5 0 obj
-<< /Length 1340 >>
+<<
+/Contents 10 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 9 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+6 0 obj
+<<
+/Contents 11 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 9 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+7 0 obj
+<<
+/PageMode /UseNone /Pages 9 0 R /Type /Catalog
+>>
+endobj
+8 0 obj
+<<
+/Author (\(anonymous\)) /CreationDate (D:20260921025737+00'00') /Creator (\(unspecified\)) /Keywords () /ModDate (D:20260921025737+00'00') /Producer (ReportLab PDF Library - \(opensource\)) 
+  /Subject (\(unspecified\)) /Title (\(anonymous\)) /Trapped /False
+>>
+endobj
+9 0 obj
+<<
+/Count 2 /Kids [ 5 0 R 6 0 R ] /Type /Pages
+>>
+endobj
+10 0 obj
+<<
+/Filter [ /ASCII85Decode /FlateDecode ] /Length 2192
+>>
 stream
-BT
-/F1 16 Tf
-50 790 Td
-(AURA Project Brief - macOS) Tj
-0 -22 Td
-/F1 10 Tf
-(AURA \(Symbols of Being\)) Tj
-0 -15 Td
-(Early-stage Web3 project) Tj
-0 -15 Td
-0 -10 Td
-(CURRENT STATE) Tj
-0 -18 Td
-(AURA is exploring digital identity, NFTs, token economics and community.) Tj
-0 -15 Td
-(The project is being built in public.) Tj
-0 -15 Td
-0 -10 Td
-(WHAT EXISTS TODAY) Tj
-0 -18 Td
-(Public AURA website and GitHub repository) Tj
-0 -15 Td
-(AURA #001 - ORIGIN and AURA #002 - FORCE on Ethereum) Tj
-0 -15 Td
-(ERC-1155 contract: 0xb4a9d1ca2ae56e7491f83cb2b7a4c956fa994593) Tj
-0 -15 Td
-0 -10 Td
-(WHAT IS BEING BUILT) Tj
-0 -18 Td
-(Web3 identity and ecosystem infrastructure) Tj
-0 -15 Td
-(NFT and on-chain verification capabilities) Tj
-0 -15 Td
-(Additional contracts and future community systems) Tj
-0 -15 Td
-0 -10 Td
-(FOR DEVELOPERS) Tj
-0 -18 Td
-(git clone https://github.com/AURASymbols/aura-web.git) Tj
-0 -15 Td
-(cd aura-web) Tj
-0 -15 Td
-(npm install) Tj
-0 -15 Td
-(npm start) Tj
-0 -15 Td
-0 -10 Td
-(FOR INVESTORS / PARTNERS) Tj
-0 -18 Td
-(AURA is early-stage. This brief describes current state and direction.) Tj
-0 -15 Td
-(It does not claim funding, revenue, user traction, or future outcomes.) Tj
-0 -15 Td
-0 -10 Td
-(PUBLIC PROJECT) Tj
-0 -18 Td
-(https://github.com/AURASymbols/aura-web) Tj
-0 -15 Td
-(https://opensea.io/collection/aurasymbol) Tj
-0 -15 Td
-ET
-endstream
+GauHLh/h:0&:`#5Yqu-kFbjQ'K9*b%OHd+o;FnW<Xu#f]C]S:1jcee&rqfpA_O(I8Y+=g=KZLc/m?`=7.fqVXM#J?q!NlO7\g9T]#SoZfbCe^_L;CjD(W::h?-@EHNWWSE[sFST_0nk_2-DI`:]dVLiq>5:FMRF35c:g(3OWSr`,h"]`6]Db9F$&6n-st.E-Y!lK0SDZf\ru33uld%J"E;$>(3FOJZbhL+@N3U\t;_]%W;EYSrSQ7E!;j<2j;oiMcYobG,*=4M<ZKOYbM^KUd.;0CbKiI/h&p2\I17Rq)4R]%<K\?--Qa_873lW`B7RkeZ;QEgH@b*Ui_-I5qD^a"S_K9B`&DMiQGp0GfF/eYBJQlT:OEX7-BIhXC&PcV\6?X=!?:`K*q?[qCq"U_q*7s'q,'B&h]D-_WO[OGad&O.U(&^9SNkXR&6%gD&^L(6/GYd.:9CeZ;=(-Yq2,uV`W@2@2bo*ot!\6Ns3@W67-q^6kVfuXdDNHKqM&!>d>V0EJ`q3V)3'WcH@=[<MX$o6?82U'W)_S78hJhU9IL</ud(<E#tO_igV`UlM%tjIO;`ar4I`:oC%e3bn318c)#u",%qg3dEQ>u,cINC?m:r!KNfr*ELcH%T[%D<N3K#I*$&S@q241t.@%,HXdp!F^p#TGm!@"=LLQ96`,m'_</KG4=@*%ti^mTN"_:1Q(L4%-cumFX*-aqO^aF[&=J[Rc5V(g('VV<qPZkU>K6rVG48(<f'Eaf-G`fqKjTRbD_%tcMY+8-X3nQ-sdams\10UA7&EZ!M6Q:(lcS30ldC;]nN2'Ib^^LuI>*9$gVUuNAL*oO-L\hc$oSLtTAe[@df3tP)UXi$u>G0JWR-")GeLj"2Nf0F""d6n:K)gXUO(Q3:K#tX@f9:u4HC!sX?FT7OZ(!_ef8%6s4??Jh]InGXhf=P%_:h0$*a$'@Ja0T%6.->dX5E/aS1Zr(hX.WI7`dg^-NnYK7_)XWrkD_!HVLZGgCElL,nAa<Mk1Htea[G2WRn`tUDd(g\%4IeVW,9<KKt%kbdgi,g[T-`hm'gX`cJTu?NaNpXf%A/@p[WI\6?hl!.0p(L0[jkK3&E*BI<Cfn\ju"dA&68:"gOh6`eW=iK!BrU$lYiKY7Tg%-&G<9jf^s]cW6A>.Ab6Fu$`K,"bfgg7Y(#2)2=U9"-G#Cfib<F>JmM#OnnHgMl[ge\)t9/U3Dt#F4q7MFQYa(;:UhS5RbDbO!*?d%I/m]K[ekHdHS*a6]C.oVArq7uAhus*fj'd`&F#G:gfQeP?0.K-a4<S>m'n5p7I^bU)rsf]R'HVc^.HlSrM!n!M#(k(SrA)q6Dt?ILJbAV'hg\Sdii>q7?5MY:B*;^)!-r;CeIoq;5N^;$mW+#XjKYP2_,Q3kblafZ<DK?&.pZ,UfNOBU7-pfijlg?U"hmRW/t2%$L0"@VVq!EV>a@WdZ\WuV3a\44868a+nU$qg,+Z.Ie(8a0YPY804rk>UKqopY'(=3C-daTL<,`\=n/*X6h4?XYd_h;e:Zg_[JrJ#[Y^%Qc'/Z?%3*QnG@QX"*mBi5-:K?Zo:XH_iO-T!24],<*9dJsO)M*C\:fG+AOb)!)_l8g2k";kerCAZ*.q/8[nj'+D2UYt_!ol>R+oJ[Aj)5JdW.OL/i*odIaVCk"luB%Q?jJ&+bOLm?Gph`PL!?fSq5AtRdn;%Bs57uWEk:2o`@k#*5i6A1WOg<ff.Vrs0>*()mhh"L`'V;;eWh]K7h5(uRZSW1(S89#t-F&:,M\XI=Y0'M.Oo8edpTq-$+O2-'g5FGQsId%.p>,>G*'\Z>\<NEG)SDt[Mr$6Hu)h&[]:%!d8(lj75l,LFuMY'L3;>Vj]j4Q1IXl/\3_),'cSsFiBRG3Zo3.lugQ(DZ@A"kZpGPO;Eks@g(q2n6Sng%Gg1L*<X-^)44oK<9%^NCp\;^QU6bAhj2\gAs)nBWK+mHm%%R\n]aVCn8ni38A"bMQW3iKI7r[nu`Je]Z7HlT%c3X0</o-+7D$da'Vbn,69C,0WZSi#0[_^XpM?[T85.0mCo>cM>/F;p+4e\tE1`EuF&Pp.k!_mc@)!eCR\-LTsR%IT9C_o;_9e((&k@)U6/*;'s"TKd`fY>Ggd(<N$?`?*]\m;=!p[C4&iEp*I>^`\CO1kM0m:B![PnenFtm3"%'3\:XUo1`2j80=^cfNCqdm~>endstream
+endobj
+11 0 obj
+<<
+/Filter [ /ASCII85Decode /FlateDecode ] /Length 1011
+>>
+stream
+GatU1mr-Z/&H0>Xi][iOdQ27!"[3B0^]Y:S"V;;R*9WKP3HjO,mJ>^]::b<Ocmknn<GGmdn%H>[Ah]tj)h(3\n@F/7)[7jIU'A%s(/TC/Zf:3FM!ZCm<AI51b7n"11-&Ji)8/PpZXMTH8!JSlPHpAtK;'<*k4(/QN@BpH(.!*a<g%e4NECaRTT'0dY"''<pMu8ObnXu4hUlZHk<9)QF=(+@%_/YADgJcs\ekc<=:Lj"j,J.el3:u:F@E0fIKmbe.%\>]e.g$@U[u,t#e`)q&3dW6+M+30o/Fg+q?4s5N(<7]=5ZF&)bX-^EX,JM'rjD,W,Ra=oGn*2i#@u'MPr+NhU6;G3!%Ng,fsjJkd_T5L$?1AV;L]drg'JFen_XqQ2RX#V'G(@.A.!Qi`b7`!mIrs!`4*"hhN,omj)$&,[c6-Vg8_nLa7f*RL1a#X/SRS9,IC@]<D$j05O<Y'p\_Y8G^AR&urE.h^E<NRa>(Kqh9?,TN4][I%nt'f+L"I&6l:YYO#`ZPQDdQjTD?_B,B`L^)q;\`Z@A'?`ip#qKJW\$*Es8HT@WTd^PoDW92RX0,LOQgTEBU9mNu@`<OKfd*/,4k$sJK&im@i;CLO@h'"S]kE%(>9^fCp?u>si!&XBPBP01"(.1UE1c;f4GK;IU3PfjV`iFu5`(al'jauY1'0PBD/TJ2>=a`%AAQl836KHh*k'=\^o(h=]Zdm0Ip/(;I$r/J5+)o.\J+SP]h+A?9Nm:`:B:RS+1")kk<SKKIZD&8#T5M`-g;+85FTShAij(?%C338[4dqt4EmkpL!MMs46cZBL8?).!mnJR"[6^6CY(!229(60`32-'dCU,l[hb&;SXupg(i33\@<`+o0j:3$dCmH1&:2KGrHeM=e:(ejL[.IT@&Y_p\/N[BP8_6]_/V:BMQ2$LQ7E?43dfB%U8;];b?=u[7MmlXW\:H/U''__7:)qCA@[#55PF_$A\Y?caGL`fgdX1M-F3u+S(2AFK#J`R"JYQSa+#kq~>endstream
 endobj
 xref
-0 6
+0 12
 0000000000 65535 f 
-0000000009 00000 n 
-0000000058 00000 n 
-0000000115 00000 n 
-0000000241 00000 n 
-0000000311 00000 n 
+0000000061 00000 n 
+0000000112 00000 n 
+0000000219 000000n 
+0000000331 00000 n 
+0000000436 00000 n 
+0000000640 00000 n 
+0000000844 00000 n 
+0000000912 00000 n 
+0000001192 000000n 
+0000001257 00000 n 
+0000003541 00000 n 
 trailer
-<< /Size 6 /Root 1 0 R >>
+<<
+/ID 
+[<6a62a9845c6938dfa75f5f00dbcc25ff><6a62a985c6938dfa75f5f00dbcc25ff>]
+%% ReportLab generated PDF document -- digest (opensource)
+
+/Info 8 0 R
+/Root 7 0 R
+/Size 12
+>>
 startxref
-1702
+4644
 %%EOF

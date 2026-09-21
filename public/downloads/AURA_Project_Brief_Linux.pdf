@@ -1,92 +1,106 @@
-%PDF-1.4
+%PDF-1.3
+%“Œ‹ ReportLab Generated PDF document (opensource)
 1 0 obj
-<< /Type /Catalog /Pages 2 0 R >>
+<<
+/F1 2 0 R /F2 3 0 R
+>>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+<<
+/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+>>
 endobj
 3 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
+<<
+/BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+>>
 endobj
 4 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+<<
+/Contents 8 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 7 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
 endobj
 5 0 obj
-<< /Length 1340 >>
-stream
-BT
-/F1 16 Tf
-50 790 Td
-(AURA Project Brief - Linux) Tj
-0 -22 Td
-/F1 10 Tf
-(AURA \(Symbols of Being\)) Tj
-0 -15 Td
-(Early-stage Web3 project) Tj
-0 -15 Td
-0 -10 Td
-(CURRENT STATE) Tj
-0 -18 Td
-(AURA is exploring digital identity, NFTs, token economics and community.) Tj
-0 -15 Td
-(The project is being built in public.) Tj
-0 -15 Td
-0 -10 Td
-(WHAT EXISTS TODAY) Tj
-0 -18 Td
-(Public AURA website and GitHub repository) Tj
-0 -15 Td
-(AURA #001 - ORIGIN and AURA #002 - FORCE on Ethereum) Tj
-0 -15 Td
-(ERC-1155 contract: 0xb4a9d1ca2ae56e7491f83cb2b7a4c956fa994593) Tj
-0 -15 Td
-0 -10 Td
-(WHAT IS BEING BUILT) Tj
-0 -18 Td
-(Web3 identity and ecosystem infrastructure) Tj
-0 -15 Td
-(NFT and on-chain verification capabilities) Tj
-0 -15 Td
-(Additional contracts and future community systems) Tj
-0 -15 Td
-0 -10 Td
-(FOR DEVELOPERS) Tj
-0 -18 Td
-(git clone https://github.com/AURASymbols/aura-web.git) Tj
-0 -15 Td
-(cd aura-web) Tj
-0 -15 Td
-(npm install) Tj
-0 -15 Td
-(npm start) Tj
-0 -15 Td
-0 -10 Td
-(FOR INVESTORS / PARTNERS) Tj
-0 -18 Td
-(AURA is early-stage. This brief describes current state and direction.) Tj
-0 -15 Td
-(It does not claim funding, revenue, user traction, or future outcomes.) Tj
-0 -15 Td
-0 -10 Td
-(PUBLIC PROJECT) Tj
-0 -18 Td
-(https://github.com/AURASymbols/aura-web) Tj
-0 -15 Td
-(https://opensea.io/collection/aurasymbol) Tj
-0 -15 Td
-ET
-endstream
+<<
+/PageMode /UseNone /Pages 7 0 R /Type /Catalog
+>>
 endobj
-xref
-0 6
-0000000000 65535 f 
-0000000009 00000 n 
-0000000058 00000 n 
-0000000115 00000 n 
-0000000241 00000 n 
-0000000311 00000 n 
-trailer
-<< /Size 6 /Root 1 0 R >>
-startxref
-1702
-%%EOF
+6 0 obj
+<<
+/Author (anonymous) /CreationDate (D:20260921030233+00'00') /Creator (anonymous) /Keywords () /ModDate (D:20260921030233+00'00') /Producer (ReportLab PDF Library - \(opensource\)) 
+  /Subject (unspecified) /Title (untitled) /Trapped /False
+>>
+endobj
+7 0 obj
+<<
+/Count 1 /Kids [ 4 0 R ] /Type /Pages
+>>
+endobj
+8 0 obj
+<<
+/Length 2678
+>>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+BT /F2 22 Tf 26.4 TL ET
+BT 1 0 0 1 51.02362 785.1969 Tm (AURA) Tj T* ET
+BT /F1 8 Tf 9.6 TL ET
+BT 1 0 0 1 51.02362 756.8504 Tm (PROJECT BRIEF / LINUX) Tj T* ET
+BT /F2 12 Tf 14.4 TL ET
+BT 1 0 0 1 51.02362 728.5039 Tm (THE 3-MINUUH’QUÊHˆ
+ˆU•ÑŒHHˆLU•HHLKŒŒÍŒˆÌŒMH
+UTH\È[ˆX\›K\İYÙHÙXŒÈXÛÜŞ\İ[H^Üš[™ÈYÚ][Y[]K‘•ËXÛÛ›ÛZXÈ\XÚ\][Ûˆ[™ÛÛ[][ŠHˆ
+ˆU•ÑŒˆLˆˆMU•HHLKŒŒÍŒˆKNÈH
+ÒHÓÒÈ“ÕÊHˆ
+ˆU•ÑŒHHˆLU•HHLKŒŒÍŒˆ‹ŒMMÈH
+\™H\È[™XYHHÛÛ˜Ü™]H›İ[™][ÛˆUTHY[]KÛÈX›\ÚY]\™][H‘•ËHX›XÈÙXœÚ]H[™
+Hˆ
+ˆU•ÑŒˆLˆˆMU•HHLKŒŒÍŒˆËˆH
+ÒUVTÕÈÑVJHˆ
+ˆU•ÑŒHHˆLU•HHLKŒŒÍŒˆŒŒËŒŒˆH
+Y[]Nˆ\İX›\ÚYˆ‘•ˆÌHÔ’QÒSˆ[™Ìˆ“ÔÑHÛˆ]\™][KˆÙXˆÛÜšÚ[™È›İ[™][Û‹ˆÛÙNˆX›XÊHˆ
+ˆU•ÑŒˆLˆˆMU•HHLKŒŒÍŒˆŒMHH
+ÒUSÕHĞSˆS”ÔPÕ
+Hˆ
+ˆU•ÑŒHHˆLU•HHLKŒŒÍŒˆNKŒLH
+™\šYHH‘•ÛÛ˜Xİ[™\ÜÙ]ÈÛˆ]\™][KˆÛÛ™H[™[ˆHX›XÈ™\ÜÚ]ÜKˆ™]šY]ÈH›ØYX\ˆ
+Hˆ
+ˆU•ÑŒˆLˆˆMU•HHLKŒŒÍŒˆMNLˆH
+U‘SÔTˆS•–JHˆ
+ˆU•ÑŒHHˆLU•HHLKŒŒÍŒˆLÎNÈH
+Ú]ÛÛ™HÎ‹ËÙÚ]X‹˜ÛÛKĞUTTŞ[X›ÛËØ]\˜K]ÙX‹™Ú]
+Hˆ
+ˆU•ÑŒHHˆLU•HHLKŒŒÍŒˆLMH
+Ù]\˜K]ÙXŠHˆ
+ˆU•ÑŒHHˆLU•HHLLŒŒÍŒˆLLŒŒÍŒˆH
+œH[œİ[
+Hˆ
+ˆU•ÑŒHHˆLU•HHLKŒŒÍŒˆM‹ŒŒÈH
+œHİ\
+Hˆ
+ˆU•ÑŒHHˆLU•HHLKŒŒÍŒˆKNH
+X\›HZ[\œÈØ[ˆÚ\H\˜Ú]Xİ\™K›ÙXİ›İÜË˜XÚÙ[™ĞTH\ÚYÛ‹ÙXŒÈ[YÜ˜][Ûˆ[™[™Ú[™Y\š[™ÈÛÜšÙ›İËŠHˆ
+ˆU•ÑŒˆLˆˆMU•ÌHHLKŒŒÍŒˆKŒÎMH
+S•‘TÕÔˆÈT•‘TˆS•–JHˆ
+ˆU•ÑŒHHˆLU•HHLKŒŒÍŒˆKŒNMHH
+H[[YYX]H™YY\È™\Ûİ\˜Ù\È[™^\\ÙHÈ\›ˆH^\İ[™È›İ[™][Ûˆ[ÈH\İX›H›ÙXİŠHˆ
+ˆU•ÑŒˆLˆˆMU•HHLKŒŒÍŒˆ‹LNMÈH
+‘T’Q–JHˆ
+ˆU•ÑŒHHˆLU•HHLKŒŒÍŒˆÎ‹ÍÌˆH
+Ú]XˆÎ‹ËÙÚ]X‹˜ÛÛKĞUTTŞ[X›ÛËØ]\˜K]ÙXŠHˆ
+ˆU•ÑŒHHˆLU•HHLKŒŒÍŒˆÍLÎHH
+Ü[”ÙXNˆÎ‹ËÛÜ[œÙXKš[ËØÛÛXİ[Û‹Ø]\˜\Ş[[X›Û
+Hˆ
+ˆU•ÑŒHHˆLU•HHLKŒŒÍŒˆÍMŒÌÌÈH
+]\™][HÛÛ˜XİˆNYXØL˜YMM™MÍLYØØŒ˜ØMÎMM™˜NNMNLÊHˆ
+ˆU•ÑŒˆLˆˆMU•HHLKŒŒÍŒˆÌÌKLÍHH
+HTÒÊHˆ
+ˆU•ÑŒHHˆLU•HHLKŒŒÍŒˆÌLKLHH
+YˆH[™\›Z[™ÈYXH\ÈÛÜ\İ[™Ë[XZÙHH™^İYÙH™X[Ø\][[™Ú[™Y\š[™Ë›ÙXİ[šÚ[™Ë\™\œÚ\È[™\ÙY[ÛÛ›™Xİ[ÛœËˆ\™H\È›ÈÛZ[HÙˆ[™[™Ë™]™[YK\Ù\ˆ˜Xİ[Û‹ÚÙ[ˆ˜[YK™]\›œÈÜˆ]\™Hİ]ÛÛY\ËŠHˆ
+ˆU•™[™İ™X[B™[™Øš‚™Y‚ŒBŒMLÍHˆŒŒHˆŒLˆˆŒŒHˆŒÌŒHˆŒLˆŒNLˆˆŒLÈˆŒLLˆˆ˜Z[\‚‹ÒQ–ÏYYM˜YXNXLLLLMØXŒYYM˜YXNXLLLMÙLMØXŒ—B‰H™\ÜXˆÙ[™\˜]YˆØİ[Y[KHYÙ\İ
+Ü[œÛİ\˜ÙJB‚‹Ò[™›Èˆ‚‹Ô›ÛİH‚‹ÔÚ^™HB‚œİ\™Y‚ŒÍB‰IQSÑ‚
