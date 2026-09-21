@@ -24,3 +24,23 @@ section.page{display:none}section.page.active{display:block}.pagehero{padding-to
 .status{max-width:900px}.roadmap-stage{grid-template-columns:54px minmax(0,1fr) 96px;gap:20px;padding:30px 0}.stage-grid{margin-top:16px}.call{padding-top:56px;padding-bottom:56px}
 }
 @media(max-width:800px){.hero,.pagehero{display:flex;min-height:auto}.hero{min-height:calc(100vh - 78px)}.hero:after,.pagehero:after{content:none}.hero h1,.pagehero h1{max-width:none}.wrap{padding-top:42px;padding-bottom:42px}.panel .wrap{padding-top:40px;padding-bottom:40px}.grid4 article,.grid3 article,.grid2 article{min-height:auto}.roadmap-stage{padding:28px 0}.call{padding:48px 6vw}}
+
+/* Final homepage refinement — quieter secondary role navigation */
+.hero-roles{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top:14px;
+  font-size:9px;
+  letter-spacing:.16em;
+}
+.hero-roles a{
+  color:#777;
+  text-decoration:none;
+  transition:color .2s ease;
+}
+.hero-roles a:hover{color:#fff}
+.hero-roles span{color:#333}
+@media(max-width:800px){
+  .hero-roles{justify-content:center}
+}
