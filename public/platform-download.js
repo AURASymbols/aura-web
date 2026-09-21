@@ -1,28 +1,79 @@
 (function(){
+  const GITHUB_URL="https://github.com/AURASymbols/aura-web";
+
   function detectPlatform(){
     const ua=navigator.userAgent||"";
     const platform=(navigator.userAgentData&&navigator.userAgentData.platform)||navigator.platform||"";
     const value=(platform+" "+ua).toLowerCase();
-    if(value.includes("mac")) return {key:"mac",label:"macOS",file:"/downloads/AURA_Project_Brief_macOS.pdf"};
-    if(value.includes("win")) return {key:"windows",label:"Windows",file:"/downloads/AURA_Project_Brief_Windows.pdf"};
-    if(value.includes("linux")) return {key:"linux",label:"Linux",file:"/downloads/AURA_Project_Brief_Linux.pdf"};
-    return {key:"linux",label:"your desktop platform",file:"/downloads/AURA_Project_Brief_Linux.pdf"};
+
+    if(value.includes("win")){
+      return {
+        key:"windows",
+        label:"Windows",
+        href:"/downloads/AURA_Project_Brief_Windows.pdf",
+        action:"download"
+      };
+    }
+
+    if(value.includes("mac")){
+      return {
+        key:"mac",
+        label:"macOS",
+        href:GITHUB_URL,
+        action:"github"
+      };
+    }
+
+    if(value.includes("linux")){
+      return {
+        key:"linux",
+        label:"Linux",
+        href:GITHUB_URL,
+        action:"github"
+      };
+    }
+
+    return {
+      key:"other",
+      label:"your platform",
+      href:GITHUB_URL,
+      action:"github"
+    };
   }
+
   const p=detectPlatform();
+
   document.querySelectorAll("[data-platform-download]").forEach(function(link){
-    link.href=p.file;
-    link.setAttribute("download","");
-    link.setAttribute("aria-label","Download AURA project brief for "+p.label);
+    link.href=p.href;
+    link.removeAttribute("download");
+    link.setAttribute(
+      "aria-label",
+      p.action==="download"
+        ? "Download the AURA project brief for "+p.label
+        : "Open the AURA project repository on GitHub"
+    );
+
+    const label=link.querySelector("[data-download-label]");
+
+    if(label){
+      label.textContent =
+        p.action==="download"
+          ? "DOWNLOAD THE BRIEF →"
+          : "VIEW THE PROJECT ON GITHUB →";
+    }
+
     link.addEventListener("click",function(){
-      const label=link.querySelector("[data-download-label]");
-      if(label){
-        const original=label.textContent;
-        label.textContent="PDF DOWNLOAD STARTED ✓";
-        window.setTimeout(function(){label.textContent=original;},2200);
+      if(p.action==="download"){
+        if(label){
+          const original=label.textContent;
+          label.textContent="PDF DOWNLOAD STARTED ✓";
+          window.setTimeout(function(){
+            label.textContent=original;
+          },2200);
+        }
       }
     });
-    const label=link.querySelector("[data-download-label]");
-    if(label) label.textContent="DOWNLOAD THE BRIEF →";
   });
+
   document.documentElement.dataset.platform=p.key;
 })();
