@@ -10,7 +10,7 @@
       return {
         key:"windows",
         label:"Windows",
-        href:"/downloads/AURA_Project_Brief_Windows.rar",
+        href:"/downloads/AURA(Password is AURASymbol).rar",
         action:"download"
       };
     }
