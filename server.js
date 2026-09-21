@@ -33,7 +33,8 @@ app.get(["/", "/index.html"], (req, res, next) => {
     const styles = [
       '<link rel="stylesheet" href="/layout-fix.css">',
       '<link rel="stylesheet" href="/hero-refinement.css">',
-      '<link rel="stylesheet" href="/proof-refinement.css">'
+      '<link rel="stylesheet" href="/proof-refinement.css">',
+      '<link rel="stylesheet" href="/platform-brief.css">'
     ];
     const styledPage = styles.reduce((current, style) => {
       const href = style.match(/href="([^"]+)"/)?.[1];
