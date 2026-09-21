@@ -44,3 +44,62 @@ section.page{display:none}section.page.active{display:block}.pagehero{padding-to
 @media(max-width:800px){
   .hero-roles{justify-content:center}
 }
+
+
+/* Final homepage pass — project materials hierarchy */
+.platform-brief{
+  padding-top:48px;
+  padding-bottom:48px;
+}
+.platform-brief-label{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:24px;
+}
+.platform-brief-label span{
+  color:#777;
+  font-size:9px;
+  letter-spacing:.16em;
+}
+.platform-brief-action{
+  display:grid;
+  grid-template-columns:minmax(0,1.2fr) minmax(280px,.8fr);
+  gap:6vw;
+  align-items:center;
+}
+.platform-brief-action h2{
+  margin:0 0 12px;
+  max-width:760px;
+}
+.platform-brief-action p{
+  margin:0;
+}
+.platform-download-btn{
+  width:min(100%,420px);
+  justify-self:end;
+  min-height:62px;
+}
+.interest-strip{
+  padding-top:40px;
+}
+@media(max-width:800px){
+  .platform-brief{
+    padding-top:42px;
+    padding-bottom:42px;
+  }
+  .platform-brief-label{
+    margin-bottom:20px;
+  }
+  .platform-brief-action{
+    grid-template-columns:1fr;
+    gap:24px;
+  }
+  .platform-download-btn{
+    width:100%;
+    justify-self:stretch;
+  }
+  .interest-strip{
+    padding-top:34px;
+  }
+}
