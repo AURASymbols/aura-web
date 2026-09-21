@@ -13,6 +13,14 @@
     link.href=p.file;
     link.setAttribute("download","");
     link.setAttribute("aria-label","Download AURA project brief for "+p.label);
+    link.addEventListener("click",function(){
+      const label=link.querySelector("[data-download-label]");
+      if(label){
+        const original=label.textContent;
+        label.textContent="PDF DOWNLOAD STARTED ✓";
+        window.setTimeout(function(){label.textContent=original;},2200);
+      }
+    });
     const label=link.querySelector("[data-download-label]");
     if(label) label.textContent="DOWNLOAD AURA PROJECT BRIEF PDF →";
   });
