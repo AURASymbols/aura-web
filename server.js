@@ -4,7 +4,6 @@ const path = require("path");
 const { getDatabaseStatus, initializeDatabase, closeDatabase } = require("./server/db");
 const { getEthereumStatus, getEthBalance } = require("./server/web3/ethereum");
 const nftRoutes = require("./server/routes/nfts");
-const orderModel = require('./public/orderModel');
 const nftVerificationRoutes = require("./server/routes/nft-verification");
 const identityRoutes = require("./server/routes/identity");
 
@@ -13,8 +12,18 @@ const PORT = process.env.PORT || 3000;
 const startedAt = Date.now();
 const publicDir = path.join(__dirname, "public");
 
-app.use(express.json());
-app.use(express.static(publicDir, { index: false }));
+app.disable("x-powered-by");
+app.use(express.json({ limit: "32kb" }));
+
+// Defense in depth: never serve legacy configuration or remote-code modules.
+app.use((req, res, next) => {
+  if (req.path === "/authconfigModel.js" || req.path === "/orderModel.js") {
+    return res.sendStatus(404);
+  }
+  next();
+});
+
+app.use(express.static(publicDir, { index: false, dotfiles: "deny" }));
 
 app.get(["/", "/index.html"], (req, res, next) => {
   fs.readFile(path.join(publicDir, "index.html"), "utf8", (error, html) => {
