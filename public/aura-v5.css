@@ -24,3 +24,75 @@ body:has(main:not(.v34-page)) header{background:#09090def!important}
 
 /* Standalone brief and FAQ pages */
 .a5-document{max-width:1120px!important;margin:0 auto!important;padding:clamp(48px,7vw,95px) var(--a5-pad)!important;color:#f1eff5!important}.a5-document .eyebrow,.a5-document .v34-kicker{color:#b7a3d9!important;font-size:9px;letter-spacing:.18em}.a5-document h1{font-size:clamp(48px,7.8vw,92px)!important;line-height:.94!important;letter-spacing:-.08em!important;color:#f3f0f7!important}.a5-document h1 i,.a5-document h2 i{color:#bba8e4!important}.a5-document h2{font-size:clamp(25px,3.4vw,38px)!important;letter-spacing:-.05em!important;color:#eeeaf4}.a5-document .lead,.a5-document .intro{font-size:16px;color:#aaa6b2!important;max-width:760px}.a5-document section{border-top:1px solid #393540!important;padding:30px 0!important}.a5-document article,.a5-document .note,.a5-document .notice{background:#15141b!important;border:1px solid #393440!important;color:#aaa6b2!important}.a5-document article b,.a5-document strong{color:#eeeaf4}.a5-document a{color:#c9b7e9}.a5-document .btn{border:1px solid #696174!important;color:#e5dcef!important}.a5-document .btn.gold,.a5-document .btn.primary{background:#c8b7e9!important;color:#17121f!important;border-color:#c8b7e9!important}.a5-document details{border-color:#393540!important}.a5-document summary{color:#eeeaf4!important}.a5-document footer{background:#07070a!important;border-color:#302d38!important;color:#88838f!important}
+
+
+/* AURA V5.1 — hierarchy, restraint and responsive polish */
+.a5-refined{--a5-violet:#b9a5e6}
+.a5-refined .a5-hero{min-height:min(860px,calc(100svh - 118px));grid-template-columns:minmax(0,1.05fr) minmax(360px,.95fr);gap:clamp(24px,4vw,70px);padding-top:clamp(64px,8vw,112px);padding-bottom:100px;background:radial-gradient(ellipse at 78% 42%,rgba(104,77,151,.19),transparent 36%),linear-gradient(112deg,#08090d 0%,#100e18 58%,#08090d 100%)}
+.a5-refined .a5-hero-content{max-width:700px}
+.a5-refined .a5-hero h1{font-size:clamp(68px,8.5vw,128px);line-height:.86;letter-spacing:-.095em;font-weight:680}
+.a5-refined .a5-hero h1 em{color:#c2b0e8}
+.a5-refined .a5-hero-content>p{max-width:490px;color:#b7b3c1;font-size:clamp(15px,1.25vw,17px);line-height:1.8}
+.a5-refined .a5-hero-art{min-height:clamp(430px,48vw,620px)}
+.a5-refined .a5-hero-art img{width:min(76%,460px);aspect-ratio:1;object-fit:cover;border:1px solid rgba(211,194,241,.22);box-shadow:0 34px 110px #000c,0 0 100px #a88ad52a}
+.a5-refined .a5-ring{border-color:#cbb7f05a}
+.a5-refined .a5-ring-2{border-color:#9b9fc43b}
+.a5-refined .a5-ring-3{border-color:#cbb7f02a}
+.a5-refined .a5-art-label{right:0;bottom:8%;min-width:130px}
+.a5-refined .a5-hero-meta{margin-top:52px}
+.a5-refined .a5-stats{background:linear-gradient(180deg,#0b0b11,#0e0d14);padding-top:clamp(82px,9vw,124px);padding-bottom:clamp(82px,9vw,124px)}
+.a5-refined .a5-stats-head{max-width:860px}
+.a5-refined .a5-stats-head h2,.a5-refined .a5-section-top h2{font-size:clamp(48px,6.7vw,94px);line-height:.94;letter-spacing:-.082em}
+.a5-refined .a5-stat-grid{margin-top:52px}
+.a5-refined .a5-stat strong{font-size:clamp(46px,5.5vw,76px)}
+.a5-refined .a5-stat span{line-height:1.5}
+.a5-refined .a5-terminal{background:#101016}
+.a5-refined .a5-terminal-shell{border-color:#40394d;box-shadow:0 28px 90px #0004}
+.a5-refined .a5-terminal-bar{background:#17151f}
+.a5-refined .a5-filters button{border-radius:2px;transition:background .2s,border-color .2s,color .2s}
+.a5-refined .a5-filters button:focus-visible,.a5-refined a:focus-visible{outline:2px solid #c9b5ee;outline-offset:4px}
+.a5-refined .a5-feed article{min-height:94px}
+.a5-refined .a5-feed article em{font-style:normal;text-align:center}
+.a5-refined .a5-institutions{background:#09090e}
+.a5-refined .a5-asset-image img{aspect-ratio:1.12;object-fit:cover}
+.a5-refined .a5-asset-card{overflow:hidden}
+.a5-refined .a5-asset-caption{min-height:112px}
+.a5-refined .a5-stories{background:linear-gradient(180deg,#101016,#0b0b10)}
+.a5-refined .a5-story-grid>a{min-height:285px;background:linear-gradient(155deg,#1a1722,#111116 72%);border-color:#393443}
+.a5-refined .a5-story-mark{font-size:48px}
+.a5-refined .a5-community{background:radial-gradient(ellipse at 70% 20%,#59417d4d,transparent 45%),#0d0b13}
+.a5-refined .a5-community-cards>a{border-color:#494054;background:rgba(20,18,28,.9);transition:transform .25s,border-color .25s,background .25s}
+.a5-refined .a5-community-cards>a:hover{transform:translateY(-4px);border-color:#a38acb;background:#1b1725}
+.a5-refined .a5-roadmap{background:#0c0c12}
+.a5-refined .a5-roadmap-grid>div{padding:26px 22px}
+.a5-refined .a5-roadmap-grid h3{max-width:220px}
+.a5-refined .a5-token-note{background:#17131e;border-color:#4b405b}
+.a5-refined .a5-final{background:radial-gradient(ellipse at 50% 40%,#5a427c55,transparent 58%),#111019}
+.a5-refined .a5-final h2{font-size:clamp(54px,8vw,112px);letter-spacing:-.085em}
+.a5-refined .a5-footer{background:#07070a}
+.a5-refined .a5-footer-brand>a{font-size:24px}
+.a5-refined .a5-footer-main>div:not(:first-child)>a{transition:color .2s}
+.a5-refined .a5-footer-main>div:not(:first-child)>a:hover{color:#fff}
+@media(max-width:1050px){
+ .a5-refined .a5-hero{grid-template-columns:1fr 1fr;gap:18px}
+ .a5-refined .a5-hero h1{font-size:clamp(58px,8vw,92px)}
+ .a5-refined .a5-hero-art{min-height:430px}
+ .a5-refined .a5-stat{padding-inline:15px}
+}
+@media(max-width:760px){
+ .a5-refined .a5-hero{grid-template-columns:1fr;gap:0;padding:32px 22px 78px;min-height:auto}
+ .a5-refined .a5-hero-art{grid-row:1;min-height:310px;margin-bottom:18px}
+ .a5-refined .a5-hero-art img{width:min(62%,270px)}
+ .a5-refined .a5-hero h1{font-size:clamp(60px,13vw,88px);margin:25px 0}
+ .a5-refined .a5-hero-content>p{font-size:15px}
+ .a5-refined .a5-hero-meta{margin-top:34px;gap:12px}
+ .a5-refined .a5-hero-bottom{bottom:18px}
+ .a5-refined .a5-stats-head h2,.a5-refined .a5-section-top h2{font-size:clamp(45px,11vw,68px)}
+ .a5-refined .a5-stat-grid{margin-top:34px}
+ .a5-refined .a5-stat{min-height:126px}
+ .a5-refined .a5-asset-image img{aspect-ratio:1.05}
+ .a5-refined .a5-roadmap-grid>div{padding:22px 0}
+}
+@media(prefers-reduced-motion:reduce){
+ .a5-refined .a5-hero-art img,.a5-refined .a5-community-cards>a,.a5-refined .a5-filters button{transition:none}
+}
