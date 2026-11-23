@@ -1,12 +1,13 @@
 {
-  "name": "aura-web-v1",
-  "version": "1.9.1",
+  "name": "aura-web",
+  "version": "3.4.0",
   "private": true,
-  "description": "AURA early-stage Web3 investor and developer portal",
+  "description": "AURA early-stage Ethereum Web3 public portal and developer foundation",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node --watch server.js"
+    "dev": "node --watch server.js",
+    "test": "node --test"
   },
   "dependencies": {
     "axios": "^1.20.0",
@@ -14,5 +15,8 @@
     "ethers": "^6.15.0",
     "express": "^5.1.0",
     "pg": "^8.16.3"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }
