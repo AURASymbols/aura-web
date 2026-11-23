@@ -33,7 +33,8 @@ app.get(["/", "/index.html"], (req, res, next) => {
       '<script src="/site-polish.js?v=4.1"></script>',
       '<script src="/contact-flow.js"></script>',
       '<script src="/proof-mvp.js"></script>',
-      '<script src="/v3.4.js"></script>'
+      '<script src="/v3.4.js"></script>',
+      '<script src="/v3.5-cinematic.js?v=1" defer></script>'
     ];
     const page = scripts.reduce((current, script) => {
       const src = script.match(/src="([^"]+)"/)?.[1];
@@ -46,7 +47,8 @@ app.get(["/", "/index.html"], (req, res, next) => {
       '<link rel="stylesheet" href="/proof-refinement.css">',
       '<link rel="stylesheet" href="/platform-brief.css">',
       '<link rel="stylesheet" href="/interest-refinement.css">',
-      '<link rel="stylesheet" href="/v3.4.css">'
+      '<link rel="stylesheet" href="/v3.4.css">',
+      '<link rel="stylesheet" href="/v3.5-cinematic.css?v=1">'
     ];
     const styledPage = styles.reduce((current, style) => {
       const href = style.match(/href="([^"]+)"/)?.[1];
@@ -90,7 +92,7 @@ app.get("/api/status", async (req, res) => {
 
   res.json({
     project: "AURA",
-    version: "3.4.0",
+    version: "3.5.0",
     stage: "Early Stage",
     message: "AURA is being built.",
     systems: {
