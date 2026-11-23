@@ -51,10 +51,14 @@ test("developer onboarding never instructs contributors to publish private crede
   assert.match(html, /node >=20|Node\.js 20 or newer/i);
 });
 
-test("server injects the shared V3.4 stylesheet and progressive enhancement", () => {
+test("server injects the V3.4 foundation and V3.5 cinematic homepage assets", () => {
   const server = read("server.js");
   assert.match(server, /\/v3\.4\.css/);
   assert.match(server, /\/v3\.4\.js/);
+  assert.match(server, /\/v3\.5-cinematic\.css/);
+  assert.match(server, /\/v3\.5-cinematic\.js/);
+  assert.match(read("public/v3.5-cinematic.js"), /prefers-reduced-motion/);
+  assert.match(read("public/v3.5-cinematic.css"), /@media\(max-width:620px\)/);
 });
 
 test("status page loads its separately testable status module", () => {
