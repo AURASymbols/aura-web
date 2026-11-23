@@ -64,3 +64,13 @@ test("status page loads its separately testable status module", () => {
   assert.match(script, /api\/health/);
   assert.match(script, /60000/);
 });
+
+test("public discovery and not-found resources are present", () => {
+  const robots = read("public/robots.txt");
+  const sitemap = read("public/sitemap.xml");
+  const notFound = read("public/404.html");
+  assert.match(robots, /Disallow: \/api\//);
+  assert.match(sitemap, /https:\/\/aurasymbol\.com\/product\.html/);
+  assert.match(sitemap, /https:\/\/aurasymbol\.com\/developer-guide\.html/);
+  assert.match(notFound, /RETURN TO AURA/);
+});
