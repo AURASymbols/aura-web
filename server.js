@@ -8,11 +8,20 @@ const nftVerificationRoutes = require("./server/routes/nft-verification");
 const identityRoutes = require("./server/routes/identity");
 
 const app = express();
+app.disable("x-powered-by");
 const PORT = process.env.PORT || 3000;
 const startedAt = Date.now();
 const publicDir = path.join(__dirname, "public");
 
-app.use(express.json());
+app.use((req, res, next) => {
+  res.setHeader("X-Content-Type-Options", "nosniff");
+  res.setHeader("X-Frame-Options", "DENY");
+  res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+  res.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+  if (req.path.startsWith("/api/")) res.setHeader("Cache-Control", "no-store");
+  next();
+});
+app.use(express.json({ limit: "32kb" }));
 app.use(express.static(publicDir, { index: false }));
 
 app.get(["/", "/index.html"], (req, res, next) => {
@@ -23,7 +32,8 @@ app.get(["/", "/index.html"], (req, res, next) => {
       '<script src="/wallet-balance.js"></script>',
       '<script src="/site-polish.js?v=4.1"></script>',
       '<script src="/contact-flow.js"></script>',
-      '<script src="/proof-mvp.js"></script>'
+      '<script src="/proof-mvp.js"></script>',
+      '<script src="/v3.4.js"></script>'
     ];
     const page = scripts.reduce((current, script) => {
       const src = script.match(/src="([^"]+)"/)?.[1];
@@ -35,7 +45,8 @@ app.get(["/", "/index.html"], (req, res, next) => {
       '<link rel="stylesheet" href="/hero-refinement.css">',
       '<link rel="stylesheet" href="/proof-refinement.css">',
       '<link rel="stylesheet" href="/platform-brief.css">',
-      '<link rel="stylesheet" href="/interest-refinement.css">'
+      '<link rel="stylesheet" href="/interest-refinement.css">',
+      '<link rel="stylesheet" href="/v3.4.css">'
     ];
     const styledPage = styles.reduce((current, style) => {
       const href = style.match(/href="([^"]+)"/)?.[1];
@@ -79,7 +90,7 @@ app.get("/api/status", async (req, res) => {
 
   res.json({
     project: "AURA",
-    version: "1.9.1",
+    version: "3.4.0",
     stage: "Early Stage",
     message: "AURA is being built.",
     systems: {
@@ -112,8 +123,11 @@ app.use("/api", (req, res) => {
   res.status(404).json({ error: "API route not found" });
 });
 
-app.use((req, res) => {
-  res.sendFile(path.join(publicDir, "index.html"));
+app.use((req, res, next) => {
+  if (path.extname(req.path)) return res.status(404).type("text").send("Not found");
+  res.sendFile(path.join(publicDir, "index.html"), error => {
+    if (error) next(error);
+  });
 });
 
 app.use((err, req, res, next) => {
