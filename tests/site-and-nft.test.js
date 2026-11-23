@@ -57,6 +57,10 @@ test("server injects the V3.4 foundation and V3.5 cinematic homepage assets", ()
   assert.match(server, /\/v3\.4\.js/);
   assert.match(server, /\/v3\.5-cinematic\.css/);
   assert.match(server, /\/v3\.5-cinematic\.js/);
+  assert.match(server, /\/aura-noir\.css/);
+  const noir = read("public/aura-noir.css");
+  assert.match(noir, /--noir-bg:#090a0b/);
+  assert.match(noir, /\.a35-vision/);
   const cinematic = read("public/v3.5-cinematic.js");
   assert.match(cinematic, /prefers-reduced-motion/);
   assert.match(cinematic, /A new language for digital identity/);
