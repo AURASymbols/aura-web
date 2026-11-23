@@ -43,6 +43,7 @@ document.querySelectorAll(".opensea").forEach(button => {
 const pages = [...document.querySelectorAll("section.page")];
 
 function showRoute() {
+  if (document.documentElement.dataset.auraV4 === "ready") return;
   const route = (location.hash || "#home").replace(/^#/, "").split("?")[0] || "home";
   const target = document.getElementById(route) || document.getElementById("home");
   pages.forEach(page => page.classList.toggle("active", page === target));
