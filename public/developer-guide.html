@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Developer onboarding for AURA: current stack, local setup, public API endpoints, contribution principles and known limitations.">
+  <meta name="theme-color" content="#080908">
+  <title>AURA — Developer Guide</title>
+  <link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/v3.4.css">
+</head>
+<body>
+<header><a class="logo" href="/#home">◯ AURA</a><button id="menu" type="button" aria-label="Toggle navigation" aria-controls="nav" aria-expanded="false">☰</button><nav id="nav" aria-label="Main navigation"><a href="/#home">HOME</a><a href="/product.html">PRODUCT</a><a href="/#developers">DEVELOPERS</a><a href="/status.html">STATUS</a><a href="/#roadmap">ROADMAP</a><a href="/brief.html">BRIEF</a></nav><a class="topbtn" href="/#contact">BUILD WITH US</a></header>
+<main class="v34-page" id="main-content">
+  <section class="v34-page-hero wrap"><span class="v34-kicker">AURA / DEVELOPER ONBOARDING</span><h1>Inspect first.<br><i>Build with intent.</i></h1><p>AURA is an early-stage project. The repository contains a Node.js and Express web foundation, a lightweight browser frontend, an initial NFT catalog and optional Ethereum and database integrations. The complete platform is not yet deployed.</p><div class="v34-actions"><a class="primary" href="https://github.com/AURASymbols/aura-web" target="_blank" rel="noopener noreferrer">OPEN GITHUB ↗</a><a href="/#developers">CONTRIBUTION AREAS</a></div></section>
+  <section class="v34-section wrap"><span class="v34-kicker">01 / LOCAL SETUP</span><h2>Run the public foundation.</h2><p class="big">The website is designed to start without private credentials or a database. Optional features can be enabled separately.</p><pre class="v34-code"><code>git clone https://github.com/AURASymbols/aura-web.git
+cd aura-web
+npm install
+npm start
+
+# Open http://localhost:3000</code></pre><div class="v34-callout">Use Node.js 20 or newer. Keep your local <code>.env</code> file private. Never commit RPC keys, database credentials, wallet secrets or API tokens.</div></section>
+  <section class="v34-section wrap"><span class="v34-kicker">02 / STACK & MODULES</span><h2>Understand the current foundation.</h2><div class="v34-grid">
+    <article class="v34-card"><small>FRONTEND</small><h3>HTML / CSS / JavaScript</h3><p>Vanilla JavaScript and a responsive single-page portal. Hash-based sections currently power the main site.</p></article>
+    <article class="v34-card"><small>BACKEND</small><h3>Node.js / Express 5</h3><p>Static serving, project status, health, wallet balance, NFT catalog and identity API foundations.</p></article>
+    <article class="v34-card"><small>WEB3</small><h3>ethers.js v6</h3><p>Ethereum RPC reads, wallet connection through an injected provider and read-only ERC-1155 ownership checks.</p></article>
+    <article class="v34-card"><small>DATA</small><h3>PostgreSQL / pg</h3><p>Database-backed identity association is optional and requires a separately configured database.</p></article>
+  </div></section>
+  <section class="v34-section wrap"><span class="v34-kicker">03 / API SURFACE</span><h2>Current public endpoints.</h2><table class="v34-table"><thead><tr><th>METHOD</th><th>PATH</th><th>PURPOSE</th></tr></thead><tbody>
+    <tr><td>GET</td><td><code>/api/health</code></td><td>Service, database and Ethereum connectivity status.</td></tr>
+    <tr><td>GET</td><td><code>/api/status</code></td><td>Public project stage and system summary.</td></tr>
+    <tr><td>GET</td><td><code>/api/wallet/:address</code></td><td>Read-only ETH balance lookup when RPC is configured.</td></tr>
+    <tr><td>GET</td><td><code>/api/nfts</code></td><td>Current AURA NFT catalog.</td></tr>
+    <tr><td>GET</td><td><code>/api/nfts/verify?address=...</code></td><td>Read-only ERC-1155 ownership verification on Ethereum mainnet.</td></tr>
+    <tr><td>GET</td><td><code>/api/identity?address=...</code></td><td>Look up an off-chain identity record when database storage is configured.</td></tr>
+    <tr><td>GET / POST</td><td><code>/api/identity/challenge</code> / <code>/api/identity</code></td><td>Wallet-signature challenge and off-chain identity association flow.</td></tr>
+  </tbody></table><div class="v34-callout">The API surface is an initial foundation, not a production service-level commitment. Identity records are off-chain. The NFT verification endpoint performs read-only checks and does not submit transactions.</div></section>
+  <section class="v34-section wrap"><span class="v34-kicker">04 / CONTRIBUTION PRINCIPLES</span><h2>Small, reviewable, verifiable.</h2><div class="v34-grid">
+    <article class="v34-card"><small>01 / PROPOSE</small><h3>Explain the problem</h3><p>Describe the user need, current behavior and expected outcome before introducing a new system.</p></article>
+    <article class="v34-card"><small>02 / IMPLEMENT</small><h3>Keep changes focused</h3><p>Prefer small modules, clear boundaries, accessible interfaces and documented assumptions.</p></article>
+    <article class="v34-card"><small>03 / VERIFY</small><h3>Show the evidence</h3><p>Include reproducible test steps, known limitations and screenshots or logs where useful.</p></article>
+  </div><div class="v34-actions"><a class="primary" href="https://github.com/AURASymbols/aura-web/issues" target="_blank" rel="noopener noreferrer">OPEN ISSUES ↗</a><a href="https://github.com/AURASymbols/aura-web/blob/main/docs/contributing.md" target="_blank" rel="noopener noreferrer">CONTRIBUTING GUIDE ↗</a><a href="https://github.com/AURASymbols/aura-web/blob/main/docs/architecture.md" target="_blank" rel="noopener noreferrer">ARCHITECTURE ↗</a></div></section>
+  <section class="v34-section wrap"><span class="v34-kicker">05 / OPEN ENGINEERING WORK</span><h2>What still needs to be built.</h2><table class="v34-table"><tbody>
+    <tr><th>CORE PRODUCT</th><td>Product scope, user journeys and first useful release remain to be defined.</td></tr>
+    <tr><th>IDENTITY</th><td>Privacy model, account lifecycle, recovery and identity portability require design and review.</td></tr>
+    <tr><th>PRODUCTION DATA</th><td>Database operations, backups, migrations and monitoring need production planning.</td></tr>
+    <tr><th>SECURITY</th><td>Threat modeling, automated tests, dependency review and independent security review are required before production claims.</td></tr>
+    <tr><th>ECONOMIC LAYER</th><td>Token contracts, supply and issuance are not deployed or established.</td></tr>
+  </tbody></table></section>
+</main>
+<footer class="v34-footer"><span>AURA / DEVELOPER GUIDE</span><span>© <span id="year"></span> AURA</span><a href="/#home">HOME</a><a href="/status.html">SYSTEM STATUS</a><a href="https://github.com/AURASymbols/aura-web" target="_blank" rel="noopener noreferrer">GITHUB ↗</a></footer>
+<script src="/v3.4.js" defer></script><script>document.getElementById("year").textContent=new Date().getFullYear();</script>
+</body></html>
