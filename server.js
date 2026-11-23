@@ -124,7 +124,7 @@ app.use("/api", (req, res) => {
 });
 
 app.use((req, res, next) => {
-  if (path.extname(req.path)) return res.status(404).type("text").send("Not found");
+  if (path.extname(req.path)) return res.status(404).sendFile(path.join(publicDir, "404.html"));
   res.sendFile(path.join(publicDir, "index.html"), error => {
     if (error) next(error);
   });
