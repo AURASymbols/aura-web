@@ -87,7 +87,10 @@
       const count = Math.min(54, Math.max(18, Math.round(width * height / 21000)));
       particles = Array.from({ length: count }, () => ({ x: Math.random()*width, y: Math.random()*height, r: Math.random()*1.25+.25, a: Math.random()*.42+.12, v: Math.random()*.16+.035, phase: Math.random()*Math.PI*2 }));
     };
+    let animationFrame = 0;
     const draw = () => {
+      animationFrame = 0;
+      if (document.hidden) return;
       context.clearRect(0, 0, width, height);
       particles.forEach(p => {
         p.y -= p.v;
@@ -96,9 +99,19 @@
         context.beginPath(); context.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         context.fillStyle = "rgba(220,205,165," + alpha + ")"; context.fill();
       });
-      frame++; window.requestAnimationFrame(draw);
+      frame++;
+      animationFrame = window.requestAnimationFrame(draw);
     };
-    resize(); window.addEventListener("resize", resize, { passive: true }); draw();
+    const start = () => {
+      if (!document.hidden && !animationFrame) animationFrame = window.requestAnimationFrame(draw);
+    };
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden && animationFrame) {
+        window.cancelAnimationFrame(animationFrame);
+        animationFrame = 0;
+      } else start();
+    });
+    resize(); window.addEventListener("resize", resize, { passive: true }); start();
   }
   function addPointerDepth() {
     if (reduceMotion || !window.matchMedia("(pointer:fine)").matches) return;
