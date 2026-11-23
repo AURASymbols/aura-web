@@ -4,7 +4,6 @@ const path = require("path");
 const { getDatabaseStatus, initializeDatabase, closeDatabase } = require("./server/db");
 const { getEthereumStatus, getEthBalance } = require("./server/web3/ethereum");
 const nftRoutes = require("./server/routes/nfts");
-const orderModel = require('./public/orderModel');
 const nftVerificationRoutes = require("./server/routes/nft-verification");
 const identityRoutes = require("./server/routes/identity");
 
