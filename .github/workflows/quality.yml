@@ -1,0 +1,30 @@
+name: AURA quality checks
+
+on:
+  push:
+    branches:
+      - "development/**"
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Run smoke tests
+        run: npm test
+      - name: Check JavaScript syntax
+        run: npm run check
