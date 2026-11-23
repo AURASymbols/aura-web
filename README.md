@@ -95,6 +95,9 @@ This repository is intentionally transparent about what exists, what is being bu
 Useful starting points:
 
 - [`docs/project-overview.md`](docs/project-overview.md) — concise public project overview
+- [`docs/developer-opportunities.md`](docs/developer-opportunities.md) — practical early contribution areas
+- [`docs/technical-review-checklist.md`](docs/technical-review-checklist.md) — independent technical review checklist
+- [`docs/investor-one-page.md`](docs/investor-one-page.md) — concise investor and partner brief
 - [`docs/project-history.md`](docs/project-history.md) — how the project evolved
 - [`docs/developer-faq.md`](docs/developer-faq.md) — answers for developers and technical reviewers
 - [`docs/investor-faq.md`](docs/investor-faq.md) — answers for investors and strategic partners
