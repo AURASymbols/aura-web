@@ -191,3 +191,10 @@ The repository intentionally keeps private infrastructure optional so developers
 - **Partner:** contribute expertise, access, introductions or meaningful collaboration.
 
 AURA is early. That is explicit. The foundation is real. The next stage is where meaningful participation can make a difference.
+
+
+## V3.5 cinematic homepage
+
+The V3.5 experience is developed on `development/aura-v3.5-cinematic` and reviewed through [PR #11](https://github.com/AURASymbols/aura-web/pull/11). It adds a browser-rendered cinematic homepage using the existing ORIGIN and FORCE artwork, lightweight motion, responsive layouts, and reduced-motion support. It does not use a background video or add a third-party animation dependency.
+
+V3.5 remains a development preview until desktop/mobile visual review is complete. It does not change the production site.
