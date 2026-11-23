@@ -57,8 +57,13 @@ test("server injects the V3.4 foundation and V3.5 cinematic homepage assets", ()
   assert.match(server, /\/v3\.4\.js/);
   assert.match(server, /\/v3\.5-cinematic\.css/);
   assert.match(server, /\/v3\.5-cinematic\.js/);
-  assert.match(read("public/v3.5-cinematic.js"), /prefers-reduced-motion/);
-  assert.match(read("public/v3.5-cinematic.css"), /@media\(max-width:620px\)/);
+  const cinematic = read("public/v3.5-cinematic.js");
+  assert.match(cinematic, /prefers-reduced-motion/);
+  assert.match(cinematic, /A new language for digital identity/);
+  assert.match(cinematic, /a35-vision/);
+  assert.match(cinematic, /aura-002-force\.png/);
+  assert.match(cinematic, /LOOK/);
+  assert.match(read("public/v3.5-cinematic.css"), /@media\(max-width:700px\)/);
 });
 
 test("status page loads its separately testable status module", () => {
