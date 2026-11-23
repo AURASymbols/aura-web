@@ -46,7 +46,6 @@ app.get(["/", "/index.html"], (req, res, next) => {
       '<link rel="stylesheet" href="/proof-refinement.css">',
       '<link rel="stylesheet" href="/platform-brief.css">',
       '<link rel="stylesheet" href="/interest-refinement.css">',
-      '<link rel="stylesheet" href="/v3.4.css">',
       '<link rel="stylesheet" href="/v3.4.css">'
     ];
     const styledPage = styles.reduce((current, style) => {
