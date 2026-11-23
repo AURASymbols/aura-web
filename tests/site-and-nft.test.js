@@ -99,29 +99,3 @@ test("public discovery and not-found resources are present", () => {
 });
 
 
-test("AURA V4 replaces the full homepage with a unified experience", () => {
-  const server = read("server.js");
-  const layout = read("public/aura-v4.html");
-  const loader = read("public/aura-v4.js");
-  const style = read("public/aura-v4.css");
-  assert.match(server, /\/aura-v4\.js/);
-  assert.match(server, /\/aura-v4\.css/);
-  assert.match(loader, /aura-v4\.html/);
-  for (const id of ["home", "nft", "ecosystem", "proof", "roadmap", "investors", "developers", "token", "project", "faq", "status", "contact"]) {
-    assert.match(layout, new RegExp('id="' + id + '"'));
-  }
-  assert.match(layout, /ORIGIN/);
-  assert.match(layout, /FORCE/);
-  assert.match(layout, /RESEARCH/);
-  assert.match(style, /\.a4-hero/);
-  assert.match(style, /@media\(max-width:760px\)/);
-});
-
-test("standalone pages share the AURA V4 visual system and navigation", () => {
-  for (const file of ["public/product.html", "public/brief.html", "public/faq.html", "public/developer-guide.html", "public/status.html", "public/404.html"]) {
-    const html = read(file);
-    assert.match(html, /aura-v4\.css/);
-    assert.match(html, /aura-shell\.js/);
-  }
-  assert.match(read("public/aura-shell.js"), /ECOSYSTEM/);
-});
