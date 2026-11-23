@@ -37,3 +37,33 @@ small,.eyebrow,.a35-overline,.a35-index,.a35-meta,.a35-eyebrow,.v34-kicker{color
 @media(max-width:900px){.a35-hero-solana{grid-template-columns:1fr;min-height:auto;padding-top:80px}.a35-hero-solana .a35-title{font-size:clamp(70px,13vw,120px)}.a35-hero-art{min-height:65vw;margin-top:15px}.a35-hero-glow span,.a35-hero-glow i{width:95vw;right:-15%;top:68%}.a35-metrics{grid-template-columns:repeat(2,1fr);row-gap:22px}.a35-metric:nth-child(2){border-right:0}.a35-metric:nth-child(3){padding-left:0}.a35-build{grid-template-columns:1fr}.a35-build-mark{min-height:280px;width:min(100%,420px);margin:auto}}
 @media(max-width:700px){.a35-hero-solana{padding:65px var(--a35-gutter) 60px}.a35-hero-solana .a35-title{font-size:clamp(62px,14.5vw,100px);letter-spacing:-.09em}.a35-hero-solana .a35-title span{white-space:normal}.a35-hero-art{min-height:85vw}.a35-hero-art img{width:58%}.a35-metrics{padding-block:25px}.a35-metric{padding:8px 12px}.a35-works{grid-template-columns:1fr;gap:58px}.a35-work:nth-child(2){margin:0 0 0 9%}.a35-build-actions{gap:15px}.a35-build-mark{min-height:240px}.a35-vision h2{font-size:clamp(56px,13vw,90px)}}
 @media(prefers-reduced-motion:reduce){.a35-hero-glow span{animation:none!important}.a35-reveal{opacity:1;transform:none}}
+
+/* Shared Solana-grade composition for every AURA destination page */
+.v34-page{background:#08090b!important;color:#ececf0!important}
+.v34-page-hero{position:relative;isolation:isolate;overflow:hidden;padding-top:clamp(90px,12vw,160px)!important;padding-bottom:clamp(90px,12vw,150px)!important;background:radial-gradient(ellipse at 78% 20%,rgba(111,91,158,.16),transparent 38%),linear-gradient(180deg,#0b0c11,#08090b 82%)!important}
+.v34-page-hero:after{content:"";position:absolute;z-index:-1;width:min(48vw,620px);aspect-ratio:1;right:-8%;top:4%;border:1px solid rgba(183,169,213,.15);border-radius:50%;box-shadow:0 0 90px rgba(113,92,156,.08),inset 0 0 80px rgba(113,92,156,.04);pointer-events:none}
+.v34-page-hero h1{font-size:clamp(58px,9vw,126px)!important;line-height:.88!important;letter-spacing:-.09em!important;max-width:1000px}
+.v34-page-hero h1 i{color:#b8acd5!important}
+.v34-page-hero>p,.v34-page-hero p{max-width:650px;color:#a8a9b1!important;font-size:clamp(16px,1.7vw,21px)!important;line-height:1.65!important}
+.v34-kicker{color:#b8acd5!important;letter-spacing:.18em}
+.v34-section{padding-top:clamp(64px,8vw,110px)!important;padding-bottom:clamp(64px,8vw,110px)!important;border-color:#282932!important}
+.v34-section h2{font-size:clamp(38px,6vw,76px)!important;line-height:.96;letter-spacing:-.075em!important;color:#ededf1!important}
+.v34-section h2 i{color:#b8acd5!important}
+.v34-grid{gap:16px!important}
+.v34-card{position:relative;overflow:hidden;border:1px solid #292a34!important;border-radius:5px;background:linear-gradient(145deg,#14151c,#0e0f14)!important;transition:transform .35s,border-color .35s,box-shadow .35s}
+.v34-card:hover{transform:translateY(-5px);border-color:#625878!important;box-shadow:0 20px 55px rgba(0,0,0,.28)}
+.v34-card h3{color:#eeedf2!important}
+.v34-card p{color:#a3a4ad!important;line-height:1.7}
+.v34-card small,.v34-card .v34-state{color:#b7abd2!important}
+.v34-callout{background:linear-gradient(120deg,#15151d,#101116)!important;border-color:#34313e!important;color:#aaa9b3!important}
+.v34-table th{color:#c3b8db!important}.v34-table td{color:#b6b5bf!important}
+.v34-code{background:#090a0e!important;border:1px solid #2b2c36!important}
+.v34-status-item{background:linear-gradient(145deg,#15161d,#0e0f14)!important}
+body>main:not(.v34-page){background:#08090b!important;color:#ececf0!important}
+body>main:not(.v34-page) h1{letter-spacing:-.075em}
+body>main:not(.v34-page) section{border-color:#292a33!important}
+body>main:not(.v34-page) article{background:linear-gradient(145deg,#14151c,#0e0f14)!important;border-color:#292a34!important}
+body>main:not(.v34-page) .eyebrow{color:#b8acd5!important}
+body>main:not(.v34-page) .lead,body>main:not(.v34-page) .intro{color:#a8a9b1!important}
+body>main:not(.v34-page) .btn.gold,body>main:not(.v34-page) .btn.primary{background:#b8acd5!important;color:#0b0b0e!important;border-color:#b8acd5!important}
+@media(max-width:700px){.v34-page-hero{padding-top:76px!important}.v34-page-hero h1{font-size:clamp(52px,13vw,82px)!important}.v34-page-hero:after{width:85vw;right:-42%;top:12%;opacity:.65}.v34-section h2{font-size:clamp(36px,10vw,56px)!important}}
