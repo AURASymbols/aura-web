@@ -193,8 +193,10 @@ The repository intentionally keeps private infrastructure optional so developers
 AURA is early. That is explicit. The foundation is real. The next stage is where meaningful participation can make a difference.
 
 
-## V3.5 cinematic homepage
+## V3.5 — AURA editorial experience
 
-The V3.5 experience is developed on `development/aura-v3.5-cinematic` and reviewed through [PR #11](https://github.com/AURASymbols/aura-web/pull/11). It adds a browser-rendered cinematic homepage using the existing ORIGIN and FORCE artwork, lightweight motion, responsive layouts, and reduced-motion support. It does not use a background video or add a third-party animation dependency.
+The V3.5 experience is developed on `development/aura-v3.5-cinematic` and reviewed through [PR #11](https://github.com/AURASymbols/aura-web/pull/11). The homepage has a distinct art direction inspired by independent art journals and contemporary galleries: warm paper, ink-black typography, ultramarine accents, oversized wordmark typography, asymmetric NFT exhibitions and a bold ecosystem narrative. The original ORIGIN and FORCE artwork is retained.
+
+Motion is browser-rendered and restrained; there is no background video or third-party animation dependency. The layout is responsive and respects reduced-motion preferences. The project status remains explicit: only the initial NFT layer is published, while the wider ecosystem is still being developed, researched or planned.
 
 V3.5 remains a development preview until desktop/mobile visual review is complete. It does not change the production site.
