@@ -2,7 +2,7 @@
 const main=document.querySelector("#main-content");
 function initShell(){
  const nav=document.querySelector("#nav");
- const links=[["HOME","/#home"],["NFT","/nft.html"],["UPDATES","/#updates"],["ECOSYSTEM","/#ecosystem"],["PRODUCT","/product.html"],["DEVELOPERS","/developer-guide.html"],["ROADMAP","/#roadmap"],["FAQ","/faq.html"]];
+ const links=[["HOME","/#home"],["NFT","/nft.html"],["PROJECT","/#ecosystem"],["PRODUCT","/product.html"],["STATUS","/status.html"],["DEVELOPERS","/developer-guide.html"],["FAQ","/faq.html"]];
  if(nav)nav.innerHTML=links.map(([n,u])=>'<a href="'+u+'">'+n+'</a>').join("");
  const menu=document.querySelector("#menu");
  if(menu&&nav){const clean=menu.cloneNode(true);menu.replaceWith(clean);clean.addEventListener("click",()=>{const open=nav.classList.toggle("open");clean.setAttribute("aria-expanded",String(open))});nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{nav.classList.remove("open");clean.setAttribute("aria-expanded","false")}))}
