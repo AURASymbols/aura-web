@@ -8,7 +8,7 @@
     "start": "node server.js",
     "dev": "node --watch server.js",
     "test": "node --test",
-    "check": "node --check server.js && node --check server/db.js && node --check server/routes/identity.js && node --check server/routes/nft-verification.js && node --check server/routes/nfts.js && node --check server/web3/ethereum.js && node --check server/data/nfts.js && node --check public/app.js && node --check public/contact-flow.js && node --check public/platform-download.js && node --check public/site-polish.js && node --check public/proof-mvp.js && node --check public/wallet-balance.js && node --check public/premium-theme.js && node --check public/v3.4.js && node --check public/v3.5-cinematic.js && node --check public/status.js"
+    "check": "node --check server.js && node --check server/db.js && node --check server/routes/identity.js && node --check server/routes/nft-verification.js && node --check server/routes/nfts.js && node --check server/web3/ethereum.js && node --check server/data/nfts.js && node --check public/app.js && node --check public/contact-flow.js && node --check public/platform-download.js && node --check public/site-polish.js && node --check public/proof-mvp.js && node --check public/wallet-balance.js && node --check public/premium-theme.js && node --check public/v3.4.js && node --check public/v3.5-cinematic.js && node --check public/aura-v4.js && node --check public/aura-shell.js && node --check public/status.js"
   },
   "dependencies": {
     "axios": "^1.20.0",
