@@ -8,7 +8,7 @@
         '<div class="a35-overline">AURA / INDEPENDENT DIGITAL IDENTITY</div>',
         '<h1 class="a35-title" id="a35-main-title"><span>AU</span><span class="a35-title-second">RA.</span></h1>',
         '<p class="a35-subline">A new language for digital identity.<br>Built from symbols. Expanded through technology.</p>',
-        '<div class="a35-hero-bottom"><a class="a35-link" href="#a35-works">DISCOVER THE FIRST WORKS</a><a class="a35-link blue" href="#proof">VERIFY THE FOUNDATION</a></div>',
+        '<div class="a35-hero-bottom"><a class="a35-link" href="#nft">DISCOVER THE FIRST WORKS</a><a class="a35-link blue" href="#proof">VERIFY THE FOUNDATION</a></div>',
       '</div>',
       '<div class="a35-hero-art"><img src="/assets/aura-001-origin.png" alt="AURA #001 ORIGIN digital artwork" fetchpriority="high"><span class="a35-art-tag">OBJECT 001 / ORIGIN</span></div>',
       '<span class="a35-vertical">ETHEREUM / ERC-1155 / EARLY STAGE</span><span class="a35-scrollcue">SCROLL TO ENTER</span>',
@@ -57,11 +57,6 @@
     art.addEventListener("pointermove",e=>{const r=art.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;img.style.transform="rotateY("+(-x*9)+"deg) rotateX("+(y*7)+"deg) scale(1.025)"});
     art.addEventListener("pointerleave",()=>{img.style.transform=""});
   }
-  function navigation() {
-    const menu=document.getElementById("menu"),nav=document.getElementById("nav");if(!menu||!nav)return;
-    menu.addEventListener("click",()=>{const open=nav.classList.toggle("open");menu.setAttribute("aria-expanded",String(open))});
-    nav.querySelectorAll("a").forEach(link=>link.addEventListener("click",()=>{nav.classList.remove("open");menu.setAttribute("aria-expanded","false")}));
-  }
-  function init(){if(!replaceHome())return;document.body.classList.add("aura-v35-active");addProgress();reveal();pointerDepth();navigation();document.documentElement.dataset.auraVersion="3.5";}
+  function init(){if(!replaceHome())return;document.body.classList.add("aura-v35-active");addProgress();reveal();pointerDepth();document.documentElement.dataset.auraVersion="3.5";}
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init,{once:true});else init();
 })();
