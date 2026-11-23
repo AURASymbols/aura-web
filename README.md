@@ -88,6 +88,17 @@ Project account:
 
 - X: https://x.com/AURASymbol
 
+## V3.4 public experience
+
+The V3.4 development branch adds dedicated public pages for the product direction, developer onboarding and live system status:
+
+- `/product.html` — current NFT foundation and future product layers
+- `/developer-guide.html` — local setup, stack, API surface and contribution guidance
+- `/status.html` — live readout from the public health endpoint
+- `docs/v3.4-release-checklist.md` — local verification and production-readiness checklist
+
+The main site also uses a shared responsive design layer, improved navigation and baseline HTTP hardening. These changes remain subject to local browser testing and CI validation before any production release.
+
 ## Build in public
 
 This repository is intentionally transparent about what exists, what is being built, and what remains uncertain.
