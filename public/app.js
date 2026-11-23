@@ -12,7 +12,6 @@ const nav = document.getElementById("nav");
 const modal = document.getElementById("modal");
 const modalTitle = document.getElementById("modalTitle");
 const modalText = document.getElementById("modalText");
-const orderModel = require('./orderModel')
 
 function closeMenu() { nav?.classList.remove("open"); }
 function closeModal() { modal?.classList.remove("open"); }
