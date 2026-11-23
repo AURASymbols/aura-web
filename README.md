@@ -163,6 +163,21 @@ npm start
 
 Then open `http://localhost:3000`.
 
+Run the automated smoke tests and JavaScript syntax checks with:
+
+```bash
+npm test
+npm run check
+```
+
+The V3.4 branch also adds these public pages:
+
+- `/product.html` — product direction and current evidence
+- `/developer-guide.html` — local setup, stack, API surface and contribution guidance
+- `/status.html` — live readout from `GET /api/health`
+
+See [the V3.4 release checklist](docs/v3.4-release-checklist.md) before any production release.
+
 ### Optional developer configuration
 
 If you want database-backed or live Ethereum RPC features, copy `.env.example` to `.env` and add your own credentials. **Do not commit `.env` or real secrets to GitHub.**
