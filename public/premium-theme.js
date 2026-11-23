@@ -4,7 +4,7 @@
     const link = document.createElement("link");
     link.id = "aura-premium-theme";
     link.rel = "stylesheet";
-    link.href = "/premium.css?v=1";
+    link.href = "/premium-v2.css?v=2";
     document.head.appendChild(link);
   }
   if (document.readyState === "complete") applyPremiumTheme();
