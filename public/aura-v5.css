@@ -152,3 +152,33 @@ body:has(main:not(.v34-page)) header{background:#09090def!important}
  .a5-refined .a5-layer-card{min-height:250px}
  .a5-refined .a5-layer-foot{flex-direction:column}
 }
+
+
+/* AURA V5.3 — deep forest green identity */
+:root{
+  --a5-bg:#070D0A;
+  --a5-surface:#0D1711;
+  --a5-line:#23372B;
+  --a5-text:#F0F4F0;
+  --a5-muted:#A1AEA4;
+  --a5-violet:#789B82;
+  --a5-sage:#789B82;
+  --a5-sage-muted:#52765D;
+  --aura-forest:#10251A;
+  --aura-forest-deep:#09140E;
+  --aura-green:#789B82;
+  --aura-green-soft:#A9C7B0;
+}
+body{background:#070D0A!important;color:#F0F4F0!important}
+header{background:rgba(7,13,10,.92)!important;border-bottom-color:#203328!important}
+header .logo,header nav a:hover,footer a:hover{color:#A9C7B0!important}
+.topbtn,.btn.gold,.primary{background:#789B82!important;border-color:#789B82!important;color:#07110A!important}
+.btn.gold:hover,.primary:hover,.topbtn:hover{background:#A9C7B0!important}
+.pagehero small,.hero>small,.wrap>small,.eyebrow,.v34-kicker,.v34-page-hero h1 i,.v34-section h2 i{color:#A9C7B0!important}
+a{transition:color .2s ease,border-color .2s ease,background .2s ease}
+.panel,.contact,.v34-card,.a5-layer,.a5-document .card{background:#0D1711!important;border-color:#263B2E!important}
+.status>div,.roadmap-stage,.evidence-card,.contact-form{border-color:#263B2E!important}
+.status b,.proof-state,.v34-state,.stage-status{color:#A9C7B0!important}
+.hero:after,.pagehero:after{border-left-color:#294132!important;color:#9BA99E!important}
+.pagehero{border-bottom-color:#203328!important}
+.notice{border-color:#385342!important;background:#0D1711!important}
