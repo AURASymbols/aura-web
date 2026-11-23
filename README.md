@@ -94,7 +94,12 @@ This repository is intentionally transparent about what exists, what is being bu
 
 Useful starting points:
 
+- [`docs/project-overview.md`](docs/project-overview.md) — concise public project overview
 - [`docs/project-history.md`](docs/project-history.md) — how the project evolved
+- [`docs/developer-faq.md`](docs/developer-faq.md) — answers for developers and technical reviewers
+- [`docs/investor-faq.md`](docs/investor-faq.md) — answers for investors and strategic partners
+- [`docs/collaboration-proposal.md`](docs/collaboration-proposal.md) — how to propose an early collaboration
+- [`docs/progress-update-template.md`](docs/progress-update-template.md) — template for verifiable public updates
 - [`docs/milestones.md`](docs/milestones.md) — completed, current and future stages
 - [`docs/roadmap.md`](docs/roadmap.md) — staged product direction
 - [`docs/architecture.md`](docs/architecture.md) — technical direction
