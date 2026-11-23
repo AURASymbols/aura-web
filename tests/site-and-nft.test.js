@@ -64,7 +64,7 @@ test("server injects the AURA V5 Solana-inspired site assets", () => {
   for (const item of ["ORIGIN", "FORCE", "PUBLISHED NFT ASSETS", "PUBLIC CODEBASE", "IN DEVELOPMENT", "RESEARCH ONLY"]) {
     assert.ok(layout.includes(item), "missing V5 content: " + item);
   }
-  assert.match(read("public/aura-v5.js"), /data-filter/);
+  assert.match(read("public/aura-v5.js"), /dataset\.filter/);
   assert.match(read("public/aura-v5.css"), /\.a5-hero/);
   assert.match(read("public/aura-v5.css"), /@media\(max-width:760px\)/);
 });
