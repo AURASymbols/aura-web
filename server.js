@@ -34,7 +34,8 @@ app.get(["/", "/index.html"], (req, res, next) => {
       '<script src="/contact-flow.js"></script>',
       '<script src="/proof-mvp.js"></script>',
       '<script src="/v3.4.js"></script>',
-      '<script src="/v3.5-cinematic.js?v=2" defer></script>'
+      '<script src="/v3.5-cinematic.js?v=2" defer></script>',
+      '<script src="/aura-v4.js?v=1" defer></script>'
     ];
     const page = scripts.reduce((current, script) => {
       const src = script.match(/src="([^"]+)"/)?.[1];
@@ -49,7 +50,8 @@ app.get(["/", "/index.html"], (req, res, next) => {
       '<link rel="stylesheet" href="/interest-refinement.css">',
       '<link rel="stylesheet" href="/v3.4.css">',
       '<link rel="stylesheet" href="/v3.5-cinematic.css?v=3">',
-      '<link rel="stylesheet" href="/aura-noir.css?v=2">'
+      '<link rel="stylesheet" href="/aura-noir.css?v=2">',
+      '<link rel="stylesheet" href="/aura-v4.css?v=1">'
     ];
     const styledPage = styles.reduce((current, style) => {
       const href = style.match(/href="([^"]+)"/)?.[1];
