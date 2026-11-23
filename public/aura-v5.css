@@ -96,3 +96,59 @@ body:has(main:not(.v34-page)) header{background:#09090def!important}
 @media(prefers-reduced-motion:reduce){
  .a5-refined .a5-hero-art img,.a5-refined .a5-community-cards>a,.a5-refined .a5-filters button{transition:none}
 }
+
+
+/* AURA V5.2 — soft sage identity, less repetition */
+:root{--a5-violet:#b9d8c3;--a5-sage:#b9d8c3;--a5-sage-muted:#8eae9a}
+.a5-refined .a5-eyebrow,.a5-refined .a5-art-label span{color:#b9d8c3}
+.a5-refined .a5-announcement{background:#c9e1d0;color:#111a14}
+.a5-refined .a5-hero{background:radial-gradient(ellipse at 78% 42%,rgba(74,119,91,.20),transparent 37%),linear-gradient(112deg,#080b09 0%,#101713 58%,#080b09 100%)}
+.a5-refined .a5-hero h1 em,.a5-refined .a5-section-top h2 em,.a5-refined .a5-stats-head h2 em,.a5-refined .a5-community h2 em,.a5-refined .a5-final h2 em{color:#b9d8c3}
+.a5-refined .a5-pulse{background:#b9d8c3;box-shadow:0 0 12px #b9d8c3}
+.a5-refined .a5-btn-primary{background:#c4dfcc;border-color:#c4dfcc;color:#111a14!important}
+.a5-refined .a5-btn-primary:hover{background:#d8eadc}
+.a5-refined .a5-hero-art img{border-color:rgba(185,216,195,.24);box-shadow:0 34px 110px #000c,0 0 100px #91c5a026}
+.a5-refined .a5-glow{background:radial-gradient(circle,#8eb89a3d,transparent 68%)}
+.a5-refined .a5-ring,.a5-refined .a5-ring-2,.a5-refined .a5-ring-3{border-color:#b9d8c34a}
+.a5-refined .a5-art-label{border-color:#b9d8c34d}
+.a5-refined .a5-stats{background:linear-gradient(180deg,#0a0e0b,#0e1410)}
+.a5-refined .a5-stat-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.a5-refined .a5-stat{border-color:#344238}
+.a5-refined .a5-stat span{color:#c6d7ca}
+.a5-refined .a5-proof-links b,.a5-refined .a5-asset-caption>b{color:#b9d8c3}
+.a5-refined .a5-asset-image>span{border-color:#9fc4aa;color:#d7e8dc}
+.a5-refined .a5-stories{background:linear-gradient(180deg,#101612,#0b100d)}
+.a5-refined .a5-layer-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.a5-refined .a5-layer-card{min-height:310px;padding:24px 21px;background:linear-gradient(155deg,#18221b,#111713 72%);border:1px solid #34443a;display:flex;flex-direction:column;transition:transform .22s,border-color .22s}
+.a5-refined .a5-layer-card:hover{transform:translateY(-4px);border-color:#9cbea5}
+.a5-refined .a5-layer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;flex-wrap:wrap}
+.a5-refined .a5-layer-top>span{font-size:8px;letter-spacing:.12em;color:#b9d8c3}
+.a5-refined .a5-stage{font-size:7px;letter-spacing:.1em;font-style:normal;color:#c4c0b8;border:1px solid #555b53;padding:5px 7px}
+.a5-refined .a5-stage-live{color:#c7e5cf;border-color:#71977c;background:#29433266}
+.a5-refined .a5-layer-symbol{font-size:44px;color:#b9d8c3;margin:30px 0 12px}
+.a5-refined .a5-layer-card h3{font-size:21px;line-height:1.16;letter-spacing:-.04em;margin:0 0 11px}
+.a5-refined .a5-layer-card p{font-size:12px;line-height:1.7;color:#aeb8b0;margin:0 0 20px}
+.a5-refined .a5-layer-card>a{margin-top:auto;font-size:8px;letter-spacing:.11em;color:#c5dfcc}
+.a5-refined .a5-layer-foot{display:flex;justify-content:space-between;gap:18px;padding-top:18px;margin-top:22px;border-top:1px solid #344238;font-size:8px;letter-spacing:.12em;color:#8f9c91}
+.a5-refined .a5-layer-foot a{color:#c2ddca}
+.a5-refined .a5-community{background:radial-gradient(ellipse at 70% 20%,#45694b3d,transparent 45%),#0d120e}
+.a5-refined .a5-community-bg{background-image:linear-gradient(45deg,transparent 49.8%,#b9d8c3 50%,transparent 50.2%)}
+.a5-refined .a5-community-cards>a{border-color:#3d5142;background:rgba(18,27,21,.92)}
+.a5-refined .a5-community-cards span,.a5-refined .a5-community-cards i{color:#c0ddc8}
+.a5-refined .a5-final{background:radial-gradient(ellipse at 50% 40%,#42684a44,transparent 58%),#101611}
+.a5-refined a:focus-visible,.a5-refined .a5-filters button:focus-visible{outline-color:#c7e3cf}
+.a5-refined .a5-footer{background:#070a08}
+.a5-refined .a5-roadmap{display:none}
+.v34-page-hero h1 i,.v34-section h2 i,.v34-kicker{color:#b9d8c3!important}
+.v34-card a,.v34-page a,.a5-document a,.a5-document .eyebrow,.a5-document .v34-kicker{color:#b9d8c3!important}
+.a5-document h1 i,.a5-document h2 i{color:#b9d8c3!important}
+.a5-document .btn.gold,.a5-document .btn.primary{background:#c4dfcc!important;color:#111a14!important;border-color:#c4dfcc!important}
+@media(max-width:1050px){.a5-refined .a5-layer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){
+ .a5-refined .a5-stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .a5-refined .a5-stat:nth-child(2){border-right:0}
+ .a5-refined .a5-stat:nth-child(3){padding-left:0}
+ .a5-refined .a5-layer-grid{grid-template-columns:1fr}
+ .a5-refined .a5-layer-card{min-height:250px}
+ .a5-refined .a5-layer-foot{flex-direction:column}
+}
