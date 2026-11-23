@@ -61,9 +61,13 @@ test("server injects the V3.4 foundation and V3.5 cinematic homepage assets", ()
   const noir = read("public/aura-noir.css");
   assert.match(noir, /--noir-bg:#090a0b/);
   assert.match(noir, /\.a35-vision/);
+  assert.match(noir, /a35-hero-solana/);
+  assert.match(noir, /a35-metrics/);
   const cinematic = read("public/v3.5-cinematic.js");
   assert.match(cinematic, /prefers-reduced-motion/);
   assert.match(cinematic, /A new language for digital identity/);
+  assert.match(cinematic, /BEYOND/);
+  assert.match(cinematic, /PROOF, NOT PROMISES/);
   assert.match(cinematic, /a35-vision/);
   assert.match(cinematic, /aura-002-force\.png/);
   assert.match(cinematic, /LOOK/);
