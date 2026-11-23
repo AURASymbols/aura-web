@@ -51,27 +51,33 @@ test("developer onboarding never instructs contributors to publish private crede
   assert.match(html, /node >=20|Node\.js 20 or newer/i);
 });
 
-test("server injects the V3.4 foundation and V3.5 cinematic homepage assets", () => {
+test("server injects the AURA V5 Solana-inspired site assets", () => {
   const server = read("server.js");
-  assert.match(server, /\/v3\.4\.css/);
-  assert.match(server, /\/v3\.4\.js/);
-  assert.match(server, /\/v3\.5-cinematic\.css/);
-  assert.match(server, /\/v3\.5-cinematic\.js/);
-  assert.match(server, /\/aura-noir\.css/);
-  const noir = read("public/aura-noir.css");
-  assert.match(noir, /--noir-bg:#090a0b/);
-  assert.match(noir, /\.a35-vision/);
-  assert.match(noir, /a35-hero-solana/);
-  assert.match(noir, /a35-metrics/);
-  const cinematic = read("public/v3.5-cinematic.js");
-  assert.match(cinematic, /prefers-reduced-motion/);
-  assert.match(cinematic, /A new language for digital identity/);
-  assert.match(cinematic, /BEYOND/);
-  assert.match(cinematic, /PROOF, NOT PROMISES/);
-  assert.match(cinematic, /a35-vision/);
-  assert.match(cinematic, /aura-002-force\.png/);
-  assert.match(cinematic, /LOOK/);
-  assert.match(read("public/v3.5-cinematic.css"), /@media\(max-width:700px\)/);
+  assert.match(server, /\/aura-v5\.js/);
+  assert.match(server, /\/aura-v5\.css/);
+  assert.doesNotMatch(server, /\/aura-v4\.js/);
+  assert.doesNotMatch(server, /\/v3\.5-cinematic\.js/);
+  const layout = read("public/aura-v5.html");
+  for (const id of ["home", "updates", "proof", "ecosystem", "assets", "community", "token"]) {
+    assert.match(layout, new RegExp('id="' + id + '"'));
+  }
+  for (const item of ["ORIGIN", "FORCE", "PUBLISHED NFT ASSETS", "PUBLIC CODEBASE", "IN DEVELOPMENT", "RESEARCH ONLY"]) {
+    assert.ok(layout.includes(item), "missing V5 content: " + item);
+  }
+  assert.match(read("public/aura-v5.js"), /data-filter/);
+  assert.match(read("public/aura-v5.css"), /\.a5-hero/);
+  assert.match(read("public/aura-v5.css"), /@media\(max-width:760px\)/);
+});
+
+test("all AURA inner pages share V5 styling and navigation, including the NFT page", () => {
+  for (const file of ["public/nft.html", "public/product.html", "public/brief.html", "public/faq.html", "public/developer-guide.html", "public/status.html", "public/404.html"]) {
+    const html = read(file);
+    assert.match(html, /aura-v5\.css/);
+    assert.match(html, /aura-v5\.js/);
+  }
+  assert.match(read("public/nft.html"), /ORIGIN/);
+  assert.match(read("public/nft.html"), /FORCE/);
+  assert.match(read("public/aura-v5.js"), /nft\.html/);
 });
 
 test("status page loads its separately testable status module", () => {
