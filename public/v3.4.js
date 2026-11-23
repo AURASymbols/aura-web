@@ -39,16 +39,7 @@
     const nav = document.getElementById("nav");
     if (!menu || !nav) return;
     menu.setAttribute("aria-controls", "nav");
-    menu.addEventListener("click", () => {
-      const expanded = menu.getAttribute("aria-expanded") === "true";
-      menu.setAttribute("aria-expanded", String(!expanded));
-    });
-    nav.addEventListener("click", event => {
-      if (event.target.closest("a")) {
-        nav.classList.remove("open");
-        menu.setAttribute("aria-expanded", "false");
-      }
-    });
+    menu.setAttribute("aria-expanded", "false");
   }
 
   function addGlobalLinks() {
