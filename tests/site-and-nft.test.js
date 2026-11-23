@@ -50,3 +50,17 @@ test("developer onboarding never instructs contributors to publish private crede
   assert.match(html, /Never commit RPC keys, database credentials, wallet secrets or API tokens/);
   assert.match(html, /node >=20|Node\.js 20 or newer/i);
 });
+
+test("server injects the shared V3.4 stylesheet and progressive enhancement", () => {
+  const server = read("server.js");
+  assert.match(server, /\/v3\.4\.css/);
+  assert.match(server, /\/v3\.4\.js/);
+});
+
+test("status page loads its separately testable status module", () => {
+  const html = read("public/status.html");
+  const script = read("public/status.js");
+  assert.match(html, /src="\/status\.js"/);
+  assert.match(script, /api\/health/);
+  assert.match(script, /60000/);
+});
