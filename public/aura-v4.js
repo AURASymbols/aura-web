@@ -5,6 +5,8 @@ if(!main||document.documentElement.dataset.auraV4==="ready")return;
 document.documentElement.dataset.auraV4="ready";
 fetch("/aura-v4.html").then(r=>{if(!r.ok)throw new Error("AURA layout unavailable");return r.text()}).then(markup=>{
 main.innerHTML=markup;
+document.querySelector("body>footer")?.remove();
+document.querySelector("#modal")?.remove();
 const nav=document.querySelector("#nav");
 const items=[["HOME","home"],["NFT","nft"],["ECOSYSTEM","ecosystem"],["PROOF","proof"],["ROADMAP","roadmap"],["INVESTORS","investors"],["BUILDERS","developers"],["PROJECT","project"],["FAQ","faq"],["STATUS","status"]];
 if(nav)nav.innerHTML=items.map(([name,id])=>'<a href="#'+id+'">'+name+'</a>').join("");
