@@ -217,3 +217,17 @@ test("public database status does not expose raw connection error details", () =
   assert.match(database, /status: "unavailable"/);
   assert.doesNotMatch(database, /error: error\.message/);
 });
+
+test("public RPC-backed endpoints are rate limited and identity limits include IP and wallet", () => {
+  const server = read("server.js");
+  assert.match(server, /function limitApiRequests/);
+  assert.match(server, /API_RATE_MAX = 60/);
+  assert.match(server, /app\.get\("\/api\/health", limitApiRequests/);
+  assert.match(server, /app\.get\("\/api\/wallet\/:address", limitApiRequests/);
+  assert.match(server, /app\.get\("\/api\/status", limitApiRequests/);
+
+  const identity = read("server/routes/identity.js");
+  assert.match(identity, /:ip:/);
+  assert.match(identity, /:wallet:/);
+  assert.match(identity, /router\.get\("\/", limitIdentityRequests/);
+});
