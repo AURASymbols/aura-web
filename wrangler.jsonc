@@ -2,6 +2,7 @@
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "aura-web",
   "compatibility_date": "2026-11-24",
+  "previews": {},
   "assets": {
     "directory": "./dist"
   }
