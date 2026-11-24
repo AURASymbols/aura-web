@@ -105,7 +105,7 @@ test("all public pages include the AURA favicon and social metadata", () => {
     "public/faq.html", "public/brief.html", "public/404.html"
   ]) {
     const html = read(file);
-    assert.match(html, /rel="icon"[^>]+favicon\\.svg/);
+    assert.match(html, /rel="icon"[^>]+favicon\.svg/);
   }
   for (const file of [
     "public/index.html", "public/nft.html", "public/product.html",
@@ -123,7 +123,7 @@ test("shared forest-green styles contain no saturated violet accent colors", () 
   const files = ["public/aura-noir.css", "public/aura-v4.css", "public/aura-v5.css"];
   for (const file of files) {
     const css = read(file);
-    const colors = [...new Set(css.match(/#[0-9a-f]{3,8}\\b/gi) || [])];
+    const colors = [...new Set(css.match(/#[0-9a-f]{3,8}\b/gi) || [])];
     for (const color of colors) {
       let value = color.slice(1);
       if (value.length === 8) value = value.slice(0, 6);
