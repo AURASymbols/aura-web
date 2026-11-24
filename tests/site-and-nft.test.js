@@ -173,7 +173,7 @@ test("inner pages no longer load conflicting legacy theme layers", () => {
     "public/status.html", "public/faq.html", "public/brief.html", "public/404.html"
   ]) {
     const html = read(file);
-    assert.match(html, /aura-v5\\.css\\?v=13/);
+    assert.match(html, /aura-v5\.css\?v=13/);
     assert.doesNotMatch(html, /aura-noir\.css|aura-v4\.css/);
   }
 });
