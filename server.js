@@ -12,6 +12,44 @@ app.disable("x-powered-by");
 const PORT = process.env.PORT || 3000;
 const startedAt = Date.now();
 const publicDir = path.join(__dirname, "public");
+const apiRateLimits = new Map();
+const API_RATE_WINDOW_MS = 60 * 1000;
+const API_RATE_MAX = 60;
+const API_RATE_MAX_ENTRIES = 5000;
+
+function limitApiRequests(req, res, next) {
+  const now = Date.now();
+  const ip = req.ip || req.socket?.remoteAddress || "unknown";
+  const key = `${req.path.split("/").slice(0, 3).join("/")}: ${ip}`;
+  let record = apiRateLimits.get(key);
+
+  if (!record || record.resetAt <= now) {
+    record = { count: 0, resetAt: now + API_RATE_WINDOW_MS };
+    apiRateLimits.set(key, record);
+  }
+  record.count += 1;
+
+  if (apiRateLimits.size > API_RATE_MAX_ENTRIES) {
+    for (const [trackedKey, tracked] of apiRateLimits) {
+      if (tracked.resetAt <= now || apiRateLimits.size > API_RATE_MAX_ENTRIES) {
+        apiRateLimits.delete(trackedKey);
+      }
+      if (apiRateLimits.size <= API_RATE_MAX_ENTRIES) break;
+    }
+  }
+
+  if (record.count > API_RATE_MAX) {
+    const retryAfter = Math.max(1, Math.ceil((record.resetAt - now) / 1000));
+    res.setHeader("Retry-After", String(retryAfter));
+    return res.status(429).json({
+      status: "rate-limited",
+      error: "Too many API requests. Please try again later."
+    });
+  }
+
+  next();
+}
+
 
 app.use((req, res, next) => {
   res.setHeader("X-Content-Type-Options", "nosniff");
@@ -59,7 +97,7 @@ app.get(["/", "/index.html"], (req, res, next) => {
   });
 });
 
-app.get("/api/health", async (req, res) => {
+app.get("/api/health", limitApiRequests, async (req, res) => {
   const [database, ethereum] = await Promise.all([
     getDatabaseStatus(),
     getEthereumStatus()
@@ -75,7 +113,7 @@ app.get("/api/health", async (req, res) => {
   });
 });
 
-app.get("/api/wallet/:address", async (req, res) => {
+app.get("/api/wallet/:address", limitApiRequests, async (req, res) => {
   const { address } = req.params;
   const balance = await getEthBalance(address);
 
@@ -84,7 +122,7 @@ app.get("/api/wallet/:address", async (req, res) => {
   res.json(balance);
 });
 
-app.get("/api/status", async (req, res) => {
+app.get("/api/status", limitApiRequests, async (req, res) => {
   const [database, ethereum] = await Promise.all([
     getDatabaseStatus(),
     getEthereumStatus()
