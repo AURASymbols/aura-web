@@ -67,3 +67,47 @@ body>main:not(.v34-page) .eyebrow{color:#b8acd5!important}
 body>main:not(.v34-page) .lead,body>main:not(.v34-page) .intro{color:#a8a9b1!important}
 body>main:not(.v34-page) .btn.gold,body>main:not(.v34-page) .btn.primary{background:#b8acd5!important;color:#0b0b0e!important;border-color:#b8acd5!important}
 @media(max-width:700px){.v34-page-hero{padding-top:76px!important}.v34-page-hero h1{font-size:clamp(52px,13vw,82px)!important}.v34-page-hero:after{width:85vw;right:-42%;top:12%;opacity:.65}.v34-section h2{font-size:clamp(36px,10vw,56px)!important}}
+
+
+/* AURA V5.4 — forest-green design system shared by every destination page */
+:root{color-scheme:dark;--noir-bg:#070D0A;--noir-panel:#0D1711;--noir-panel-2:#10251A;--noir-line:#23372B;--noir-text:#F0F4F0;--noir-muted:#A7B4AA;--noir-soft:#789B82;--noir-accent:#A9C7B0;--noir-gutter:clamp(22px,6vw,92px)}
+html,body{background:#070D0A!important;color:#F0F4F0!important;color-scheme:dark}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important}
+header{background:rgba(7,13,10,.94)!important;border-bottom:1px solid #23372B!important;color:#F0F4F0!important}
+header .logo,.logo{color:#F0F4F0!important}
+header nav a,header .topbtn,footer a{color:#A7B4AA!important}
+header nav a:hover,header nav a.active,nav a.active{color:#F0F4F0!important;border-color:#789B82!important}
+header .topbtn{border-color:#45634D!important;color:#C9DCCB!important}
+header .topbtn:hover{background:#A9C7B0!important;color:#07100A!important}
+#menu{color:#F0F4F0!important}
+h1,h2,h3,strong,b{color:#F0F4F0!important}
+p,.muted,.lead,.intro{color:#A7B4AA!important}
+a{color:#A9C7B0}a:hover{color:#D6E8D8}
+.v34-page,body>main:not(.a5-site){background:#070D0A!important;color:#F0F4F0!important}
+.v34-page-hero{background:radial-gradient(ellipse at 78% 20%,rgba(91,143,105,.17),transparent 40%),linear-gradient(180deg,#0D1711,#070D0A 84%)!important}
+.v34-page-hero:after{border-color:rgba(169,199,176,.19)!important;box-shadow:0 0 90px rgba(91,143,105,.10),inset 0 0 80px rgba(91,143,105,.05)!important}
+.v34-page-hero h1 i,.v34-section h2 i,h1 i,h2 i{color:#A9C7B0!important}
+.v34-page-hero>p,.v34-page-hero p{color:#A7B4AA!important}
+.v34-kicker,.eyebrow,small,.v34-card small{color:#A9C7B0!important}
+.v34-section{border-color:#23372B!important}
+.v34-section h2{color:#F0F4F0!important}
+.v34-card,article,.panel,.contact{background:linear-gradient(145deg,#10251A,#0D1711)!important;border:1px solid #23372B!important;border-radius:5px}
+.v34-card:hover{border-color:#789B82!important;box-shadow:0 20px 55px rgba(0,0,0,.25)}
+.v34-card h3,.v34-card b{color:#F0F4F0!important}
+.v34-card p,article p{color:#A7B4AA!important}
+.v34-state,.v34-card .v34-state{color:#A9C7B0!important}
+.v34-actions a,.btn,.a35-link{background:transparent!important;color:#D5E4D7!important;border:1px solid #45634D!important}
+.v34-actions a.primary,.btn.gold,.btn.primary{background:#A9C7B0!important;color:#07100A!important;border-color:#A9C7B0!important}
+.v34-actions a:hover,.btn:hover,.a35-link:hover{border-color:#C7E0CB!important;background:#A9C7B014!important}
+.v34-callout,.notice,.note{background:#10251A!important;border:1px solid #304B37!important;border-left:2px solid #789B82!important;color:#B9C8BB!important}
+.v34-table th{color:#A9C7B0!important}.v34-table th,.v34-table td{border-color:#23372B!important}.v34-table td{color:#C0CDC2!important}
+.v34-code{background:#070D0A!important;border:1px solid #23372B!important;color:#D5E4D7!important}
+.v34-status-grid{background:#23372B!important;border-color:#23372B!important}.v34-status-item{background:#0D1711!important}.v34-status-item span,.v34-status-item p{color:#A7B4AA!important}.v34-status-item strong{color:#A9C7B0!important}
+body>main:not(.v34-page) section{border-color:#23372B!important}
+body>main:not(.v34-page) article{background:linear-gradient(145deg,#10251A,#0D1711)!important;border-color:#23372B!important}
+body>main:not(.v34-page) .eyebrow{color:#A9C7B0!important}
+body>main:not(.v34-page) .lead,body>main:not(.v34-page) .intro{color:#A7B4AA!important}
+body>main:not(.v34-page) .btn.gold,body>main:not(.v34-page) .btn.primary{background:#A9C7B0!important;color:#07100A!important;border-color:#A9C7B0!important}
+.v34-footer,footer{background:#070D0A!important;border-color:#23372B!important;color:#789B82!important}
+footer a:hover{color:#F0F4F0!important}
+@media(max-width:760px){header{padding-inline:22px!important}header nav{background:#0D1711!important;border:1px solid #23372B!important}header nav a{color:#D5E4D7!important}}
