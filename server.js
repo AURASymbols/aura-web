@@ -34,7 +34,7 @@ app.get(["/", "/index.html"], (req, res, next) => {
       '<script src="/contact-flow.js"></script>',
       '<script src="/proof-mvp.js"></script>',
       '<script src="/v3.4.js"></script>',
-      '<script src="/aura-v5.js?v=6" defer></script>'
+      '<script src="/aura-v5.js?v=7" defer></script>'
     ];
     const page = scripts.reduce((current, script) => {
       const src = script.match(/src="([^"]+)"/)?.[1];
