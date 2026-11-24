@@ -166,3 +166,30 @@ test("published NFT artwork uses lazy loading and fixed intrinsic dimensions", (
     assert.match(html, /width="1000" height="1000"/);
   }
 });
+
+test("inner pages no longer load conflicting legacy theme layers", () => {
+  for (const file of [
+    "public/nft.html", "public/product.html", "public/developer-guide.html",
+    "public/status.html", "public/faq.html", "public/brief.html", "public/404.html"
+  ]) {
+    const html = read(file);
+    assert.match(html, /aura-v5\.css\?v=11/);
+    assert.doesNotMatch(html, /aura-noir\.css|aura-v4\.css/);
+  }
+});
+
+test("AURA inner-page content keeps visible gutters and does not clip its own children", () => {
+  const css = read("public/aura-v5.css");
+  assert.match(css, /\.v34-page,\.a5-document\{[\s\S]*?overflow:visible!important/);
+  assert.match(css, /\.a5-document\{[\s\S]*?padding:clamp\(46px,6vw,84px\) clamp\(22px,6\.2vw,96px\)!important/);
+  assert.match(css, /@media\(max-width:980px\)/);
+  assert.match(css, /body>header nav\.open\{display:grid!important\}/);
+});
+
+test("shared theme files contain no violet RGB gradients", () => {
+  for (const file of ["public/aura-noir.css", "public/aura-v4.css", "public/aura-v5.css"]) {
+    const css = read(file);
+    assert.doesNotMatch(css, /rgba?\(\s*(?:104\s*,\s*77\s*,\s*151|91\s*,\s*73\s*,\s*139)\b/i);
+    assert.doesNotMatch(css, /rgba?\(\s*(?:120\s*,\s*97\s*,\s*176|211\s*,\s*194\s*,\s*241)\b/i);
+  }
+});
