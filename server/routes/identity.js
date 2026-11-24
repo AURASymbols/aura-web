@@ -5,7 +5,12 @@ const { ethers } = require("ethers");
 
 const router = express.Router();
 const challenges = new Map();
+const identityRateLimits = new Map();
 const CHALLENGE_TTL_MS = 5 * 60 * 1000;
+const RATE_WINDOW_MS = 60 * 1000;
+const RATE_LIMIT_MAX = 12;
+const MAX_TRACKED_CHALLENGES = 5000;
+const MAX_TRACKED_RATE_LIMITS = 5000;
 
 function normalizeAddress(address) {
   if (!address || typeof address !== "string") return null;
@@ -37,7 +42,47 @@ function challengeMessage(address, nonce) {
   ].join("\n");
 }
 
-router.get("/challenge", (req, res) => {
+function cleanExpiredChallenges(now = Date.now()) {
+  for (const [address, challenge] of challenges) {
+    if (challenge.expiresAt <= now) challenges.delete(address);
+  }
+}
+
+function limitIdentityRequests(req, res, next) {
+  const now = Date.now();
+  const ip = req.ip || req.socket?.remoteAddress || "unknown";
+  const key = `${req.method}:${ip}`;
+  let record = identityRateLimits.get(key);
+
+  if (!record || record.resetAt <= now) {
+    record = { count: 0, resetAt: now + RATE_WINDOW_MS };
+    identityRateLimits.set(key, record);
+  }
+
+  record.count += 1;
+
+  if (identityRateLimits.size > MAX_TRACKED_RATE_LIMITS) {
+    for (const [trackedKey, tracked] of identityRateLimits) {
+      if (tracked.resetAt <= now || identityRateLimits.size > MAX_TRACKED_RATE_LIMITS) {
+        identityRateLimits.delete(trackedKey);
+      }
+      if (identityRateLimits.size <= MAX_TRACKED_RATE_LIMITS) break;
+    }
+  }
+
+  if (record.count > RATE_LIMIT_MAX) {
+    const retryAfter = Math.max(1, Math.ceil((record.resetAt - now) / 1000));
+    res.setHeader("Retry-After", String(retryAfter));
+    return res.status(429).json({
+      status: "rate-limited",
+      error: "Too many identity requests. Please try again later."
+    });
+  }
+
+  next();
+}
+
+router.get("/challenge", limitIdentityRequests, (req, res) => {
   if (!isDatabaseConfigured()) {
     return res.status(503).json({ status: "not-configured", error: "Identity establishment requires DATABASE_URL in the developer environment." });
   }
@@ -45,10 +90,19 @@ router.get("/challenge", (req, res) => {
   const address = normalizeAddress(req.query.address);
   if (!address) return res.status(400).json({ error: "A valid EVM wallet address is required." });
 
+  const now = Date.now();
+  cleanExpiredChallenges(now);
+
   const nonce = crypto.randomBytes(16).toString("hex");
   const message = challengeMessage(address, nonce);
-  challenges.set(address.toLowerCase(), { message, expiresAt: Date.now() + CHALLENGE_TTL_MS });
+  const key = address.toLowerCase();
 
+  if (!challenges.has(key) && challenges.size >= MAX_TRACKED_CHALLENGES) {
+    const oldestKey = challenges.keys().next().value;
+    if (oldestKey) challenges.delete(oldestKey);
+  }
+
+  challenges.set(key, { message, expiresAt: now + CHALLENGE_TTL_MS });
   res.json({ address, message, expiresInSeconds: CHALLENGE_TTL_MS / 1000 });
 });
 
@@ -85,7 +139,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", limitIdentityRequests, async (req, res) => {
   if (!isDatabaseConfigured()) {
     return res.status(503).json({ status: "not-configured", error: "Identity establishment requires DATABASE_URL in the developer environment." });
   }
