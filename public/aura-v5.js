@@ -3,9 +3,17 @@ const main=document.querySelector("#main-content");
 function initShell(){
  const nav=document.querySelector("#nav");
  const links=[["HOME","/#home"],["NFT","/nft.html"],["PROJECT","/#ecosystem"],["PRODUCT","/product.html"],["STATUS","/status.html"],["DEVELOPERS","/developer-guide.html"],["FAQ","/faq.html"]];
- if(nav)nav.innerHTML=links.map(([n,u])=>'<a href="'+u+'">'+n+'</a>').join("");
+ const path=location.pathname.replace(/\\/+$/,"")||"/";
+ const hash=location.hash;
+ const active=path==="/nft.html"?"NFT":path==="/product.html"?"PRODUCT":path==="/status.html"?"STATUS":path==="/developer-guide.html"?"DEVELOPERS":path==="/faq.html"?"FAQ":(hash==="#ecosystem"||hash==="#roadmap"||hash==="#token"||hash==="#updates")?"PROJECT":hash==="#assets"?"NFT":"HOME";
+ if(nav)nav.innerHTML=links.map(([n,u])=>'<a href="'+u+'"'+(n===active?' aria-current="page"':'')+'>'+n+'</a>').join("");
  const menu=document.querySelector("#menu");
- if(menu&&nav){const clean=menu.cloneNode(true);menu.replaceWith(clean);clean.addEventListener("click",()=>{const open=nav.classList.toggle("open");clean.setAttribute("aria-expanded",String(open))});nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{nav.classList.remove("open");clean.setAttribute("aria-expanded","false")}))}
+ if(menu&&nav){
+  const clean=menu.cloneNode(true);menu.replaceWith(clean);
+  clean.addEventListener("click",()=>{const open=nav.classList.toggle("open");clean.setAttribute("aria-expanded",String(open))});
+  nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{nav.classList.remove("open");clean.setAttribute("aria-expanded","false")}));
+  document.addEventListener("keydown",event=>{if(event.key==="Escape"&&nav.classList.contains("open")){nav.classList.remove("open");clean.setAttribute("aria-expanded","false");clean.focus()}});
+ }
 }
 function initFilters(){
  const buttons=[...document.querySelectorAll(".a5-filters button")];
