@@ -499,3 +499,36 @@ body>main{width:100%;max-width:100%;min-width:0;margin-inline:auto}
  .aura-wide-page .v34-page>section.v34-section.wrap{padding-left:22px!important;padding-right:22px!important}
  .aura-wide-page .v34-page-hero h1{font-size:clamp(42px,12vw,68px)!important}
 }
+
+/* AURA V5.8 — remove excessive desktop gutters on secondary pages */
+.aura-wide-page .v34-page-hero.aura-wide-hero{
+  width:100%!important;max-width:none!important;
+  margin-left:0!important;margin-right:0!important;
+  padding-left:clamp(24px,4.2vw,72px)!important;
+  padding-right:clamp(24px,4.2vw,72px)!important;
+}
+.aura-wide-page .v34-page>section.v34-section.wrap{
+  width:100%!important;max-width:none!important;
+  margin-left:0!important;margin-right:0!important;
+  padding-left:clamp(24px,4.2vw,72px)!important;
+  padding-right:clamp(24px,4.2vw,72px)!important;
+}
+.aura-wide-page .v34-page{
+  width:100%!important;max-width:none!important;
+}
+.aura-wide-page .v34-section h2{max-width:none!important}
+.aura-wide-page .v34-grid,.aura-wide-page .v34-status-grid{
+  width:100%!important;max-width:none!important;
+}
+@media(max-width:980px){
+ .aura-wide-page .v34-page-hero.aura-wide-hero,
+ .aura-wide-page .v34-page>section.v34-section.wrap{
+  padding-left:28px!important;padding-right:28px!important;
+ }
+}
+@media(max-width:620px){
+ .aura-wide-page .v34-page-hero.aura-wide-hero,
+ .aura-wide-page .v34-page>section.v34-section.wrap{
+  padding-left:20px!important;padding-right:20px!important;
+ }
+}
