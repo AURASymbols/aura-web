@@ -36,11 +36,12 @@ async function getEthBalance(address) {
       balanceEth
     };
   } catch (error) {
+    console.error("Ethereum balance lookup failed:", error.code || error.name || "unknown");
     return {
       configured: true,
       status: "unavailable",
       address,
-      error: error.message
+      error: "Ethereum balance is currently unavailable."
     };
   }
 }
@@ -62,10 +63,11 @@ async function getEthereumStatus() {
       blockNumber
     };
   } catch (error) {
+    console.error("Ethereum status check failed:", error.code || error.name || "unknown");
     return {
       configured: true,
       status: "unavailable",
-      error: error.message
+      error: "Ethereum connection is currently unavailable."
     };
   }
 }
