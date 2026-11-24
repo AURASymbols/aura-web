@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - "development/**"
+      - "feature/static-pages-deploy"
   pull_request:
     branches:
       - main
@@ -28,3 +29,7 @@ jobs:
         run: npm test
       - name: Check JavaScript syntax
         run: npm run check
+      - name: Build static site
+        run: npm run build:static
+      - name: Verify static output
+        run: test -f dist/index.html && test -f dist/aura-v5.html && test -f dist/assets/aura-001-origin.png && test -f dist/assets/aura-002-force.png
