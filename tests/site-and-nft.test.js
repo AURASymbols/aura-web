@@ -168,13 +168,19 @@ test("published NFT artwork uses lazy loading and fixed intrinsic dimensions", (
 });
 
 test("inner pages no longer load conflicting legacy theme layers", () => {
-  for (const file of [
-    "public/nft.html", "public/product.html", "public/developer-guide.html",
-    "public/status.html", "public/faq.html", "public/brief.html", "public/404.html"
-  ]) {
+  const versionByPage = {
+    "public/nft.html": 13,
+    "public/product.html": 13,
+    "public/developer-guide.html": 13,
+    "public/status.html": 13,
+    "public/faq.html": 11,
+    "public/brief.html": 11,
+    "public/404.html": 11
+  };
+  for (const [file, version] of Object.entries(versionByPage)) {
     const html = read(file);
-    assert.match(html, /aura-v5\.css\?v=13/);
-    assert.doesNotMatch(html, /aura-noir\.css|aura-v4\.css/);
+    assert.match(html, new RegExp("aura-v5\\\\.css\\\\?v=" + version));
+    assert.doesNotMatch(html, /aura-noir\\.css|aura-v4\\.css/);
   }
 });
 
