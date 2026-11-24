@@ -72,7 +72,7 @@ app.get(["/", "/index.html"], (req, res, next) => {
       '<script src="/contact-flow.js"></script>',
       '<script src="/proof-mvp.js"></script>',
       '<script src="/v3.4.js"></script>',
-      '<script src="/aura-v5.js?v=8" defer></script>'
+      '<script src="/aura-v5.js?v=12" defer></script>'
     ];
     const page = scripts.reduce((current, script) => {
       const src = script.match(/src="([^"]+)"/)?.[1];
@@ -80,13 +80,18 @@ app.get(["/", "/index.html"], (req, res, next) => {
     }, html);
 
     const styles = [
+      '<link rel="preconnect" href="https://fonts.googleapis.com">',
+      '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
+      '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;1,6..96,500;1,6..96,600&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&display=swap">',
       '<link rel="stylesheet" href="/layout-fix.css">',
       '<link rel="stylesheet" href="/hero-refinement.css">',
       '<link rel="stylesheet" href="/proof-refinement.css">',
       '<link rel="stylesheet" href="/platform-brief.css">',
       '<link rel="stylesheet" href="/interest-refinement.css">',
       '<link rel="stylesheet" href="/v3.4.css">',
-      '<link rel="stylesheet" href="/aura-v5.css?v=11">'
+      '<link rel="stylesheet" href="/aura-v5.css?v=15">',
+      '<link rel="stylesheet" href="/aura-gallery.css?v=4">',
+      '<style>html,body{background:#EDECE7!important}</style>'
     ];
     const styledPage = styles.reduce((current, style) => {
       const href = style.match(/href="([^"]+)"/)?.[1];
