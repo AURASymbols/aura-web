@@ -3,7 +3,7 @@ const main=document.querySelector("#main-content");
 function initShell(){
  const nav=document.querySelector("#nav");
  const links=[["HOME","/#home"],["NFT","/nft.html"],["PROJECT","/#ecosystem"],["PRODUCT","/product.html"],["STATUS","/status.html"],["DEVELOPERS","/developer-guide.html"],["FAQ","/faq.html"]];
- const path=location.pathname.replace(/\\/+$/,"")||"/";
+ const path=location.pathname.length>1&&location.pathname.endsWith("/")?location.pathname.slice(0,-1):location.pathname;
  const hash=location.hash;
  const active=path==="/nft.html"?"NFT":path==="/product.html"?"PRODUCT":path==="/status.html"?"STATUS":path==="/developer-guide.html"?"DEVELOPERS":path==="/faq.html"?"FAQ":(hash==="#ecosystem"||hash==="#roadmap"||hash==="#token"||hash==="#updates")?"PROJECT":hash==="#assets"?"NFT":"HOME";
  if(nav)nav.innerHTML=links.map(([n,u])=>'<a href="'+u+'"'+(n===active?' aria-current="page"':'')+'>'+n+'</a>').join("");
