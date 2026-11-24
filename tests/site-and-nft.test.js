@@ -98,4 +98,71 @@ test("public discovery and not-found resources are present", () => {
   assert.match(notFound, /RETURN TO AURA/);
 });
 
+test("all public pages include the AURA favicon and social metadata", () => {
+  for (const file of [
+    "public/index.html", "public/nft.html", "public/product.html",
+    "public/developer-guide.html", "public/status.html",
+    "public/faq.html", "public/brief.html", "public/404.html"
+  ]) {
+    const html = read(file);
+    assert.match(html, /rel="icon"[^>]+favicon\\.svg/);
+  }
+  for (const file of [
+    "public/index.html", "public/nft.html", "public/product.html",
+    "public/developer-guide.html", "public/status.html",
+    "public/faq.html", "public/brief.html"
+  ]) {
+    const html = read(file);
+    assert.match(html, /rel="canonical"/);
+    assert.match(html, /property="og:title"/);
+    assert.match(html, /property="og:description"/);
+  }
+});
 
+test("shared forest-green styles contain no saturated violet accent colors", () => {
+  const files = ["public/aura-noir.css", "public/aura-v4.css", "public/aura-v5.css"];
+  for (const file of files) {
+    const css = read(file);
+    const colors = [...new Set(css.match(/#[0-9a-f]{3,8}\\b/gi) || [])];
+    for (const color of colors) {
+      let value = color.slice(1);
+      if (value.length === 8) value = value.slice(0, 6);
+      if (value.length === 4) value = value.slice(0, 3).split("").map((part) => part + part).join("");
+      if (value.length === 3) value = value.split("").map((part) => part + part).join("");
+      if (value.length !== 6) continue;
+      const [r, g, b] = [0, 2, 4].map((index) => parseInt(value.slice(index, index + 2), 16) / 255);
+      const max = Math.max(r, g, b);
+      const min = Math.min(r, g, b);
+      const delta = max - min;
+      let hue = 0;
+      let saturation = 0;
+      const lightness = (max + min) / 2;
+      if (delta > 0) {
+        saturation = delta / (1 - Math.abs(2 * lightness - 1));
+        if (max === r) hue = ((g - b) / delta) % 6;
+        else if (max === g) hue = (b - r) / delta + 2;
+        else hue = (r - g) / delta + 4;
+        hue = (hue * 60 + 360) % 360;
+      }
+      assert.ok(!(hue >= 220 && hue <= 330 && saturation > 0.15), file + " retains violet accent " + color);
+    }
+  }
+});
+
+test("shared navigation exposes the active page and supports Escape to close", () => {
+  const script = read("public/aura-v5.js");
+  assert.match(script, /aria-current="page"/);
+  assert.match(script, /event\.key==="Escape"/);
+  assert.match(script, /aria-expanded/);
+  const css = read("public/aura-v5.css");
+  assert.match(css, /\.v34-page>section/);
+  assert.match(css, /minmax\(0,1fr\)/);
+});
+
+test("published NFT artwork uses lazy loading and fixed intrinsic dimensions", () => {
+  for (const file of ["public/aura-v5.html", "public/nft.html"]) {
+    const html = read(file);
+    assert.match(html, /loading="lazy"/);
+    assert.match(html, /width="1000" height="1000"/);
+  }
+});
