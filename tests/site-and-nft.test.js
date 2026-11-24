@@ -193,3 +193,21 @@ test("shared theme files contain no violet RGB gradients", () => {
     assert.doesNotMatch(css, /rgba?\(\s*(?:120\s*,\s*97\s*,\s*176|211\s*,\s*194\s*,\s*241)\b/i);
   }
 });
+
+test("identity challenges are cleaned up and public identity writes are rate limited", () => {
+  const identity = read("server/routes/identity.js");
+  assert.match(identity, /function cleanExpiredChallenges/);
+  assert.match(identity, /MAX_TRACKED_CHALLENGES/);
+  assert.match(identity, /function limitIdentityRequests/);
+  assert.match(identity, /RATE_LIMIT_MAX/);
+  assert.match(identity, /status\(429\)/);
+  assert.match(identity, /Retry-After/);
+  assert.match(identity, /router\.get\("\/challenge", limitIdentityRequests/);
+  assert.match(identity, /router\.post\("\/", limitIdentityRequests/);
+});
+
+test("public database status does not expose raw connection error details", () => {
+  const database = read("server/db.js");
+  assert.match(database, /status: "unavailable"/);
+  assert.doesNotMatch(database, /error: error\.message/);
+});
