@@ -37,10 +37,7 @@ async function main() {
   }
 
   const scripts = [
-    "/wallet-balance.js",
     "/site-polish.js?v=4.1",
-    "/contact-flow.js",
-    "/proof-mvp.js",
     "/v3.4.js",
     "/aura-v5.js?v=8"
   ];
@@ -60,7 +57,7 @@ async function main() {
       "This page reads the public health endpoint and reports what the server can currently confirm. A green website status does not mean every optional service is configured.",
       "This static website is hosted independently. Backend APIs, database services and live Ethereum RPC are not included in this deployment."
     );
-    status = status.replace(/<a href="\\/api\\/health"[^>]*>OPEN HEALTH JSON ↗<\\/a>/, "<a href=\"/product.html\">VIEW PRODUCT</a>");
+    status = status.replace('<a href="/api/health" target="_blank" rel="noopener noreferrer">OPEN HEALTH JSON ↗</a>', '<a href="/product.html">VIEW PRODUCT</a>');
     status = status.replace("LIVE / AUTO-REFRESH EVERY 60 SECONDS", "STATIC DEPLOYMENT / SERVICE SCOPE");
     status = status.replace("<script src=\"/status.js\" defer></script>", "<script src=\"/static-status.js\" defer></script>");
     await fs.writeFile(statusPath, status);
