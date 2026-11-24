@@ -301,3 +301,51 @@ hr{border-color:#263B2E!important}
   header nav{background:#0D1711!important;border-bottom:1px solid #263B2E!important}
   .v34-page-hero,.pagehero{background:radial-gradient(ellipse at 70% 25%,rgba(67,111,78,.14),transparent 48%),#070D0A!important}
 }
+
+
+/* AURA V5.5 — full-width canvas and safe responsive page gutters */
+*,*::before,*::after{box-sizing:border-box}
+html,body{width:100%;max-width:100%;margin:0;overflow-x:clip}
+body{min-width:320px}
+body>header{width:100%;max-width:100%;padding-left:clamp(18px,5vw,76px)!important;padding-right:clamp(18px,5vw,76px)!important}
+body>main{display:block;width:100%;max-width:100%;min-width:0;margin:0 auto;overflow:visible}
+.v34-page,.a5-document{width:100%;max-width:100%;min-width:0;margin:0 auto;padding-left:0;padding-right:0;overflow:clip}
+.v34-page>section,.a5-document>section,
+.v34-page>.wrap,.a5-document>.wrap{
+  width:100%;max-width:1440px;margin-left:auto;margin-right:auto;
+  padding-left:clamp(22px,6.2vw,96px)!important;
+  padding-right:clamp(22px,6.2vw,96px)!important;
+}
+.v34-page-hero{width:100%;max-width:1440px;margin-inline:auto}
+.v34-section{width:100%;max-width:1440px;margin-inline:auto}
+.v34-grid,.v34-status-grid,.grid2,.grid3,.grid4,.evidence,.proof-grid{
+  width:100%;min-width:0;grid-template-columns:repeat(2,minmax(0,1fr));
+}
+.v34-card,.v34-callout,.v34-status-item,.a5-document article,
+.v34-grid>* ,.grid2>* ,.grid3>* ,.grid4>*{min-width:0;max-width:100%}
+.v34-card img,.a5-document img{display:block;max-width:100%;height:auto}
+.v34-page p,.a5-document p,.v34-card p,.v34-section p{overflow-wrap:anywhere}
+.v34-actions,.actions,.links{display:flex;flex-wrap:wrap;gap:12px;max-width:100%}
+.v34-actions a,.actions a,.links a{max-width:100%;white-space:normal;overflow-wrap:anywhere}
+.v34-footer,body>footer{width:100%;max-width:100%;padding-left:clamp(22px,6.2vw,96px)!important;padding-right:clamp(22px,6.2vw,96px)!important}
+@media(max-width:760px){
+  body>header{height:auto;min-height:68px;padding-left:20px!important;padding-right:20px!important}
+  .v34-page>section,.a5-document>section,
+  .v34-page>.wrap,.a5-document>.wrap{
+    padding-left:22px!important;padding-right:22px!important;
+  }
+  .v34-grid,.v34-status-grid,.grid2,.grid3,.grid4,.evidence,.proof-grid{grid-template-columns:minmax(0,1fr)!important}
+  .v34-page-hero{padding-top:76px!important;padding-bottom:64px!important}
+  .v34-page-hero h1,.a5-document h1{font-size:clamp(42px,12vw,76px)!important;overflow-wrap:anywhere}
+  .v34-section{padding-top:44px!important;padding-bottom:44px!important}
+  .v34-actions a,.actions a,.links a{flex:1 1 100%;width:100%;justify-content:center}
+  .v34-footer,body>footer{padding-left:22px!important;padding-right:22px!important}
+}
+@media(min-width:761px) and (max-width:1100px){
+  .v34-page>section,.a5-document>section,
+  .v34-page>.wrap,.a5-document>.wrap{
+    padding-left:clamp(32px,5vw,58px)!important;
+    padding-right:clamp(32px,5vw,58px)!important;
+  }
+  .v34-grid,.v34-status-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
