@@ -48,7 +48,7 @@ app.get(["/", "/index.html"], (req, res, next) => {
       '<link rel="stylesheet" href="/platform-brief.css">',
       '<link rel="stylesheet" href="/interest-refinement.css">',
       '<link rel="stylesheet" href="/v3.4.css">',
-      '<link rel="stylesheet" href="/aura-v5.css?v=9">'
+      '<link rel="stylesheet" href="/aura-v5.css?v=10">'
     ];
     const styledPage = styles.reduce((current, style) => {
       const href = style.match(/href="([^"]+)"/)?.[1];
