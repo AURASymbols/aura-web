@@ -52,16 +52,18 @@ function limitIdentityRequests(req, res, next) {
   const now = Date.now();
   const ip = req.ip || req.socket?.remoteAddress || "unknown";
   const address = normalizeAddress(req.method === "GET" ? req.query.address : req.body?.address);
-  const subject = address ? address.toLowerCase() : ip;
-  const key = `${req.method}:${subject}`;
-  let record = identityRateLimits.get(key);
+  const keys = [`${req.method}:ip:${ip}`];
+  if (address) keys.push(`${req.method}:wallet:${address.toLowerCase()}`);
 
-  if (!record || record.resetAt <= now) {
-    record = { count: 0, resetAt: now + RATE_WINDOW_MS };
-    identityRateLimits.set(key, record);
-  }
-
-  record.count += 1;
+  const records = keys.map((key) => {
+    let record = identityRateLimits.get(key);
+    if (!record || record.resetAt <= now) {
+      record = { count: 0, resetAt: now + RATE_WINDOW_MS };
+      identityRateLimits.set(key, record);
+    }
+    record.count += 1;
+    return record;
+  });
 
   if (identityRateLimits.size > MAX_TRACKED_RATE_LIMITS) {
     for (const [trackedKey, tracked] of identityRateLimits) {
@@ -72,8 +74,9 @@ function limitIdentityRequests(req, res, next) {
     }
   }
 
-  if (record.count > RATE_LIMIT_MAX) {
-    const retryAfter = Math.max(1, Math.ceil((record.resetAt - now) / 1000));
+  const limited = records.find((record) => record.count > RATE_LIMIT_MAX);
+  if (limited) {
+    const retryAfter = Math.max(1, Math.ceil((limited.resetAt - now) / 1000));
     res.setHeader("Retry-After", String(retryAfter));
     return res.status(429).json({
       status: "rate-limited",
@@ -108,7 +111,7 @@ router.get("/challenge", limitIdentityRequests, (req, res) => {
   res.json({ address, message, expiresInSeconds: CHALLENGE_TTL_MS / 1000 });
 });
 
-router.get("/", async (req, res) => {
+router.get("/", limitIdentityRequests, async (req, res) => {
   const address = normalizeAddress(req.query.address);
   if (!address) return res.status(400).json({ error: "A valid EVM wallet address is required." });
 
