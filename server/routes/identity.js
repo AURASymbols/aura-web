@@ -51,7 +51,9 @@ function cleanExpiredChallenges(now = Date.now()) {
 function limitIdentityRequests(req, res, next) {
   const now = Date.now();
   const ip = req.ip || req.socket?.remoteAddress || "unknown";
-  const key = `${req.method}:${ip}`;
+  const address = normalizeAddress(req.method === "GET" ? req.query.address : req.body?.address);
+  const subject = address ? address.toLowerCase() : ip;
+  const key = `${req.method}:${subject}`;
   let record = identityRateLimits.get(key);
 
   if (!record || record.resetAt <= now) {
