@@ -1,5 +1,4 @@
 const express = require("express");
-const fs = require("fs");
 const path = require("path");
 const { getDatabaseStatus, initializeDatabase, closeDatabase } = require("./server/db");
 const { getEthereumStatus, getEthBalance } = require("./server/web3/ethereum");
@@ -60,47 +59,20 @@ app.use((req, res, next) => {
   next();
 });
 app.use(express.json({ limit: "32kb" }));
-app.use(express.static(publicDir, { index: false }));
 
-app.get(["/", "/index.html"], (req, res, next) => {
-  fs.readFile(path.join(publicDir, "index.html"), "utf8", (error, html) => {
-    if (error) return next(error);
-
-    const scripts = [
-      '<script src="/wallet-balance.js"></script>',
-      '<script src="/site-polish.js?v=4.1"></script>',
-      '<script src="/contact-flow.js"></script>',
-      '<script src="/proof-mvp.js"></script>',
-      '<script src="/v3.4.js"></script>',
-      '<script src="/aura-v5.js?v=12" defer></script>'
-    ];
-    const page = scripts.reduce((current, script) => {
-      const src = script.match(/src="([^"]+)"/)?.[1];
-      return src && current.includes(src) ? current : current.replace("</body>", `${script}</body>`);
-    }, html);
-
-    const styles = [
-      '<link rel="preconnect" href="https://fonts.googleapis.com">',
-      '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
-      '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;1,6..96,500;1,6..96,600&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&display=swap">',
-      '<link rel="stylesheet" href="/layout-fix.css">',
-      '<link rel="stylesheet" href="/hero-refinement.css">',
-      '<link rel="stylesheet" href="/proof-refinement.css">',
-      '<link rel="stylesheet" href="/platform-brief.css">',
-      '<link rel="stylesheet" href="/interest-refinement.css">',
-      '<link rel="stylesheet" href="/v3.4.css">',
-      '<link rel="stylesheet" href="/aura-v5.css?v=15">',
-      '<link rel="stylesheet" href="/aura-gallery.css?v=4">',
-      '<style>html,body{background:#EDECE7!important}</style>'
-    ];
-    const styledPage = styles.reduce((current, style) => {
-      const href = style.match(/href="([^"]+)"/)?.[1];
-      return href && current.includes(href) ? current : current.replace("</head>", `${style}</head>`);
-    }, page);
-
-    res.type("html").send(styledPage);
-  });
+const pageRedirects = {
+  "/nft.html": "/collection.html",
+  "/nft": "/collection.html",
+  "/brief.html": "/about.html",
+  "/brief": "/about.html",
+  "/developer-guide.html": "/builders.html",
+  "/developer-guide": "/builders.html"
+};
+app.get(Object.keys(pageRedirects), (req, res) => {
+  res.redirect(301, pageRedirects[req.path] || "/");
 });
+
+app.use(express.static(publicDir, { index: "index.html" }));
 
 app.get("/api/health", limitApiRequests, async (req, res) => {
   const [database, ethereum] = await Promise.all([

@@ -2,14 +2,15 @@
   "name": "aura-web",
   "version": "3.5.0",
   "private": true,
-  "description": "AURA early-stage Ethereum Web3 project with a cinematic public experience",
+  "description": "AURA company website and early-stage Ethereum Web3 foundation",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
     "test": "node --test",
-    "check": "node --check server.js && node --check server/db.js && node --check server/routes/identity.js && node --check server/routes/nft-verification.js && node --check server/routes/nfts.js && node --check server/web3/ethereum.js && node --check server/data/nfts.js && node --check public/app.js && node --check public/contact-flow.js && node --check public/platform-download.js && node --check public/site-polish.js && node --check public/proof-mvp.js && node --check public/wallet-balance.js && node --check public/premium-theme.js && node --check public/v3.4.js && node --check public/v3.5-cinematic.js && node --check public/aura-v4.js && node --check public/aura-v5.js && node --check public/aura-shell.js && node --check public/status.js"
+    "check": "node --check server.js && node --check server/db.js && node --check server/routes/identity.js && node --check server/routes/nft-verification.js && node --check server/routes/nfts.js && node --check server/web3/ethereum.js && node --check server/data/nfts.js && node --check public/company.js"
   },
+
   "dependencies": {
     "axios": "^1.20.0",
     "crypto": "^1.0.1",

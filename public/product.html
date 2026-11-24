@@ -1,75 +1,91 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Explore the AURA product direction: its live Ethereum NFT foundation and the platform and identity layers still being designed.">
-  <meta name="theme-color" content="#070D0A"><link rel="canonical" href="https://aurasymbol.com/product.html">
-  <meta property="og:title" content="AURA — Product">
-  <meta property="og:description" content="Identity. Assets. Participation. An early-stage Ethereum ecosystem built in public.">
-  <title>AURA — Product</title>
-  <link rel="stylesheet" href="/styles.css">
-  <link rel="stylesheet" href="/v3.4.css">
-  <link rel="stylesheet" href="/aura-v5.css?v=13">
-  <script src="/aura-v5.js?v=8" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Product — AURA</title>
+  <meta name="description" content="AURA product direction: connect wallet, establish identity, verify NFT ownership, and show an AURA profile.">
+  <meta name="theme-color" content="#0C0C0B">
+  <link rel="canonical" href="https://aurasymbol.com/product.html">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;1,6..96,500;1,6..96,600&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&display=swap">
+  <link rel="stylesheet" href="/company.css?v=2">
 </head>
-<body class="aura-wide-page">
-<header>
-  <a class="logo" href="/#home">◯ AURA</a>
-  <button id="menu" type="button" aria-label="Toggle navigation" aria-controls="nav" aria-expanded="false">☰</button>
-  <nav id="nav" aria-label="Main navigation">
-    <a href="/#home">HOME</a><a href="/product.html" aria-current="page">PRODUCT</a><a href="/#proof">PROOF</a><a href="/#developers">DEVELOPERS</a><a href="/status.html">STATUS</a><a href="/brief.html">BRIEF</a>
-  </nav>
-  <a class="topbtn" href="/#contact">BUILD WITH US</a>
-</header>
-<main class="v34-page" id="main-content">
-  <section class="v34-page-hero wrap aura-wide-hero">
-    <span class="v34-kicker">AURA / PRODUCT DIRECTION</span>
-    <h1>Identity.<br><i>Assets.</i><br>Participation.</h1>
-    <p>AURA is exploring an open Ethereum-based ecosystem that connects digital identity, symbolic assets and meaningful participation. The first NFT layer exists today. The broader product is still being designed and built.</p>
-    <div class="v34-actions"><a class="primary" href="/#proof">VERIFY WHAT EXISTS</a><a href="/#roadmap">EXPLORE THE ROADMAP</a></div>
-  <aside class="aura-hero-aside"><span class="aura-aside-index">AURA / PRODUCT ARCHITECTURE</span><div class="aura-aside-mark">A</div><div class="aura-aside-title">A connected ecosystem, developed in layers.</div><p class="aura-aside-copy">Start with verifiable assets. Design useful identity and platform experiences. Expand only when each layer has a clear purpose.</p><div class="aura-aside-meta"><span>ASSETS / LIVE</span><span>PLATFORM / DESIGN</span><span>TOKEN / RESEARCH</span></div></aside></section>
-  <section class="v34-section wrap">
-    <span class="v34-kicker">01 / THE FOUNDATION</span>
-    <h2>Start with what<br><i>can be verified.</i></h2>
-    <div class="v34-grid">
-      <article class="v34-card"><small>LIVE / NFT 001</small><h3>ORIGIN</h3><p>The first AURA symbolic asset, published on Ethereum as an ERC-1155 token.</p><span class="v34-state">ON-CHAIN ASSET</span><p><a href="https://opensea.io/item/ethereum/0xb4a9d1ca2ae56e7491f83cb2b7a4c956fa994593/1" target="_blank" rel="noopener noreferrer">VIEW ON OPENSEA ↗</a></p></article>
-      <article class="v34-card"><small>LIVE / NFT 002</small><h3>FORCE</h3><p>A distinct AURA symbolic asset, published on Ethereum as an ERC-1155 token.</p><span class="v34-state">ON-CHAIN ASSET</span><p><a href="https://opensea.io/item/ethereum/0xb4a9d1ca2ae56e7491f83cb2b7a4c956fa994593/2" target="_blank" rel="noopener noreferrer">VIEW ON OPENSEA ↗</a></p></article>
-      <article class="v34-card"><small>PUBLIC / SOURCE</small><h3>Open development</h3><p>The website source and project documentation are publicly available for inspection and contribution.</p><span class="v34-state">PUBLIC REPOSITORY</span><p><a href="https://github.com/AURASymbols/aura-web" target="_blank" rel="noopener noreferrer">VIEW GITHUB ↗</a></p></article>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="logo" href="/">AURA</a>
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-controls="site-nav" aria-expanded="false">☰</button>
+    <nav class="nav" id="site-nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/product.html" aria-current="page">Product</a>
+      <a href="/collection.html">Collection</a>
+      <a href="/builders.html">Builders</a>
+      <a href="/about.html">About</a>
+      <a href="/faq.html">FAQ</a>
+    </nav>
+    <a class="header-cta" href="/contact.html">Contact</a>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="kicker">Product</p>
+        <h1>One loop.<br><span class="ital">Then expand.</span></h1>
+        <p class="lede">AURA is not shipping a finished platform. The first product target is a small, testable loop that connects wallet, identity, NFT verification, and profile.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap reveal">
+        <p class="kicker">MVP direction</p>
+        <ol class="layer-list">
+          <li><span>01</span><div><h3>Connect</h3><p>Wallet as the entry point into AURA.</p></div><a href="/builders.html">Builders</a></li>
+          <li><span>02</span><div><h3>Identity</h3><p>Establish a wallet-linked AURA identity record.</p></div><a href="/status.html">Status</a></li>
+          <li><span>03</span><div><h3>Verify</h3><p>Read-only check of ORIGIN / FORCE ownership on Ethereum.</p></div><a href="/collection.html">Collection</a></li>
+          <li><span>04</span><div><h3>Profile</h3><p>Show identity + verified assets in one place.</p></div><a href="/contact.html">Contact</a></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section panel-deep">
+      <div class="wrap split reveal">
+        <div>
+          <p class="kicker">Layers</p>
+          <h2 class="statement">Four company layers.<br><span class="ital">Shown honestly.</span></h2>
+        </div>
+        <ul class="link-list">
+          <li><span class="idx">01</span><div><h3>Assets <b class="badge badge-live">Live</b></h3><p>Symbolic NFTs published on Ethereum.</p></div></li>
+          <li><span class="idx">02</span><div><h3>Platform <b class="badge">Building</b></h3><p>Product foundation connecting identity and participation.</p></div></li>
+          <li><span class="idx">03</span><div><h3>Token <b class="badge">Research</b></h3><p>No contract or sale. Utility must come first.</p></div></li>
+          <li><span class="idx">04</span><div><h3>Community <b class="badge">Open</b></h3><p>Builders, creators, and collectors shaping what follows.</p></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap reveal" style="text-align:center">
+        <p class="kicker">Build with us</p>
+        <h2 class="statement">Help define the product<br><span class="ital">before it hardens.</span></h2>
+        <div class="cta-row" style="justify-content:center">
+          <a class="btn btn-ink" href="/builders.html">For builders</a>
+          <a class="btn btn-ghost" href="/contact.html">Contact</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand"><a class="logo" href="/">AURA</a><p>Symbols of being.<br>Built in public on Ethereum.</p></div>
+      <nav aria-label="Company"><b>Company</b><a href="/about.html">About</a><a href="/product.html">Product</a><a href="/collection.html">Collection</a><a href="/status.html">Status</a></nav>
+      <nav aria-label="Participate"><b>Participate</b><a href="/builders.html">Builders</a><a href="/contact.html">Contact</a><a href="/faq.html">FAQ</a></nav>
+      <nav aria-label="Network"><b>Network</b><a href="https://github.com/AURASymbols/aura-web" target="_blank" rel="noopener">GitHub</a><a href="https://opensea.io/collection/aurasymbol" target="_blank" rel="noopener">OpenSea</a><a href="https://x.com/AURASymbol" target="_blank" rel="noopener">X</a></nav>
     </div>
-    <div class="v34-callout">The two published NFTs are the current on-chain foundation. They do not imply that a complete identity platform, token economy or community product has been deployed.</div>
-  </section>
-  <section class="v34-section wrap">
-    <span class="v34-kicker">02 / PRODUCT LAYERS</span>
-    <h2>Designed as connected layers.<br><i>Built one proof at a time.</i></h2>
-    <div class="v34-grid">
-      <article class="v34-card"><small>LAYER 01 / ASSETS</small><h3>Symbolic assets</h3><p>The initial AURA NFT collection establishes a verifiable digital asset layer. Future utility remains subject to product design.</p><span class="v34-state">INITIAL ASSETS LIVE</span></article>
-      <article class="v34-card"><small>LAYER 02 / IDENTITY</small><h3>Wallet-linked identity</h3><p>Explore user-controlled identity relationships, with clear separation between off-chain application data and on-chain ownership.</p><span class="v34-state">ARCHITECTURE IN DESIGN</span></article>
-      <article class="v34-card"><small>LAYER 03 / PLATFORM</small><h3>Useful experiences</h3><p>Build a product that gives people a reason to use identity and assets together, rather than adding features without a demonstrated need.</p><span class="v34-state">PRODUCT DEFINITION OPEN</span></article>
-      <article class="v34-card"><small>LAYER 04 / PARTICIPATION</small><h3>Community and contribution</h3><p>Develop transparent ways for collectors, builders and partners to contribute to the project as it matures.</p><span class="v34-state">EARLY FORMATION</span></article>
-      <article class="v34-card"><small>LAYER 05 / ECONOMY</small><h3>Utility before token</h3><p>Any future economic layer is conditional on actual product utility, a defensible model and appropriate legal review.</p><span class="v34-state">RESEARCH ONLY · NO TOKEN DEPLOYED</span></article>
-    </div>
-  </section>
-  <section class="v34-section wrap">
-    <span class="v34-kicker">03 / TECHNICAL EVIDENCE</span>
-    <h2>Verify the contract.<br><i>Inspect the source.</i></h2>
-    <table class="v34-table">
-      <tbody>
-        <tr><th>NETWORK</th><td>Ethereum mainnet</td></tr>
-        <tr><th>STANDARD</th><td>ERC-1155</td></tr>
-        <tr><th>CONTRACT</th><td><code>0xb4a9d1ca2ae56e7491f83cb2b7a4c956fa994593</code></td></tr>
-        <tr><th>ASSET IDS</th><td>#001 ORIGIN · #002 FORCE</td></tr>
-        <tr><th>ADDITIONAL CONTRACTS</th><td>Not deployed / not claimed</td></tr>
-      </tbody>
-    </table>
-    <div class="v34-actions"><a class="primary" href="https://etherscan.io/address/0xb4a9d1ca2ae56e7491f83cb2b7a4c956fa994593" target="_blank" rel="noopener noreferrer">VERIFY ON ETHERSCAN ↗</a><a href="https://github.com/AURASymbols/aura-web" target="_blank" rel="noopener noreferrer">INSPECT SOURCE ↗</a></div>
-  </section>
-</main>
-<footer class="v34-footer"><span>AURA / BUILDING IN PUBLIC</span><span>© <span id="year"></span> AURA</span><a href="/#home">HOME</a><a href="/status.html">SYSTEM STATUS</a><a href="https://x.com/AURASymbol" target="_blank" rel="noopener noreferrer">X ↗</a></footer>
-<script src="/v3.4.js" defer></script>
-<script>document.getElementById("year").textContent=new Date().getFullYear();</script>
+    <div class="footer-base"><span>© <span data-year></span> AURA · aurasymbol.com</span><span>Ethereum · ERC-1155</span></div>
+  </footer>
+  <script src="/company.js?v=1" defer></script>
 </body>
 </html>

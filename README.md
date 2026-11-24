@@ -14,6 +14,7 @@ AURA is not presented as a finished platform. The project has an established ide
 | Symbolic NFT foundation | **Established** |
 | AURA #001 — ORIGIN | **On-chain** |
 | AURA #002 — FORCE | **On-chain** |
+| Company website (aurasymbol.com) | **Ready in repo — domain not connected** |
 | Public investor / developer portal | **Building** |
 | Technical architecture | **Defined / evolving** |
 | Backend / API foundation | **Building** |
@@ -105,6 +106,8 @@ This repository is intentionally transparent about what exists, what is being bu
 
 Useful starting points:
 
+- [`docs/go-live-aurasymbol.md`](docs/go-live-aurasymbol.md) — connect aurasymbol.com (DNS not done yet)
+- [`docs/next-30-days.md`](docs/next-30-days.md) — near-term business plan
 - [`docs/project-overview.md`](docs/project-overview.md) — concise public project overview
 - [`docs/developer-opportunities.md`](docs/developer-opportunities.md) — practical early contribution areas
 - [`docs/technical-review-checklist.md`](docs/technical-review-checklist.md) — independent technical review checklist
