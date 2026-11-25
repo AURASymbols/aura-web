@@ -1,0 +1,9 @@
+# AURA company site — Cloudflare Workers static assets
+name = "aura"
+compatibility_date = "2025-11-01"
+workers_dev = true
+
+[assets]
+directory = "./public"
+not_found_handling = "404-page"
+html_handling = "auto-trailing-slash"
