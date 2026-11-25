@@ -1,5 +1,5 @@
 # AURA company site — Cloudflare Workers static assets
-name = "aura"
+name = "aura-web"
 compatibility_date = "2025-11-01"
 workers_dev = true
 
