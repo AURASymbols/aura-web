@@ -38,7 +38,8 @@ async function getDatabaseStatus() {
     await db.query("SELECT 1");
     return { configured: true, status: "connected" };
   } catch (error) {
-    return { configured: true, status: "unavailable", error: error.message };
+    console.error("Database status check failed:", error.code || "unknown error");
+    return { configured: true, status: "unavailable" };
   }
 }
 

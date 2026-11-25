@@ -14,6 +14,7 @@ AURA is not presented as a finished platform. The project has an established ide
 | Symbolic NFT foundation | **Established** |
 | AURA #001 — ORIGIN | **On-chain** |
 | AURA #002 — FORCE | **On-chain** |
+| Company website (aurasymbol.com) | **Ready in repo — domain not connected** |
 | Public investor / developer portal | **Building** |
 | Technical architecture | **Defined / evolving** |
 | Backend / API foundation | **Building** |
@@ -88,13 +89,34 @@ Project account:
 
 - X: https://x.com/AURASymbol
 
+## V3.4 public experience
+
+The V3.4 development branch adds dedicated public pages for the product direction, developer onboarding and live system status:
+
+- `/product.html` — current NFT foundation and future product layers
+- `/developer-guide.html` — local setup, stack, API surface and contribution guidance
+- `/status.html` — live readout from the public health endpoint
+- `docs/v3.4-release-checklist.md` — local verification and production-readiness checklist
+
+The main site also uses a shared responsive design layer, improved navigation and baseline HTTP hardening. These changes remain subject to local browser testing and CI validation before any production release.
+
 ## Build in public
 
 This repository is intentionally transparent about what exists, what is being built, and what remains uncertain.
 
 Useful starting points:
 
+- [`docs/go-live-aurasymbol.md`](docs/go-live-aurasymbol.md) — connect aurasymbol.com (DNS not done yet)
+- [`docs/next-30-days.md`](docs/next-30-days.md) — near-term business plan
+- [`docs/project-overview.md`](docs/project-overview.md) — concise public project overview
+- [`docs/developer-opportunities.md`](docs/developer-opportunities.md) — practical early contribution areas
+- [`docs/technical-review-checklist.md`](docs/technical-review-checklist.md) — independent technical review checklist
+- [`docs/investor-one-page.md`](docs/investor-one-page.md) — concise investor and partner brief
 - [`docs/project-history.md`](docs/project-history.md) — how the project evolved
+- [`docs/developer-faq.md`](docs/developer-faq.md) — answers for developers and technical reviewers
+- [`docs/investor-faq.md`](docs/investor-faq.md) — answers for investors and strategic partners
+- [`docs/collaboration-proposal.md`](docs/collaboration-proposal.md) — how to propose an early collaboration
+- [`docs/progress-update-template.md`](docs/progress-update-template.md) — template for verifiable public updates
 - [`docs/milestones.md`](docs/milestones.md) — completed, current and future stages
 - [`docs/roadmap.md`](docs/roadmap.md) — staged product direction
 - [`docs/architecture.md`](docs/architecture.md) — technical direction
@@ -144,6 +166,21 @@ npm start
 
 Then open `http://localhost:3000`.
 
+Run the automated smoke tests and JavaScript syntax checks with:
+
+```bash
+npm test
+npm run check
+```
+
+The V3.4 branch also adds these public pages:
+
+- `/product.html` — product direction and current evidence
+- `/developer-guide.html` — local setup, stack, API surface and contribution guidance
+- `/status.html` — live readout from `GET /api/health`
+
+See [the V3.4 release checklist](docs/v3.4-release-checklist.md) before any production release.
+
 ### Optional developer configuration
 
 If you want database-backed or live Ethereum RPC features, copy `.env.example` to `.env` and add your own credentials. **Do not commit `.env` or real secrets to GitHub.**
@@ -157,3 +194,12 @@ The repository intentionally keeps private infrastructure optional so developers
 - **Partner:** contribute expertise, access, introductions or meaningful collaboration.
 
 AURA is early. That is explicit. The foundation is real. The next stage is where meaningful participation can make a difference.
+
+
+## V3.5 — AURA editorial experience
+
+The V3.5 experience is developed on `development/aura-v3.5-cinematic` and reviewed through [PR #11](https://github.com/AURASymbols/aura-web/pull/11). The homepage has a distinct art direction inspired by independent art journals and contemporary galleries: charcoal-black surfaces, restrained silver-grey accents, low-contrast lighting, oversized wordmark typography and gallery-led NFT presentation. The original ORIGIN and FORCE artwork is retained.
+
+Motion is browser-rendered and restrained; there is no background video or third-party animation dependency. The layout is responsive and respects reduced-motion preferences. The project status remains explicit: only the initial NFT layer is published, while the wider ecosystem is still being developed, researched or planned.
+
+V3.5 remains a development preview until desktop/mobile visual review is complete. It does not change the production site.

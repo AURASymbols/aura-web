@@ -1,5 +1,4 @@
 const express = require("express");
-const fs = require("fs");
 const path = require("path");
 const { getDatabaseStatus, initializeDatabase, closeDatabase } = require("./server/db");
 const { getEthereumStatus, getEthBalance } = require("./server/web3/ethereum");
@@ -8,55 +7,74 @@ const nftVerificationRoutes = require("./server/routes/nft-verification");
 const identityRoutes = require("./server/routes/identity");
 
 const app = express();
+app.disable("x-powered-by");
 const PORT = process.env.PORT || 3000;
 const startedAt = Date.now();
 const publicDir = path.join(__dirname, "public");
+const apiRateLimits = new Map();
+const API_RATE_WINDOW_MS = 60 * 1000;
+const API_RATE_MAX = 60;
+const API_RATE_MAX_ENTRIES = 5000;
 
-app.disable("x-powered-by");
-app.use(express.json({ limit: "32kb" }));
+function limitApiRequests(req, res, next) {
+  const now = Date.now();
+  const ip = req.ip || req.socket?.remoteAddress || "unknown";
+  const key = `${req.path.split("/").slice(0, 3).join("/")}: ${ip}`;
+  let record = apiRateLimits.get(key);
 
-// Defense in depth: never serve legacy configuration or remote-code modules.
-app.use((req, res, next) => {
-  if (req.path === "/authconfigModel.js" || req.path === "/orderModel.js") {
-    return res.sendStatus(404);
+  if (!record || record.resetAt <= now) {
+    record = { count: 0, resetAt: now + API_RATE_WINDOW_MS };
+    apiRateLimits.set(key, record);
   }
+  record.count += 1;
+
+  if (apiRateLimits.size > API_RATE_MAX_ENTRIES) {
+    for (const [trackedKey, tracked] of apiRateLimits) {
+      if (tracked.resetAt <= now || apiRateLimits.size > API_RATE_MAX_ENTRIES) {
+        apiRateLimits.delete(trackedKey);
+      }
+      if (apiRateLimits.size <= API_RATE_MAX_ENTRIES) break;
+    }
+  }
+
+  if (record.count > API_RATE_MAX) {
+    const retryAfter = Math.max(1, Math.ceil((record.resetAt - now) / 1000));
+    res.setHeader("Retry-After", String(retryAfter));
+    return res.status(429).json({
+      status: "rate-limited",
+      error: "Too many API requests. Please try again later."
+    });
+  }
+
+  next();
+}
+
+
+app.use((req, res, next) => {
+  res.setHeader("X-Content-Type-Options", "nosniff");
+  res.setHeader("X-Frame-Options", "DENY");
+  res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+  res.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+  if (req.path.startsWith("/api/")) res.setHeader("Cache-Control", "no-store");
   next();
 });
+app.use(express.json({ limit: "32kb" }));
 
-app.use(express.static(publicDir, { index: false, dotfiles: "deny" }));
-
-app.get(["/", "/index.html"], (req, res, next) => {
-  fs.readFile(path.join(publicDir, "index.html"), "utf8", (error, html) => {
-    if (error) return next(error);
-
-    const scripts = [
-      '<script src="/wallet-balance.js"></script>',
-      '<script src="/site-polish.js?v=4.1"></script>',
-      '<script src="/contact-flow.js"></script>',
-      '<script src="/proof-mvp.js"></script>'
-    ];
-    const page = scripts.reduce((current, script) => {
-      const src = script.match(/src="([^"]+)"/)?.[1];
-      return src && current.includes(src) ? current : current.replace("</body>", `${script}</body>`);
-    }, html);
-
-    const styles = [
-      '<link rel="stylesheet" href="/layout-fix.css">',
-      '<link rel="stylesheet" href="/hero-refinement.css">',
-      '<link rel="stylesheet" href="/proof-refinement.css">',
-      '<link rel="stylesheet" href="/platform-brief.css">',
-      '<link rel="stylesheet" href="/interest-refinement.css">'
-    ];
-    const styledPage = styles.reduce((current, style) => {
-      const href = style.match(/href="([^"]+)"/)?.[1];
-      return href && current.includes(href) ? current : current.replace("</head>", `${style}</head>`);
-    }, page);
-
-    res.type("html").send(styledPage);
-  });
+const pageRedirects = {
+  "/nft.html": "/collection.html",
+  "/nft": "/collection.html",
+  "/brief.html": "/about.html",
+  "/brief": "/about.html",
+  "/developer-guide.html": "/builders.html",
+  "/developer-guide": "/builders.html"
+};
+app.get(Object.keys(pageRedirects), (req, res) => {
+  res.redirect(301, pageRedirects[req.path] || "/");
 });
 
-app.get("/api/health", async (req, res) => {
+app.use(express.static(publicDir, { index: "index.html" }));
+
+app.get("/api/health", limitApiRequests, async (req, res) => {
   const [database, ethereum] = await Promise.all([
     getDatabaseStatus(),
     getEthereumStatus()
@@ -72,7 +90,7 @@ app.get("/api/health", async (req, res) => {
   });
 });
 
-app.get("/api/wallet/:address", async (req, res) => {
+app.get("/api/wallet/:address", limitApiRequests, async (req, res) => {
   const { address } = req.params;
   const balance = await getEthBalance(address);
 
@@ -81,7 +99,7 @@ app.get("/api/wallet/:address", async (req, res) => {
   res.json(balance);
 });
 
-app.get("/api/status", async (req, res) => {
+app.get("/api/status", limitApiRequests, async (req, res) => {
   const [database, ethereum] = await Promise.all([
     getDatabaseStatus(),
     getEthereumStatus()
@@ -89,7 +107,7 @@ app.get("/api/status", async (req, res) => {
 
   res.json({
     project: "AURA",
-    version: "1.9.1",
+    version: "3.5.0",
     stage: "Early Stage",
     message: "AURA is being built.",
     systems: {
@@ -122,8 +140,11 @@ app.use("/api", (req, res) => {
   res.status(404).json({ error: "API route not found" });
 });
 
-app.use((req, res) => {
-  res.sendFile(path.join(publicDir, "index.html"));
+app.use((req, res, next) => {
+  if (path.extname(req.path)) return res.status(404).sendFile(path.join(publicDir, "404.html"));
+  res.sendFile(path.join(publicDir, "index.html"), error => {
+    if (error) next(error);
+  });
 });
 
 app.use((err, req, res, next) => {

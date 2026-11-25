@@ -9,6 +9,11 @@ const ERC1155_ABI = [
   "function balanceOf(address account, uint256 id) view returns (uint256)"
 ];
 
+const VERIFY_RATE_WINDOW_MS = 60 * 1000;
+const VERIFY_RATE_LIMIT = 30;
+const MAX_TRACKED_RATE_LIMITS = 5000;
+const verificationRateLimits = new Map();
+
 function normalizeAddress(address) {
   if (!address || typeof address !== "string") return null;
   try {
@@ -18,7 +23,40 @@ function normalizeAddress(address) {
   }
 }
 
-router.get("/verify", async (req, res) => {
+function limitVerificationRequests(req, res, next) {
+  const now = Date.now();
+  const ip = req.ip || req.socket?.remoteAddress || "unknown";
+  let record = verificationRateLimits.get(ip);
+
+  if (!record || record.resetAt <= now) {
+    record = { count: 0, resetAt: now + VERIFY_RATE_WINDOW_MS };
+    verificationRateLimits.set(ip, record);
+  }
+
+  record.count += 1;
+
+  if (verificationRateLimits.size > MAX_TRACKED_RATE_LIMITS) {
+    for (const [trackedIp, tracked] of verificationRateLimits) {
+      if (tracked.resetAt <= now || verificationRateLimits.size > MAX_TRACKED_RATE_LIMITS) {
+        verificationRateLimits.delete(trackedIp);
+      }
+      if (verificationRateLimits.size <= MAX_TRACKED_RATE_LIMITS) break;
+    }
+  }
+
+  if (record.count > VERIFY_RATE_LIMIT) {
+    const retryAfter = Math.max(1, Math.ceil((record.resetAt - now) / 1000));
+    res.setHeader("Retry-After", String(retryAfter));
+    return res.status(429).json({
+      status: "rate-limited",
+      error: "Too many NFT verification requests. Please try again later."
+    });
+  }
+
+  next();
+}
+
+router.get("/verify", limitVerificationRequests, async (req, res) => {
   const address = normalizeAddress(req.query.address);
 
   if (!address) {
@@ -77,7 +115,7 @@ router.get("/verify", async (req, res) => {
       nfts: results
     });
   } catch (error) {
-    console.error(error);
+    console.error("NFT verification failed:", error.code || error.name || "unknown");
     res.status(503).json({
       status: "unavailable",
       error: "Ethereum NFT verification is currently unavailable.",

@@ -1,12 +1,19 @@
 {
-  "name": "aura-web-v1",
-  "version": "1.9.1",
+  "name": "aura-web",
+  "version": "3.5.0",
   "private": true,
-  "description": "AURA early-stage Web3 investor and developer portal",
+  "description": "AURA company website and early-stage Ethereum Web3 foundation",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node --watch server.js"
+    "dev": "node --watch server.js",
+    "test": "node --test",
+    "check": "node --check server.js && node --check server/db.js && node --check server/routes/identity.js && node --check server/routes/nft-verification.js && node --check server/routes/nfts.js && node --check server/web3/ethereum.js && node --check server/data/nfts.js && node --check public/company.js",
+    "build:static": "node -e \"console.log('AURA static site ready in public/')\"",
+    "deploy": "npm run build:static && wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.168.0"
   },
   "dependencies": {
     "axios": "^1.20.0",
@@ -14,5 +21,8 @@
     "ethers": "^6.15.0",
     "express": "^5.1.0",
     "pg": "^8.16.3"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

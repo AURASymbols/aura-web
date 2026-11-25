@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Status — AURA</title>
+  <meta name="description" content="Live AURA system status from the public health endpoint.">
+  <meta name="theme-color" content="#0C0C0B">
+  <link rel="canonical" href="https://aurasymbol.com/status.html">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;1,6..96,500;1,6..96,600&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&display=swap">
+  <link rel="stylesheet" href="/company.css?v=2">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="logo" href="/">AURA</a>
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-controls="site-nav" aria-expanded="false">☰</button>
+    <nav class="nav" id="site-nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/product.html">Product</a>
+      <a href="/collection.html">Collection</a>
+      <a href="/builders.html">Builders</a>
+      <a href="/about.html">About</a>
+      <a href="/faq.html">FAQ</a>
+    </nav>
+    <a class="header-cta" href="/contact.html">Contact</a>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="kicker">Status</p>
+        <h1>Live system<br><span class="ital">readout.</span></h1>
+        <p class="lede">Public health data from the AURA API. Database and Ethereum RPC remain optional configuration.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap reveal" data-status-root>
+        <div class="status-grid">
+          <div class="status-item"><b>Service</b><strong data-status="service">Loading…</strong><span>aura-web</span></div>
+          <div class="status-item"><b>Uptime</b><strong data-status="uptime">—</strong><span>Process uptime</span></div>
+          <div class="status-item"><b>Database</b><strong data-status="database">—</strong><span>PostgreSQL optional</span></div>
+          <div class="status-item"><b>Ethereum</b><strong data-status="ethereum">—</strong><span>RPC optional</span></div>
+        </div>
+        <p class="muted" style="margin-top:24px">Last payload timestamp: <span data-status="timestamp">—</span></p>
+        <div class="cta-row">
+          <a class="btn btn-ghost" href="/api/health" target="_blank" rel="noopener">Raw /api/health ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand"><a class="logo" href="/">AURA</a><p>Symbols of being.<br>Built in public on Ethereum.</p></div>
+      <nav aria-label="Company"><b>Company</b><a href="/about.html">About</a><a href="/product.html">Product</a><a href="/collection.html">Collection</a><a href="/status.html">Status</a></nav>
+      <nav aria-label="Participate"><b>Participate</b><a href="/builders.html">Builders</a><a href="/contact.html">Contact</a><a href="/faq.html">FAQ</a></nav>
+      <nav aria-label="Network"><b>Network</b><a href="https://github.com/AURASymbols/aura-web" target="_blank" rel="noopener">GitHub</a><a href="https://opensea.io/collection/aurasymbol" target="_blank" rel="noopener">OpenSea</a><a href="https://x.com/AURASymbol" target="_blank" rel="noopener">X</a></nav>
+    </div>
+    <div class="footer-base"><span>© <span data-year></span> AURA · aurasymbol.com</span><span>Ethereum · ERC-1155</span></div>
+  </footer>
+  <script src="/company.js?v=1" defer></script>
+</body>
+</html>

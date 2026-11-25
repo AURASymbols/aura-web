@@ -58,19 +58,13 @@
     if(label){
       label.textContent =
         p.action==="download"
-          ? "DOWNLOAD THE BRIEF →"
-          : "VIEW THE PROJECT ON GITHUB →";
+          ? "DOWNLOAD WINDOWS PROJECT PACKAGE →"
+          : "VIEW SOURCE CODE ON GITHUB →";
     }
 
     link.addEventListener("click",function(){
       if(p.action==="download"){
-        if(label){
-          const original=label.textContent;
-          label.textContent="RAR DOWNLOAD STARTED ✓";
-          window.setTimeout(function(){
-            label.textContent=original;
-          },2200);
-        }
+        
       }
     });
   });

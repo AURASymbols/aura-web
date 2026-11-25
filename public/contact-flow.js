@@ -40,7 +40,7 @@
     if (section && !section.querySelector(".aura-selected-role")) {
       const note = document.createElement("div");
       note.className = "wrap aura-selected-role";
-      note.innerHTML = `<small>YOUR PATH</small><strong>${data.label}</strong><span>Tell AURA what you can bring. The current contact path opens X because direct email is not configured yet.</span>`;
+      note.innerHTML = `<small>YOUR PATH</small><strong>${data.label}</strong><span>Your message is copied first. Open @AURASymbol on X and send it as a direct message.</span>`;
       const contactCards = section.querySelector(".contact-cards");
       if (contactCards) contactCards.before(note);
     }

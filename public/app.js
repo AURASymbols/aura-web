@@ -13,7 +13,7 @@ const modal = document.getElementById("modal");
 const modalTitle = document.getElementById("modalTitle");
 const modalText = document.getElementById("modalText");
 
-function closeMenu() { nav?.classList.remove("open"); }
+function closeMenu() { nav?.classList.remove("open"); menu?.setAttribute("aria-expanded", "false"); }
 function closeModal() { modal?.classList.remove("open"); }
 function showModal(title, text) {
   if (modalTitle) modalTitle.textContent = title;
@@ -21,7 +21,7 @@ function showModal(title, text) {
   modal?.classList.add("open");
 }
 
-menu?.addEventListener("click", () => nav?.classList.toggle("open"));
+menu?.addEventListener("click", () => { const open = nav?.classList.toggle("open") || false; menu?.setAttribute("aria-expanded", String(open)); });
 nav?.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
 document.getElementById("close")?.addEventListener("click", closeModal);
 document.getElementById("ok")?.addEventListener("click", closeModal);
@@ -43,7 +43,8 @@ document.querySelectorAll(".opensea").forEach(button => {
 const pages = [...document.querySelectorAll("section.page")];
 
 function showRoute() {
-  const route = (location.hash || "#home").replace("#", "") || "home";
+  if (document.documentElement.dataset.auraV4 === "ready" || document.documentElement.dataset.auraV5 === "ready") return;
+  const route = (location.hash || "#home").replace(/^#/, "").split("?")[0] || "home";
   const target = document.getElementById(route) || document.getElementById("home");
   pages.forEach(page => page.classList.toggle("active", page === target));
   document.body.classList.toggle("route-home", target.id === "home");
@@ -348,12 +349,47 @@ function initWallet() {
 initWallet();
 
 const contactForm = document.getElementById("contactForm");
-contactForm?.addEventListener("submit", event => {
+
+async function copyContactMessage(text) {
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(text);
+    return;
+  }
+  const field = document.createElement("textarea");
+  field.value = text;
+  field.setAttribute("readonly", "");
+  field.style.position = "fixed";
+  field.style.opacity = "0";
+  document.body.append(field);
+  field.select();
+  const copied = document.execCommand("copy");
+  field.remove();
+  if (!copied) throw new Error("Clipboard access is unavailable. Please select and copy your message manually.");
+}
+
+contactForm?.addEventListener("submit", async event => {
   event.preventDefault();
-  showModal(
-    "Contact email not configured",
-    "AURA's public contact mailbox is not configured yet. For now, please contact AURA through @AURASymbol on X."
-  );
+  const data = new FormData(contactForm);
+  const message = [
+    "AURA " + (data.get("type") || "General") + " inquiry",
+    "Name: " + (data.get("name") || ""),
+    "Email: " + (data.get("email") || ""),
+    "",
+    data.get("message") || ""
+  ].join("\n");
+  const button = contactForm.querySelector('button[type="submit"]');
+  const note = contactForm.querySelector(".form-note");
+  if (button) button.disabled = true;
+  try {
+    await copyContactMessage(message);
+    if (note) note.textContent = "Message copied. Open @AURASymbol on X and send it as a direct message. Nothing was sent automatically.";
+    showModal("Message copied", "Your message is ready on the clipboard. Open @AURASymbol on X and send it as a direct message. AURA has not received it yet.");
+  } catch (error) {
+    if (note) note.textContent = error.message;
+    showModal("Copy unavailable", error.message);
+  } finally {
+    if (button) button.disabled = false;
+  }
 });
 
 const year = document.getElementById("year");

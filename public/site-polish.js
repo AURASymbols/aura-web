@@ -136,20 +136,6 @@
     }
   }
 
-  function polishContact() {
-    const form = document.getElementById("contactForm");
-    if (!form || form.dataset.auraContactFixed) return;
-    form.dataset.auraContactFixed = "true";
-    form.addEventListener("submit", event => {
-      event.preventDefault(); event.stopImmediatePropagation();
-      const data = new FormData(form); const type = data.get("type") || "General"; const message = data.get("message") || "";
-      const xUrl = `https://x.com/AURASymbol?text=${encodeURIComponent("AURA " + type + " inquiry: " + message)}`;
-      const note = form.querySelector(".form-note") || document.createElement("div"); note.className = "form-note contact-result";
-      note.innerHTML = `Direct email is not configured yet. <a href="${xUrl}" target="_blank" rel="noopener noreferrer">Contact AURA on X ↗</a>`;
-      form.append(note); window.open(xUrl,"_blank","noopener,noreferrer");
-    }, {capture:true});
-  }
-
   function polishLabels() {
     const home = document.getElementById("home");
     if (!home) return;
@@ -160,7 +146,7 @@
   }
 
   function run() {
-    installStyle(); addHeroStatus(); addPageHeroStatus(); addProof(); addNftLinks(); addParticipation(); addEngagement(); polishContact(); polishLabels();
+    installStyle(); addHeroStatus(); addPageHeroStatus(); addProof(); addNftLinks(); addParticipation(); addEngagement(); polishLabels();
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", run, {once:true}); else run();
