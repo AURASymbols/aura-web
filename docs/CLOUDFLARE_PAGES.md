@@ -1,13 +1,16 @@
-# Cloudflare Pages
+# Cloudflare Workers (static assets)
 
-Use Cloudflare Pages to host the AURA company site from the `public` directory.
+Host the AURA company site from `public/` via Workers static assets (`wrangler.toml`).
 
-## Deploy settings
+## Production Worker
 
-- Framework preset: None
-- Build command: leave blank
-- Build output directory: `public`
-- Root directory: repository root
+- Worker name: `aura-web` (owns `aurasymbol.com`)
+- Production Git branch: `cloudflare-pages-prep`
+- Build command: `npm run build:static` (or blank)
+- **Deploy command: `npx wrangler deploy`** (not `wrangler preview`)
+- Root directory: `/`
+
+`wrangler preview` fails production cutover and does not update the live custom domain.
 
 ## Domain
 

@@ -11,7 +11,7 @@ AURA uses milestones to distinguish what has been established from what is curre
 | AURA #001 — ORIGIN | On-chain | Ethereum / ERC-1155 |
 | AURA #002 — FORCE | On-chain | Ethereum / ERC-1155 |
 | Public web portal | Building | Investor / developer portal |
-| Company website (aurasymbol.com) | Ready in repo | Dark editorial company site; domain DNS not connected yet |
+| Company website (aurasymbol.com) | Live | Dark editorial company site on Cloudflare Worker `aura-web` |
 | Public project documentation | Established | Roadmap, architecture and build notes |
 
 ## MVP v0.1 — First Product Validation

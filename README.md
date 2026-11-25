@@ -14,7 +14,7 @@ AURA is not presented as a finished platform. The project has an established ide
 | Symbolic NFT foundation | **Established** |
 | AURA #001 — ORIGIN | **On-chain** |
 | AURA #002 — FORCE | **On-chain** |
-| Company website (aurasymbol.com) | **Ready in repo — domain not connected** |
+| Company website (aurasymbol.com) | **Live** — company site on Cloudflare Workers (`aura-web`) |
 | Public investor / developer portal | **Building** |
 | Technical architecture | **Defined / evolving** |
 | Backend / API foundation | **Building** |
@@ -196,10 +196,8 @@ The repository intentionally keeps private infrastructure optional so developers
 AURA is early. That is explicit. The foundation is real. The next stage is where meaningful participation can make a difference.
 
 
-## V3.5 — AURA editorial experience
+## Production site
 
-The V3.5 experience is developed on `development/aura-v3.5-cinematic` and reviewed through [PR #11](https://github.com/AURASymbols/aura-web/pull/11). The homepage has a distinct art direction inspired by independent art journals and contemporary galleries: charcoal-black surfaces, restrained silver-grey accents, low-contrast lighting, oversized wordmark typography and gallery-led NFT presentation. The original ORIGIN and FORCE artwork is retained.
+The live company site is at [aurasymbol.com](https://aurasymbol.com). It is served from the Cloudflare Worker `aura-web` (`npx wrangler deploy`). Deploy notes: [`docs/CLOUDFLARE_PAGES.md`](docs/CLOUDFLARE_PAGES.md).
 
-Motion is browser-rendered and restrained; there is no background video or third-party animation dependency. The layout is responsive and respects reduced-motion preferences. The project status remains explicit: only the initial NFT layer is published, while the wider ecosystem is still being developed, researched or planned.
-
-V3.5 remains a development preview until desktop/mobile visual review is complete. It does not change the production site.
+The current editorial homepage keeps charcoal surfaces, restrained metallic accents, gallery-led NFT presentation, and the original ORIGIN / FORCE artwork. Only the initial NFT layer is published; the wider ecosystem remains in development, research, or planning.

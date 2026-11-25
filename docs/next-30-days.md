@@ -1,7 +1,7 @@
 # AURA — Next 30 days (project lead plan)
 
-Domain status: **aurasymbol.com not connected yet.**  
-Website status: **company site built in repo; awaiting deploy + DNS.**
+Domain status: **aurasymbol.com live** (Cloudflare Worker `aura-web`).  
+Website status: **company site deployed**; email routing (`ceo@`) next to stabilize.
 
 ## Business objective
 
